@@ -1,0 +1,42 @@
+{
+  "decks": [{
+    "id": "d1",
+    "name": "deck 1",
+    "description": "short description to go here.",
+    "created": 1510944476576,
+    "lastViewed": 1510944476576
+  }, {
+    "id": "d2",
+    "name": "deck 2",
+    "description": "short description to go here.",
+    "created": 1510944476576,
+    "lastViewed": 1510944476576
+  }],
+  "cards": [{
+      "id": "c1",
+      "question": "what is blue?",
+      "answer": "the sky",
+      "decks": ["d1", "d2"],
+      "topics": ["colors", "things", "topic3"]
+    }, {
+      "id": "c2",
+      "question": "what is green?",
+      "answer": "grass",
+      "decks": ["d1"],
+      "topics": ["colors"]
+    }, {
+      "id": "c3",
+      "question": "what is yellow?",
+      "answer": "the sun",
+      "decks": ["d1"],
+      "topics": ["colors"]
+    }, {
+      "id": "c4",
+      "question": "what is five?",
+      "answer": "fingers",
+      "decks": ["d1"],
+      "topics": ["numbers"]
+    }
+
+  ]
+}
