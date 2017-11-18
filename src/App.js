@@ -16,6 +16,10 @@ function reducer(state, action) {
   return state;
 }
 
+// sanity checks
+initialState.decks = initialState.decks || [];
+initialState.cards = initialState.cards || [];
+
 const store = createStore(reducer, initialState);
 
 const App = () => (
