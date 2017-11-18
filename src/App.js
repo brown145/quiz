@@ -6,10 +6,11 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // TODO: for now we ill use a static data source
 import initialState from './data';
 
-import DeckList from './components/deckList';
-import DeckCards from './components/deckCards';
+import DeckListRoute from './routes/deckList';
+import DeckDetailRoute from './routes/deckDetail';
+import CardDetailRoute from './routes/cardDetail';
+
 import TopicCards from './components/topicCards';
-import Card from './components/card';
 
 function reducer(state, action) {
   // TODO: reducer is non-op right now
@@ -26,10 +27,10 @@ const App = () => (
   <div className='ui container'>
     <h1 className='ui header no-anchor'>Trivia Demo Project</h1>
     <Switch>
-      <Route path='/decks/:id' component={DeckCards} />
+      <Route path='/decks/:id' component={DeckDetailRoute} />
       <Route path='/topics/:topics' component={TopicCards} />
-      <Route path='/decks' component={DeckList} />
-      <Route path='/cards/:id' component={Card} />
+      <Route path='/decks' component={DeckListRoute} />
+      <Route path='/cards/:id' component={CardDetailRoute} />
     </Switch>
   </div>
 );

@@ -1,26 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-// TODO: add layer on top that is aware of routed id and store - make this dumber
-class DeckCards extends React.Component{
+class DeckDetail extends React.Component{
   render() {
-    const deckId = this.props.match.params.id;
-    const { store } = this.context;
-    const state = store.getState();
-    const deck = state.decks.find((deck) => deck.id === deckId); //TODO: make function that returns found deck or empty deck
-    const cards = state.cards.filter((card) => (deck.cards.includes(card.id)));
+    const deck = this.props.deck;
 
+    // TODO: move this catch up to Router
     // Edge case - deck not found
     if (!deck){
       return (
         <WarningBlurbUI
-          messageText={'No deck with id:' + deckId + '!'}
+          messageText='Could not load deck'
         />
       );
     }
 
     // Edge case - no cards in deck
-    if (!cards.length){
+    if (!deck.cards.length){
       return (
         <WarningBlurbUI
           messageText='No cards in deck!'
@@ -32,13 +27,9 @@ class DeckCards extends React.Component{
     return (
       <CardListUI
         deck={deck}
-        cards={cards}
       />
     );
   }
-}
-DeckCards.contextTypes = {
-  store: PropTypes.object
 }
 
 const WarningBlurbUI = props => {
@@ -57,7 +48,7 @@ const CardListUI = props => (
   <div className='ui container'>
     <h2 className='ui header no-anchor'>Deck {props.deck.name}</h2>
     <div className='ui one itemsPerRow cards'>
-      {props.cards.map(card => (
+      {props.deck.cards.map(card => (
         <CardListItemUI key={card.id} card={card} />
       ))}
     </div>
@@ -73,4 +64,4 @@ const CardListItemUI = props => (
   </div>
 );
 
-export default DeckCards;
+export default DeckDetail;

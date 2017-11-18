@@ -1,12 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-// TODO: add layer on top that is aware of routed id and store - make this dumber
 class DeckList extends React.Component{
   render() {
-    const { store } = this.context;
-    const state = store.getState();
-    const decks = state.decks;
+    const decks = this.props.decks;
 
     // Edge case - no decks
     if (!decks.length){
@@ -24,9 +20,6 @@ class DeckList extends React.Component{
       />
     );
   }
-}
-DeckList.contextTypes = {
-  store: PropTypes.object
 }
 
 const WarningBlurbUI = props => {

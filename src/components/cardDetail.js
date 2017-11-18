@@ -1,21 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-// TODO: add layer on top that is aware of routed id and store - make this dumber
 class Card extends React.Component{
   render() {
-    const cardId = this.props.match.params.id;
-    const { store } = this.context;
-    const state = store.getState();
-    const card = state.cards.find((card) => ( card.id === cardId ));
-    const decks = state.decks.filter((deck) => ( deck.cards.includes(cardId) ));
-    const deckNames = decks.map((deck) => ( deck.name) );
+    const card = this.props.card;
+    const deckNames = card.decks.map((deck) => ( deck.name));
 
+    // TODO: move this catch up to Router
     // Edge case - no decks
     if (!card){
       return (
         <WarningBlurbUI
-          messageText={'No card with id:' + cardId + '!'}
+          messageText={'Could not load card!'}
         />
       );
     }
@@ -29,9 +24,6 @@ class Card extends React.Component{
       />
     );
   }
-}
-Card.contextTypes = {
-  store: PropTypes.object
 }
 
 // TODO: pull into own file and include in where needed
