@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import DeckList from '../components/deckList'
 
-// TODO: add layer on top that is aware of routed id and store - make this dumber
 class DeckListContainer extends React.Component{
   handler_deckClick = (deckId) => {
     if (deckId) {

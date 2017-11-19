@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import DeckDetail from '../components/deckDetail'
+import DeckDetail from '../components/deckDetail';
+import WarningUI from '../components/warningBlurb';
 
-// TODO: add layer on top that is aware of routed id and store - make this dumber
 class DeckDetailContainer extends React.Component{
   handler_cardClick = (cardId) => {
     if (cardId) {
@@ -16,6 +16,15 @@ class DeckDetailContainer extends React.Component{
     const { store } = this.context;
     const state = store.getState();
     const deck = state.decks.find((deck) => deck.id === deckId); //TODO: make function that returns found deck or empty deck
+
+    if (!deck) {
+      return (
+        <WarningUI
+          messageText='Could not load deck'
+        />
+      );
+    }
+
     const cards = state.cards.filter((card) => (deck.cards.includes(card.id)));
     const cardDeck = {...deck, cards};
 

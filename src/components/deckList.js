@@ -1,5 +1,7 @@
 import React from 'react';
 
+import WarningUI from './warningBlurb';
+
 class DeckList extends React.Component{
   render() {
     const decks = this.props.decks;
@@ -7,7 +9,7 @@ class DeckList extends React.Component{
     // Edge case - no decks
     if (!decks.length){
       return (
-        <WarningBlurbUI
+        <WarningUI
           messageText='No decks loaded!'
           actionText='Add a new deck?'
         />
@@ -22,18 +24,6 @@ class DeckList extends React.Component{
     );
   }
 }
-
-const WarningBlurbUI = props => {
-  const actionLine = (props.actionText) ? (<span>{props.actionText} <button>TBD</button></span>) : null;
-  return (
-    <div className="ui warning message">
-      <div className="header">
-        {props.messageText}
-      </div>
-      {actionLine}
-    </div>
-  );
-};
 
 const DeckListUI = props => (
   <div className='ui container'>
@@ -71,6 +61,6 @@ const DeckListItemUI = props => {
       </div>
     </div>
   );
-};
+}
 
 export default DeckList;
