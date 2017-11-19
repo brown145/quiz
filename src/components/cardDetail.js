@@ -1,16 +1,21 @@
 import React from 'react';
 import { Card, Container, Header, Label, List } from 'semantic-ui-react';
 
-class CardDetail extends React.Component{
-  render() {
-    const card = this.props.card;
+class CardDetail extends React.Component {
+  state = {
+    question: this.props.question || '',
+    answer: this.props.answer || '',
+    topics: this.props.topics || [],
+    decks: this.props.decks || [],
+  }
 
+  render() {
     return (
       <CardUI
-        question={card.question}
-        answer={card.answer}
-        topics={card.topics}
-        decks={card.decks}
+        question={this.state.question}
+        answer={this.state.answer}
+        topics={this.state.topics}
+        decks={this.state.decks}
         onDeckSelect={this.props.onDeckSelect}
       />
     );

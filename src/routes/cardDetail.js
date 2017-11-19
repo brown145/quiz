@@ -17,7 +17,6 @@ class CardDetailContainer extends React.Component{
     const state = store.getState();
     const card = state.cards.find((card) => ( card.id === cardId ));
     const decks = state.decks.filter((deck) => ( deck.cards.includes(cardId) ));
-    const cardDeck = {...card, decks};
 
     if (!card) {
       return (
@@ -27,7 +26,11 @@ class CardDetailContainer extends React.Component{
 
     return (
       <CardDetail
-        card={cardDeck}
+        cardId={cardId}
+        question={card.question}
+        answer={card.answer}
+        topics={card.topics}
+        decks={decks}
         onDeckSelect={this.handler_deckClick}
       />
     );

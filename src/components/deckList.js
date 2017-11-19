@@ -2,12 +2,14 @@ import React from 'react';
 
 import WarningUI from './warningBlurb';
 
-class DeckList extends React.Component{
-  render() {
-    const decks = this.props.decks;
+class DeckList extends React.Component {
+  state = {
+    decks: this.props.decks || []
+  }
 
+  render() {
     // Edge case - no decks
-    if (!decks.length){
+    if (!this.state.decks.length){
       return (
         <WarningUI
           messageText='No decks loaded!'
@@ -18,7 +20,7 @@ class DeckList extends React.Component{
 
     return (
       <DeckListUI
-        decks={decks}
+        decks={this.state.decks}
         onDeckSelect={this.props.onDeckSelect}
       />
     );
