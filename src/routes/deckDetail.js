@@ -5,6 +5,12 @@ import DeckDetail from '../components/deckDetail'
 
 // TODO: add layer on top that is aware of routed id and store - make this dumber
 class DeckDetailContainer extends React.Component{
+  handler_cardClick = (cardId) => {
+    if (cardId) {
+      this.props.history.push('/cards/' + cardId);
+    }
+  }
+
   render() {
     const deckId = this.props.match.params.id;
     const { store } = this.context;
@@ -16,6 +22,7 @@ class DeckDetailContainer extends React.Component{
     return (
       <DeckDetail
         deck={cardDeck}
+        onCardClick={this.handler_cardClick}
       />
     );
   }

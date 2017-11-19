@@ -3,7 +3,7 @@ import React from 'react';
 class Card extends React.Component{
   render() {
     const card = this.props.card;
-    const deckNames = card.decks.map((deck) => ( deck.name));
+    // const deckNames = card.decks.map((deck) => ( deck.name));
 
     // TODO: move this catch up to Router
     // Edge case - no decks
@@ -20,7 +20,9 @@ class Card extends React.Component{
         question={card.question}
         answer={card.answer}
         topics={card.topics}
-        deckNames={deckNames}
+        // deckNames={deckNames}
+        decks={card.decks}
+        onDeckSelect={this.props.onDeckSelect}
       />
     );
   }
@@ -50,7 +52,7 @@ const CardUI = props => (
       </div>
       <div className="extra content">
         <span>included in: </span>
-        <CardDeckListUI deckNames={props.deckNames} />
+        <CardDeckListUI decks={props.decks} onDeckSelect={props.onDeckSelect} />
       </div>
     </div>
   </div>
@@ -66,13 +68,25 @@ const CardRibonUI = props => {
 };
 
 const CardDeckListUI = props => {
-  if (props.deckNames && props.deckNames.length) {
-    const deckNameList = props.deckNames.map((name) => (
-      <div key={name} role='listItem' className='item'>{name}</div>
+  this.onDeckSelect = e => {
+    props.onDeckSelect(e.target.dataset.id);
+    e.preventDefault();
+  }
+  if (props.decks && props.decks.length) {
+    const deckList = props.decks.map((deck) => (
+      <div
+        key={deck.id}
+        role='listItem'
+        className='item'
+        data-id={deck.id}
+        onClick={this.onDeckSelect}
+      >
+        {deck.name}
+      </div>
     ));
     return (
       <div role='list' className='ui horizontal list'>
-        {deckNameList}
+        {deckList}
       </div>
     );
   } else {
