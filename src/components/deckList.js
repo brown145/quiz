@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container, Header, Card, Icon } from 'semantic-ui-react';
 
 import WarningUI from './warningBlurb';
 
@@ -28,9 +29,9 @@ class DeckList extends React.Component {
 }
 
 const DeckListUI = props => (
-  <div className='ui container'>
-    <h2 className='ui header no-anchor'>Deck List</h2>
-    <div className='ui two itemsPerRow cards'>
+  <Container>
+    <Header as='h2'>Deck List</Header>
+    <Card.Group itemsPerRow='2'>
       {props.decks.map(deck => (
         <DeckListItemUI
           key={deck.id}
@@ -38,8 +39,8 @@ const DeckListUI = props => (
           onDeckSelect={props.onDeckSelect}
         />
       ))}
-    </div>
-  </div>
+    </Card.Group>
+  </Container>
 );
 
 const DeckListItemUI = props => {
@@ -47,21 +48,26 @@ const DeckListItemUI = props => {
     props.onDeckSelect(props.deck.id);
     e.preventDefault();
   }
-  return (
-    <div className='ui card' onClick={this.onDeckSelect}>
-      <div className='content'>
-        <div className='header'>{props.deck.name || 'Unnamed Deck'}</div>
-        <div className='meta'>{props.deck.description}</div>
-        <div className='description'>created: {(new Date(props.deck.created)).toDateString()}</div>
-        <div className='description'>last viewed: {(new Date(props.deck.lastViewed)).toDateString()}</div>
-      </div>
-      <div className="extra content">
-        <a>
-          <i aria-hidden="true" className="cubes icon"></i>
-          {props.deck.cards.length} Cards
-        </a>
-      </div>
+  this.getDeckDescription = () => (
+    <div className='ui description'>
+      created: {(new Date(props.deck.created)).toDateString()}<br />
+      last viewed: {(new Date(props.deck.lastViewed)).toDateString()}
     </div>
+  )
+  this.getExtra = () => (
+    <a>
+      <Icon name='cubes' />
+      {props.deck.cards.length} Cards
+    </a>
+  )
+  return (
+    <Card
+      onClick={this.onDeckSelect}
+      header={props.deck.name || 'Unnamed Deck'}
+      meta={props.deck.description}
+      description={this.getDeckDescription()}
+      extra={this.getExtra()}
+    />
   );
 }
 
