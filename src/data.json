@@ -13,13 +13,6 @@
     "created": 1510944476576,
     "lastViewed": 1510944476576,
     "cards": ["c2", "c3"]
-  }, {
-    "id": "d3",
-    "name": "deck 3",
-    "description": "short description to go here.",
-    "created": 1510944476576,
-    "lastViewed": 1510944476576,
-    "cards": []
   }],
   "cards": [{
     "id": "c1",

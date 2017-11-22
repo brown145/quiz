@@ -24,13 +24,11 @@ class CardDetailContainer extends React.Component{
       );
     }
 
+    const populatedCard = {...card, decks:decks};
+
     return (
       <CardDetail
-        cardId={cardId}
-        question={card.question}
-        answer={card.answer}
-        topics={card.topics}
-        decks={decks}
+        card={populatedCard}
         onDeckSelect={this.handler_deckClick}
       />
     );

@@ -26,15 +26,11 @@ class DeckDetailContainer extends React.Component{
     }
 
     const cards = state.cards.filter((card) => (deck.cards.includes(card.id)));
+    const cardDeck = {...deck, cards:cards}
 
     return (
       <DeckDetail
-        deckId={deckId}
-        name={deck.name}
-        description={deck.description}
-        created={deck.created}
-        lastViewed={deck.lastViewed}
-        cards={cards}
+        deck={cardDeck}
         onCardClick={this.handler_cardClick}
       />
     );

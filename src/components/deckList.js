@@ -1,10 +1,9 @@
 import React from 'react';
-import { Container, Header, Card, Icon, Button, Form } from 'semantic-ui-react';
+import { Container, Card, Icon, Button, Form } from 'semantic-ui-react';
 
 import DeckHelpers from '../helpers/deck';
-import WarningUI from './warningBlurb';
 
-class DeckDashboard extends React.Component {
+class DecksUI extends React.Component {
   state = {
     decks: this.props.decks
   }
@@ -130,30 +129,34 @@ class Deck extends React.Component {
   }
 
   render() {
-    this.onDeckSelect = e => {
+    this.onDeckSelect = (e) => {
+      if (e.target.classList.contains('button')) {
+        // TODO: mabye better way to check for button inside clickable element?
+        return;
+      }
       this.props.onDeckSelect(this.props.id);
       e.preventDefault();
     }
-    this.getDeckDescription = () => (
-      <div className='ui description'>
-        created: {(new Date(this.props.created)).toDateString()}<br />
-        last viewed: {(new Date(this.state.lastViewed)).toDateString()}
-        <Button onClick={this.props.onEditClick}>Edit</Button>
-      </div>
-    )
-    this.getExtra = () => (
-      <Container onClick={this.props.onDeckSelect}>
-        <Icon name='cubes' />
-        {this.props.cards.length} Cards
-      </Container>
-    )
     return (
-      <Card
-        header={this.state.name}
-        meta={this.state.description}
-        description={this.getDeckDescription()}
-        extra={this.getExtra()}
-      />
+      <Card onClick={this.onDeckSelect}>
+        <Card.Content>
+          <Card.Header>{this.state.name}</Card.Header>
+          <Card.Meta>
+            created: {(new Date(this.props.created)).toDateString()}
+            <br />
+            last viewed: {(new Date(this.state.lastViewed)).toDateString()}
+          </Card.Meta>
+          <Card.Description>
+            <Button floated='right' size='tiny' onClick={this.props.onEditClick}>Edit</Button>
+            <Container>{this.state.description}</Container>
+          </Card.Description>
+        </Card.Content>
+          <Card.Content extra >
+            <Icon name='cubes' />
+            {this.props.cards.length} Cards
+          </Card.Content>
+      </Card>
+
     );
   }
 }
@@ -217,16 +220,19 @@ class AddEditDeckForm extends React.Component {
   };
 
   render() {
+    const submitText = (this.props.id) ? 'Update' : 'Add';
     return (
       <Card color='green' >
         <Card.Content>
-          <Form.Input name='name' label='Name' value={this.state.name} onChange={this.handleInputChange} />
-          <Form.Input name='description' label='Description' value={this.state.description} onChange={this.handleInputChange} />
+          <Form>
+            <Form.Input type='text' name='name' label='Name' value={this.state.name} onChange={this.handleInputChange} />
+            <Form.Input type='text' name='description' label='Description' value={this.state.description} onChange={this.handleInputChange} />
+          </Form>
         </Card.Content>
         <Card.Content extra>
             <div className='ui two buttons'>
               <Button basic color='orange' onClick={this.props.onClose}>Cancel</Button>
-              <Button basic color='green' onClick={this.handleSubmit}>Submit</Button>
+              <Button basic color='green' onClick={this.handleSubmit}>{submitText}</Button>
             </div>
           </Card.Content>
       </Card>
@@ -234,4 +240,4 @@ class AddEditDeckForm extends React.Component {
   }
 }
 
-export default DeckDashboard;
+export default DecksUI;

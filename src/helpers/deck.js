@@ -1,8 +1,8 @@
-// TODO: include lib to make ids - ex: uuid.v4()
+const uuidv4 = require('uuid/v4');
 
 export default {
   attributesToDeck: deckAttrs => ({
-    id: 'sadfasdf', //TODO: generate unique ids
+    id: uuidv4(),
     name: deckAttrs.name || '',
     description: deckAttrs.description || '',
     created: deckAttrs.created || new Date().getTime(),
