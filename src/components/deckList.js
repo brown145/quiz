@@ -1,9 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Container, Card, Icon, Button, Form } from 'semantic-ui-react';
 
 import DeckHelpers from '../helpers/deck';
 
 class DecksUI extends React.Component {
+  static propTypes = {
+    decks: PropTypes.array,
+    onDeckSelect: PropTypes.func,
+  };
+
   state = {
     decks: this.props.decks,
   };
@@ -72,8 +78,25 @@ const EditableDeckList = props => (
     <ToggleableDeckAddForm onSubmit={props.onCreateSubmit} />
   </Card.Group>
 );
+EditableDeckList.propTypes = {
+  decks: PropTypes.array,
+  onDeckSelect: PropTypes.func,
+  onEditSubmit: PropTypes.func,
+  onCreateSubmit: PropTypes.func,
+};
 
 class EditableDeck extends React.Component {
+  static propTypes = {
+    id: PropTypes.string,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    created: PropTypes.number,
+    lastViewed: PropTypes.number,
+    cards: PropTypes.array,
+    onDeckSelect: PropTypes.func,
+    onSubmit: PropTypes.func,
+  };
+
   state = {
     editFormOpen: false,
   };
@@ -128,6 +151,17 @@ class EditableDeck extends React.Component {
 }
 
 class Deck extends React.Component {
+  static propTypes = {
+    id: PropTypes.string,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    created: PropTypes.number,
+    lastViewed: PropTypes.number,
+    cards: PropTypes.array,
+    onDeckSelect: PropTypes.func,
+    onEditClick: PropTypes.func,
+  };
+
   state = {
     name: this.props.name,
     description: this.props.description,
@@ -173,6 +207,10 @@ class Deck extends React.Component {
 }
 
 class ToggleableDeckAddForm extends React.Component {
+  static propTypes = {
+    onSubmit: PropTypes.func,
+  };
+
   state = {
     isOpen: false,
   };
@@ -211,8 +249,18 @@ const AddCard = props => (
     </Card.Content>
   </Card>
 );
+AddCard.propTypes = {
+  onAdd: PropTypes.func,
+};
 
 class AddEditDeckForm extends React.Component {
+  static propTypes = {
+    id: PropTypes.string,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    onSubmit: PropTypes.func,
+    onClose: PropTypes.func,
+  };
   state = {
     name: this.props.name || '',
     description: this.props.description || '',

@@ -13,6 +13,7 @@ import {
 class CardUI extends React.Component {
   static propTypes = {
     card: PropTypes.object,
+    onDeckSelect: PropTypes.func,
   };
 
   state = {
@@ -40,13 +41,22 @@ class CardUI extends React.Component {
         topics={this.state.card.topics}
         decks={this.state.card.decks}
         onDeckSelect={this.props.onDeckSelect}
-        onSubmit={this.handleEditSubmit}
+        onFormSubmit={this.handleEditSubmit}
       />
     );
   }
 }
 
 class EditableCard extends React.Component {
+  static propTypes = {
+    question: PropTypes.string,
+    answer: PropTypes.string,
+    topics: PropTypes.array,
+    decks: PropTypes.array,
+    onDeckSelect: PropTypes.func,
+    onFormSubmit: PropTypes.func,
+  };
+
   state = {
     editFormOpen: false,
   };
@@ -60,7 +70,7 @@ class EditableCard extends React.Component {
   };
 
   handleSubmit = card => {
-    this.props.onSubmit(card);
+    this.props.onFormSubmit(card);
     this.closeForm();
   };
 
@@ -91,8 +101,8 @@ class EditableCard extends React.Component {
           answer={this.props.answer}
           topics={this.props.topics}
           decks={this.props.decks}
-          onSubmit={this.handleSubmit}
-          onClose={this.handleFormClose}
+          onFormSubmit={this.handleSubmit}
+          onFormClose={this.handleFormClose}
         />
       );
     }
@@ -118,8 +128,25 @@ const CardComponent = props => (
     </Card>
   </Container>
 );
+CardComponent.propTypes = {
+  question: PropTypes.string,
+  answer: PropTypes.string,
+  topics: PropTypes.array,
+  decks: PropTypes.array,
+  onDeckSelect: PropTypes.func,
+  onEditClick: PropTypes.func,
+};
 
 class EditCardForm extends React.Component {
+  static propTypes = {
+    question: PropTypes.string,
+    answer: PropTypes.string,
+    topics: PropTypes.string,
+    decks: PropTypes.array,
+    onFormSubmit: PropTypes.func,
+    onFormClose: PropTypes.func,
+  };
+
   // TODO: edit decks and topics
   state = {
     question: this.props.question || '',
@@ -131,7 +158,7 @@ class EditCardForm extends React.Component {
   };
 
   handleSubmit = () => {
-    this.props.onSubmit({
+    this.props.onFormSubmit({
       question: this.state.question,
       answer: this.state.answer,
     });
@@ -160,7 +187,7 @@ class EditCardForm extends React.Component {
         </Card.Content>
         <Card.Content extra>
           <div className="ui two buttons">
-            <Button basic color="orange" onClick={this.props.onClose}>
+            <Button basic color="orange" onClick={this.props.onFormClose}>
               Cancel
             </Button>
             <Button basic color="green" onClick={this.handleSubmit}>
@@ -179,6 +206,9 @@ const CardRibonUI = props => {
     return <Label ribbon="right">{topicString}</Label>;
   }
   return '';
+};
+CardRibonUI.propTypes = {
+  topics: PropTypes.array,
 };
 
 const CardDeckListUI = props => {
@@ -199,6 +229,10 @@ const CardDeckListUI = props => {
   } else {
     return <span>No decks</span>;
   }
+};
+CardDeckListUI.propTypes = {
+  decks: PropTypes.array,
+  onDeckSelect: PropTypes.func,
 };
 
 export default CardUI;

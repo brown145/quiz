@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Button,
   Card,
@@ -12,6 +13,11 @@ import {
 import CardHelpers from '../helpers/card';
 
 class DeckUI extends React.Component {
+  static propTypes = {
+    deck: PropTypes.object,
+    onCardClick: PropTypes.func,
+  };
+
   state = {
     deck: this.props.deck,
   };
@@ -54,6 +60,11 @@ const AppendableCardList = props => (
     <ToggleableCardAddForm onAddSubmit={props.onAddSubmit} />
   </Card.Group>
 );
+AppendableCardList.propTypes = {
+  cards: PropTypes.array,
+  onCardSelect: PropTypes.func,
+  onAddSubmit: PropTypes.func,
+};
 
 const CardShort = props => {
   this.onCardSelect = e => {
@@ -69,8 +80,16 @@ const CardShort = props => {
     </Card>
   );
 };
+CardShort.propTypes = {
+  card: PropTypes.object,
+  onCardSelect: PropTypes.func,
+};
 
 class ToggleableCardAddForm extends React.Component {
+  static propTypes = {
+    onAddSubmit: PropTypes.func,
+  };
+
   state = {
     isOpen: false,
   };
@@ -109,8 +128,18 @@ const AddCard = props => (
     </Card.Content>
   </Card>
 );
+AddCard.propTypes = {
+  onAdd: PropTypes.func,
+};
 
 class AddCardFrom extends React.Component {
+  static propTypes = {
+    question: PropTypes.string,
+    answer: PropTypes.string,
+    onSubmit: PropTypes.func,
+    onClose: PropTypes.func,
+  };
+
   state = {
     question: this.props.question || '',
     answer: this.props.answer || '',

@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default props => {
+const warningBlurb = props => {
   const actionLine = props.actionText ? (
     <span>
       {props.actionText} <button>TBD</button>
@@ -13,3 +14,9 @@ export default props => {
     </div>
   );
 };
+warningBlurb.propTypes = {
+  messageText: PropTypes.string,
+  actionText: PropTypes.string,
+};
+
+export default warningBlurb;

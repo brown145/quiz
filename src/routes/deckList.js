@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 import DeckList from '../components/deckList';
 
 class DeckListContainer extends React.Component {
+  static propTypes = {
+    history: PropTypes.object,
+  };
+
   handler_deckClick = deckId => {
     if (deckId) {
       this.props.history.push(`/decks/${deckId}`);

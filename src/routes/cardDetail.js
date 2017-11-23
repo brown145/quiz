@@ -5,6 +5,11 @@ import CardDetail from '../components/cardDetail';
 import WarningUI from '../components/warningBlurb';
 
 class CardDetailContainer extends React.Component {
+  static propTypes = {
+    history: PropTypes.object,
+    match: PropTypes.object,
+  };
+
   handler_deckClick = deckId => {
     if (deckId) {
       this.props.history.push(`/decks/${deckId}`);
