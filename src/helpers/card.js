@@ -6,5 +6,5 @@ export default {
     question: cardAttribures.question || '',
     answer: cardAttribures.answer || '',
     topics: cardAttribures.topics || [],
-  })
-}
+  }),
+};

@@ -8,5 +8,5 @@ export default {
     created: deckAttrs.created || new Date().getTime(),
     lastViewed: deckAttrs.lastViewed || new Date().getTime(),
     cards: deckAttrs.cards || [],
-  })
-}
+  }),
+};

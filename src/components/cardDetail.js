@@ -1,21 +1,36 @@
 import React from 'react';
-import { Button, Card, Container, Form, Header, Label, List } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import {
+  Button,
+  Card,
+  Container,
+  Form,
+  Header,
+  Label,
+  List,
+} from 'semantic-ui-react';
 
 class CardUI extends React.Component {
+  static propTypes = {
+    card: PropTypes.object,
+  };
+
   state = {
     card: this.props.card,
-  }
+  };
 
   handleEditSubmit = card => {
     this.updateCard(card);
-  }
+  };
 
-  updateCard = (attrs) => {
-    this.setState({card: Object.assign({}, this.state.card, {
-      question: attrs.question,
-      answer: attrs.answer,
-    })});
-  }
+  updateCard = attrs => {
+    this.setState({
+      card: Object.assign({}, this.state.card, {
+        question: attrs.question,
+        answer: attrs.answer,
+      }),
+    });
+  };
 
   render() {
     return (
@@ -34,31 +49,31 @@ class CardUI extends React.Component {
 class EditableCard extends React.Component {
   state = {
     editFormOpen: false,
-  }
+  };
 
   handleEditClick = () => {
     this.openForm();
-  }
+  };
 
   handleFormClose = () => {
     this.closeForm();
-  }
+  };
 
-  handleSubmit = (card) => {
+  handleSubmit = card => {
     this.props.onSubmit(card);
     this.closeForm();
-  }
+  };
 
   closeForm = () => {
     this.setState({ editFormOpen: false });
-  }
+  };
 
   openForm = () => {
     this.setState({ editFormOpen: true });
-  }
+  };
 
-  render(){
-    if (!this.state.editFormOpen){
+  render() {
+    if (!this.state.editFormOpen) {
       return (
         <CardComponent
           question={this.props.question}
@@ -86,13 +101,15 @@ class EditableCard extends React.Component {
 
 const CardComponent = props => (
   <Container>
-    <Header as='h2'>Card {props.question}</Header>
+    <Header as="h2">Card {props.question}</Header>
     <Card fluid>
       <Card.Content>
         <CardRibonUI topics={props.topics} />
         <Card.Header>{props.question}</Card.Header>
         <Card.Description>{props.answer}</Card.Description>
-        <Button floated='right' size='tiny' onClick={props.onEditClick}>Edit</Button>
+        <Button floated="right" size="tiny" onClick={props.onEditClick}>
+          Edit
+        </Button>
       </Card.Content>
       <Card.Content extra>
         <span>included in: </span>
@@ -107,11 +124,11 @@ class EditCardForm extends React.Component {
   state = {
     question: this.props.question || '',
     answer: this.props.answer || '',
-  }
+  };
 
-  handleInputChange = (e, {name, value}) => {
-    this.setState({[name]: value});
-  }
+  handleInputChange = (e, { name, value }) => {
+    this.setState({ [name]: value });
+  };
 
   handleSubmit = () => {
     this.props.onSubmit({
@@ -120,21 +137,37 @@ class EditCardForm extends React.Component {
     });
   };
 
-  render(){
+  render() {
     return (
-      <Card fluid color='green' >
+      <Card fluid color="green">
         <Card.Content>
           <Form>
-            <Form.Input type='text' name='question' label='Question' value={this.state.question} onChange={this.handleInputChange} />
-            <Form.Input type='text' name='answer' label='Answer' value={this.state.answer} onChange={this.handleInputChange} />
+            <Form.Input
+              type="text"
+              name="question"
+              label="Question"
+              value={this.state.question}
+              onChange={this.handleInputChange}
+            />
+            <Form.Input
+              type="text"
+              name="answer"
+              label="Answer"
+              value={this.state.answer}
+              onChange={this.handleInputChange}
+            />
           </Form>
         </Card.Content>
         <Card.Content extra>
-            <div className='ui two buttons'>
-              <Button basic color='orange' onClick={this.props.onClose}>Cancel</Button>
-              <Button basic color='green' onClick={this.handleSubmit}>Update</Button>
-            </div>
-          </Card.Content>
+          <div className="ui two buttons">
+            <Button basic color="orange" onClick={this.props.onClose}>
+              Cancel
+            </Button>
+            <Button basic color="green" onClick={this.handleSubmit}>
+              Update
+            </Button>
+          </div>
+        </Card.Content>
       </Card>
     );
   }
@@ -143,20 +176,18 @@ class EditCardForm extends React.Component {
 const CardRibonUI = props => {
   if (props.topics && props.topics.length) {
     const topicString = props.topics.join(' | ');
-    return (
-      <Label ribbon='right'>{topicString}</Label>
-    );
+    return <Label ribbon="right">{topicString}</Label>;
   }
   return '';
-}
+};
 
 const CardDeckListUI = props => {
-  this.onDeckSelect = (e, {value}) => {
+  this.onDeckSelect = (e, { value }) => {
     props.onDeckSelect(value);
     e.preventDefault();
-  }
+  };
   if (props.decks && props.decks.length) {
-    const deckList = props.decks.map((deck) => (
+    const deckList = props.decks.map(deck => (
       <List.Item
         key={deck.id}
         onClick={this.onDeckSelect}
@@ -164,12 +195,10 @@ const CardDeckListUI = props => {
         content={deck.name}
       />
     ));
-    return (
-      <List horizontal items={deckList} />
-    );
+    return <List horizontal items={deckList} />;
   } else {
-    return (<span>No decks</span>);
+    return <span>No decks</span>;
   }
-}
+};
 
 export default CardUI;

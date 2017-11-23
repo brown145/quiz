@@ -5,16 +5,16 @@ import DeckHelpers from '../helpers/deck';
 
 class DecksUI extends React.Component {
   state = {
-    decks: this.props.decks
-  }
+    decks: this.props.decks,
+  };
 
   handleEditSubmit = deck => {
     this.updateDeck(deck);
-  }
+  };
 
   handleCreateSubmit = deck => {
     this.createDeck(deck);
-  }
+  };
 
   createDeck = deck => {
     const d = DeckHelpers.attributesToDeck(deck);
@@ -23,11 +23,11 @@ class DecksUI extends React.Component {
     });
 
     // client.createDeck(d);
-  }
+  };
 
-  updateDeck = (attrs) => {
+  updateDeck = attrs => {
     this.setState({
-      decks: this.state.decks.map((deck) => {
+      decks: this.state.decks.map(deck => {
         if (deck.id === attrs.id) {
           return Object.assign({}, deck, {
             name: attrs.name,
@@ -36,25 +36,27 @@ class DecksUI extends React.Component {
         } else {
           return deck;
         }
-      })
+      }),
     });
 
     // client.updateDeck(attrs);
   };
 
-  render(){
-    return (<EditableDeckList
-      decks={this.state.decks}
-      onDeckSelect={this.props.onDeckSelect}
-      onEditSubmit={this.handleEditSubmit}
-      onCreateSubmit={this.handleCreateSubmit}
-    />);
+  render() {
+    return (
+      <EditableDeckList
+        decks={this.state.decks}
+        onDeckSelect={this.props.onDeckSelect}
+        onEditSubmit={this.handleEditSubmit}
+        onCreateSubmit={this.handleCreateSubmit}
+      />
+    );
   }
 }
 
 const EditableDeckList = props => (
-  <Card.Group itemsPerRow='2' >
-    {props.decks.map((deck) => (
+  <Card.Group itemsPerRow="2">
+    {props.decks.map(deck => (
       <EditableDeck
         key={deck.id}
         id={deck.id}
@@ -74,7 +76,7 @@ const EditableDeckList = props => (
 class EditableDeck extends React.Component {
   state = {
     editFormOpen: false,
-  }
+  };
 
   handleEditClick = () => {
     this.openForm();
@@ -84,7 +86,7 @@ class EditableDeck extends React.Component {
     this.closeForm();
   };
 
-  handleSubmit = (deck) => {
+  handleSubmit = deck => {
     this.props.onSubmit(deck);
     this.closeForm();
   };
@@ -98,25 +100,29 @@ class EditableDeck extends React.Component {
   };
 
   render() {
-    if (!this.state.editFormOpen){
-      return (<Deck
-        id={this.props.id}
-        name={this.props.name}
-        description={this.props.description}
-        created={this.props.created}
-        lastViewed={this.props.lastViewed}
-        cards={this.props.cards}
-        onDeckSelect={this.props.onDeckSelect}
-        onEditClick={this.handleEditClick}
-      />);
+    if (!this.state.editFormOpen) {
+      return (
+        <Deck
+          id={this.props.id}
+          name={this.props.name}
+          description={this.props.description}
+          created={this.props.created}
+          lastViewed={this.props.lastViewed}
+          cards={this.props.cards}
+          onDeckSelect={this.props.onDeckSelect}
+          onEditClick={this.handleEditClick}
+        />
+      );
     } else {
-      return (<AddEditDeckForm
-        id={this.props.id}
-        name={this.props.name}
-        description={this.props.description}
-        onClose={this.handleFormClose}
-        onSubmit={this.handleSubmit}
-      />);
+      return (
+        <AddEditDeckForm
+          id={this.props.id}
+          name={this.props.name}
+          description={this.props.description}
+          onClose={this.handleFormClose}
+          onSubmit={this.handleSubmit}
+        />
+      );
     }
   }
 }
@@ -126,37 +132,42 @@ class Deck extends React.Component {
     name: this.props.name,
     description: this.props.description,
     lastViewed: this.props.lastViewed,
-  }
+  };
 
   render() {
-    this.onDeckSelect = (e) => {
+    this.onDeckSelect = e => {
       if (e.target.classList.contains('button')) {
         // TODO: mabye better way to check for button inside clickable element?
         return;
       }
       this.props.onDeckSelect(this.props.id);
       e.preventDefault();
-    }
+    };
     return (
       <Card onClick={this.onDeckSelect}>
         <Card.Content>
           <Card.Header>{this.state.name}</Card.Header>
           <Card.Meta>
-            created: {(new Date(this.props.created)).toDateString()}
+            created: {new Date(this.props.created).toDateString()}
             <br />
-            last viewed: {(new Date(this.state.lastViewed)).toDateString()}
+            last viewed: {new Date(this.state.lastViewed).toDateString()}
           </Card.Meta>
           <Card.Description>
-            <Button floated='right' size='tiny' onClick={this.props.onEditClick}>Edit</Button>
+            <Button
+              floated="right"
+              size="tiny"
+              onClick={this.props.onEditClick}
+            >
+              Edit
+            </Button>
             <Container>{this.state.description}</Container>
           </Card.Description>
         </Card.Content>
-          <Card.Content extra >
-            <Icon name='cubes' />
-            {this.props.cards.length} Cards
-          </Card.Content>
+        <Card.Content extra>
+          <Icon name="cubes" />
+          {this.props.cards.length} Cards
+        </Card.Content>
       </Card>
-
     );
   }
 }
@@ -174,29 +185,29 @@ class ToggleableDeckAddForm extends React.Component {
     this.setState({ isOpen: false });
   };
 
-  handleFormSubmit = (deck) => {
+  handleFormSubmit = deck => {
     this.props.onSubmit(deck);
     this.setState({ isOpen: false });
   };
 
   render() {
-    if ( this.state.isOpen ) {
-      return <AddEditDeckForm
-        onClose={this.handleFormClose}
-        onSubmit={this.handleFormSubmit}
-      />
+    if (this.state.isOpen) {
+      return (
+        <AddEditDeckForm
+          onClose={this.handleFormClose}
+          onSubmit={this.handleFormSubmit}
+        />
+      );
     } else {
-      return <AddCard
-        onAdd={this.handleFormOpen}
-      />
+      return <AddCard onAdd={this.handleFormOpen} />;
     }
   }
 }
 
 const AddCard = props => (
-  <Card color='green' onClick={props.onAdd} >
-    <Card.Content className='centerContent'>
-      <Icon name='add' size='big' />
+  <Card color="green" onClick={props.onAdd}>
+    <Card.Content className="centerContent">
+      <Icon name="add" size="big" />
     </Card.Content>
   </Card>
 );
@@ -207,9 +218,9 @@ class AddEditDeckForm extends React.Component {
     description: this.props.description || '',
   };
 
-  handleInputChange = (e, {name, value}) => {
-    this.setState({[name]: value});
-  }
+  handleInputChange = (e, { name, value }) => {
+    this.setState({ [name]: value });
+  };
 
   handleSubmit = () => {
     this.props.onSubmit({
@@ -220,21 +231,37 @@ class AddEditDeckForm extends React.Component {
   };
 
   render() {
-    const submitText = (this.props.id) ? 'Update' : 'Add';
+    const submitText = this.props.id ? 'Update' : 'Add';
     return (
-      <Card color='green' >
+      <Card color="green">
         <Card.Content>
           <Form>
-            <Form.Input type='text' name='name' label='Name' value={this.state.name} onChange={this.handleInputChange} />
-            <Form.Input type='text' name='description' label='Description' value={this.state.description} onChange={this.handleInputChange} />
+            <Form.Input
+              type="text"
+              name="name"
+              label="Name"
+              value={this.state.name}
+              onChange={this.handleInputChange}
+            />
+            <Form.Input
+              type="text"
+              name="description"
+              label="Description"
+              value={this.state.description}
+              onChange={this.handleInputChange}
+            />
           </Form>
         </Card.Content>
         <Card.Content extra>
-            <div className='ui two buttons'>
-              <Button basic color='orange' onClick={this.props.onClose}>Cancel</Button>
-              <Button basic color='green' onClick={this.handleSubmit}>{submitText}</Button>
-            </div>
-          </Card.Content>
+          <div className="ui two buttons">
+            <Button basic color="orange" onClick={this.props.onClose}>
+              Cancel
+            </Button>
+            <Button basic color="green" onClick={this.handleSubmit}>
+              {submitText}
+            </Button>
+          </div>
+        </Card.Content>
       </Card>
     );
   }
