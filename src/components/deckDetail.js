@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Button,
-  Card,
+  Card as SemanticCard,
   Container,
   Form,
   Header,
@@ -12,7 +12,7 @@ import {
 
 import CardHelpers from '../helpers/card';
 
-class DeckUI extends React.Component {
+class Deck extends React.Component {
   static propTypes = {
     deck: PropTypes.object,
     onCardClick: PropTypes.func,
@@ -53,12 +53,16 @@ class DeckUI extends React.Component {
 }
 
 const AppendableCardList = props => (
-  <Card.Group itemsPerRow="1">
+  <SemanticCard.Group itemsPerRow="1">
     {props.cards.map(card => (
-      <CardShort key={card.id} card={card} onCardSelect={props.onCardSelect} />
+      <CardShort
+        key={card.id}
+        card={card}
+        onCardSelect={props.onCardSelect}
+      />
     ))}
     <ToggleableCardAddForm onAddSubmit={props.onAddSubmit} />
-  </Card.Group>
+  </SemanticCard.Group>
 );
 AppendableCardList.propTypes = {
   cards: PropTypes.array,
@@ -72,12 +76,12 @@ const CardShort = props => {
     e.preventDefault();
   };
   return (
-    <Card onClick={this.onCardSelect}>
-      <Card.Content>
+    <SemanticCard onClick={this.onCardSelect}>
+      <SemanticCard.Content>
         <Label ribbon="right">{props.card.topics.join(' | ')}</Label>
-        <Card.Header>{props.card.question}</Card.Header>
-      </Card.Content>
-    </Card>
+        <SemanticCard.Header>{props.card.question}</SemanticCard.Header>
+      </SemanticCard.Content>
+    </SemanticCard>
   );
 };
 CardShort.propTypes = {
@@ -122,11 +126,11 @@ class ToggleableCardAddForm extends React.Component {
 }
 
 const AddCard = props => (
-  <Card color="green" onClick={props.onAdd}>
-    <Card.Content className="centerContent">
+  <SemanticCard color="green" onClick={props.onAdd}>
+    <SemanticCard.Content className="centerContent">
       <Icon name="add" size="big" />
-    </Card.Content>
-  </Card>
+    </SemanticCard.Content>
+  </SemanticCard>
 );
 AddCard.propTypes = {
   onAdd: PropTypes.func,
@@ -158,8 +162,8 @@ class AddCardFrom extends React.Component {
 
   render() {
     return (
-      <Card fluid color="green">
-        <Card.Content>
+      <SemanticCard fluid color="green">
+        <SemanticCard.Content>
           <Form>
             <Form.Input
               type="text"
@@ -176,8 +180,8 @@ class AddCardFrom extends React.Component {
               onChange={this.handleInputChange}
             />
           </Form>
-        </Card.Content>
-        <Card.Content extra>
+        </SemanticCard.Content>
+        <SemanticCard.Content extra>
           <div className="ui two buttons">
             <Button basic color="orange" onClick={this.props.onClose}>
               Cancel
@@ -186,10 +190,10 @@ class AddCardFrom extends React.Component {
               Update
             </Button>
           </div>
-        </Card.Content>
-      </Card>
+        </SemanticCard.Content>
+      </SemanticCard>
     );
   }
 }
 
-export default DeckUI;
+export default Deck;

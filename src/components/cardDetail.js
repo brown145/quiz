@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Button,
-  Card,
+  Card as SemanticCard,
   Container,
   Form,
   Header,
@@ -10,7 +10,7 @@ import {
   List,
 } from 'semantic-ui-react';
 
-class CardUI extends React.Component {
+class Card extends React.Component {
   static propTypes = {
     card: PropTypes.object,
     onDeckSelect: PropTypes.func,
@@ -112,20 +112,20 @@ class EditableCard extends React.Component {
 const CardComponent = props => (
   <Container>
     <Header as="h2">Card {props.question}</Header>
-    <Card fluid>
-      <Card.Content>
+    <SemanticCard fluid>
+      <SemanticCard.Content>
         <CardRibonUI topics={props.topics} />
-        <Card.Header>{props.question}</Card.Header>
-        <Card.Description>{props.answer}</Card.Description>
+        <SemanticCard.Header>{props.question}</SemanticCard.Header>
+        <SemanticCard.Description>{props.answer}</SemanticCard.Description>
         <Button floated="right" size="tiny" onClick={props.onEditClick}>
           Edit
         </Button>
-      </Card.Content>
-      <Card.Content extra>
+      </SemanticCard.Content>
+      <SemanticCard.Content extra>
         <span>included in: </span>
         <CardDeckListUI decks={props.decks} onDeckSelect={props.onDeckSelect} />
-      </Card.Content>
-    </Card>
+      </SemanticCard.Content>
+    </SemanticCard>
   </Container>
 );
 CardComponent.propTypes = {
@@ -141,7 +141,7 @@ class EditCardForm extends React.Component {
   static propTypes = {
     question: PropTypes.string,
     answer: PropTypes.string,
-    topics: PropTypes.string,
+    topics: PropTypes.array,
     decks: PropTypes.array,
     onFormSubmit: PropTypes.func,
     onFormClose: PropTypes.func,
@@ -166,8 +166,8 @@ class EditCardForm extends React.Component {
 
   render() {
     return (
-      <Card fluid color="green">
-        <Card.Content>
+      <SemanticCard fluid color="green">
+        <SemanticCard.Content>
           <Form>
             <Form.Input
               type="text"
@@ -184,8 +184,8 @@ class EditCardForm extends React.Component {
               onChange={this.handleInputChange}
             />
           </Form>
-        </Card.Content>
-        <Card.Content extra>
+        </SemanticCard.Content>
+        <SemanticCard.Content extra>
           <div className="ui two buttons">
             <Button basic color="orange" onClick={this.props.onFormClose}>
               Cancel
@@ -194,8 +194,8 @@ class EditCardForm extends React.Component {
               Update
             </Button>
           </div>
-        </Card.Content>
-      </Card>
+        </SemanticCard.Content>
+      </SemanticCard>
     );
   }
 }
@@ -235,4 +235,4 @@ CardDeckListUI.propTypes = {
   onDeckSelect: PropTypes.func,
 };
 
-export default CardUI;
+export default Card;

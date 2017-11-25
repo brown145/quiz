@@ -1,10 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Card, Icon, Button, Form } from 'semantic-ui-react';
+import {
+  Container,
+  Card as SemanticCard,
+  Icon,
+  Button,
+  Form,
+} from 'semantic-ui-react';
 
 import DeckHelpers from '../helpers/deck';
 
-class DecksUI extends React.Component {
+class DeckList extends React.Component {
   static propTypes = {
     decks: PropTypes.array,
     onDeckSelect: PropTypes.func,
@@ -61,7 +67,7 @@ class DecksUI extends React.Component {
 }
 
 const EditableDeckList = props => (
-  <Card.Group itemsPerRow="2">
+  <SemanticCard.Group itemsPerRow="2">
     {props.decks.map(deck => (
       <EditableDeck
         key={deck.id}
@@ -76,7 +82,7 @@ const EditableDeckList = props => (
       />
     ))}
     <ToggleableDeckAddForm onSubmit={props.onCreateSubmit} />
-  </Card.Group>
+  </SemanticCard.Group>
 );
 EditableDeckList.propTypes = {
   decks: PropTypes.array,
@@ -178,15 +184,15 @@ class Deck extends React.Component {
       e.preventDefault();
     };
     return (
-      <Card onClick={this.onDeckSelect}>
-        <Card.Content>
-          <Card.Header>{this.state.name}</Card.Header>
-          <Card.Meta>
+      <SemanticCard onClick={this.onDeckSelect}>
+        <SemanticCard.Content>
+          <SemanticCard.Header>{this.state.name}</SemanticCard.Header>
+          <SemanticCard.Meta>
             created: {new Date(this.props.created).toDateString()}
             <br />
             last viewed: {new Date(this.state.lastViewed).toDateString()}
-          </Card.Meta>
-          <Card.Description>
+          </SemanticCard.Meta>
+          <SemanticCard.Description>
             <Button
               floated="right"
               size="tiny"
@@ -195,13 +201,13 @@ class Deck extends React.Component {
               Edit
             </Button>
             <Container>{this.state.description}</Container>
-          </Card.Description>
-        </Card.Content>
-        <Card.Content extra>
+          </SemanticCard.Description>
+        </SemanticCard.Content>
+        <SemanticCard.Content extra>
           <Icon name="cubes" />
           {this.props.cards.length} Cards
-        </Card.Content>
-      </Card>
+        </SemanticCard.Content>
+      </SemanticCard>
     );
   }
 }
@@ -243,11 +249,11 @@ class ToggleableDeckAddForm extends React.Component {
 }
 
 const AddCard = props => (
-  <Card color="green" onClick={props.onAdd}>
-    <Card.Content className="centerContent">
+  <SemanticCard color="green" onClick={props.onAdd}>
+    <SemanticCard.Content className="centerContent">
       <Icon name="add" size="big" />
-    </Card.Content>
-  </Card>
+    </SemanticCard.Content>
+  </SemanticCard>
 );
 AddCard.propTypes = {
   onAdd: PropTypes.func,
@@ -281,8 +287,8 @@ class AddEditDeckForm extends React.Component {
   render() {
     const submitText = this.props.id ? 'Update' : 'Add';
     return (
-      <Card color="green">
-        <Card.Content>
+      <SemanticCard color="green">
+        <SemanticCard.Content>
           <Form>
             <Form.Input
               type="text"
@@ -299,8 +305,8 @@ class AddEditDeckForm extends React.Component {
               onChange={this.handleInputChange}
             />
           </Form>
-        </Card.Content>
-        <Card.Content extra>
+        </SemanticCard.Content>
+        <SemanticCard.Content extra>
           <div className="ui two buttons">
             <Button basic color="orange" onClick={this.props.onClose}>
               Cancel
@@ -309,10 +315,10 @@ class AddEditDeckForm extends React.Component {
               {submitText}
             </Button>
           </div>
-        </Card.Content>
-      </Card>
+        </SemanticCard.Content>
+      </SemanticCard>
     );
   }
 }
 
-export default DecksUI;
+export default DeckList;
