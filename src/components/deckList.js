@@ -8,56 +8,26 @@ import {
   Form,
 } from 'semantic-ui-react';
 
-import DeckHelpers from '../helpers/deck';
-
 class DeckList extends React.Component {
   static propTypes = {
     decks: PropTypes.array,
     onDeckSelect: PropTypes.func,
-  };
-
-  state = {
-    decks: this.props.decks,
+    onDeckEdit: PropTypes.func,
+    onDeckAdd: PropTypes.func,
   };
 
   handleEditSubmit = deck => {
-    this.updateDeck(deck);
+    this.props.onDeckEdit(deck);
   };
 
   handleCreateSubmit = deck => {
-    this.createDeck(deck);
-  };
-
-  createDeck = deck => {
-    const d = DeckHelpers.attributesToDeck(deck);
-    this.setState({
-      decks: this.state.decks.concat(d),
-    });
-
-    // client.createDeck(d);
-  };
-
-  updateDeck = attrs => {
-    this.setState({
-      decks: this.state.decks.map(deck => {
-        if (deck.id === attrs.id) {
-          return Object.assign({}, deck, {
-            name: attrs.name,
-            description: attrs.description,
-          });
-        } else {
-          return deck;
-        }
-      }),
-    });
-
-    // client.updateDeck(attrs);
+    this.props.onDeckAdd(deck);
   };
 
   render() {
     return (
       <EditableDeckList
-        decks={this.state.decks}
+        decks={this.props.decks}
         onDeckSelect={this.props.onDeckSelect}
         onEditSubmit={this.handleEditSubmit}
         onCreateSubmit={this.handleCreateSubmit}
@@ -74,8 +44,6 @@ const EditableDeckList = props => (
         id={deck.id}
         name={deck.name}
         description={deck.description}
-        created={deck.created}
-        lastViewed={deck.lastViewed}
         cards={deck.cards}
         onDeckSelect={props.onDeckSelect}
         onSubmit={props.onEditSubmit}
@@ -96,8 +64,6 @@ class EditableDeck extends React.Component {
     id: PropTypes.string,
     name: PropTypes.string,
     description: PropTypes.string,
-    created: PropTypes.number,
-    lastViewed: PropTypes.number,
     cards: PropTypes.array,
     onDeckSelect: PropTypes.func,
     onSubmit: PropTypes.func,
@@ -135,8 +101,6 @@ class EditableDeck extends React.Component {
           id={this.props.id}
           name={this.props.name}
           description={this.props.description}
-          created={this.props.created}
-          lastViewed={this.props.lastViewed}
           cards={this.props.cards}
           onDeckSelect={this.props.onDeckSelect}
           onEditClick={this.handleEditClick}
@@ -161,8 +125,6 @@ class Deck extends React.Component {
     id: PropTypes.string,
     name: PropTypes.string,
     description: PropTypes.string,
-    created: PropTypes.number,
-    lastViewed: PropTypes.number,
     cards: PropTypes.array,
     onDeckSelect: PropTypes.func,
     onEditClick: PropTypes.func,
@@ -171,7 +133,6 @@ class Deck extends React.Component {
   state = {
     name: this.props.name,
     description: this.props.description,
-    lastViewed: this.props.lastViewed,
   };
 
   render() {
@@ -188,9 +149,7 @@ class Deck extends React.Component {
         <SemanticCard.Content>
           <SemanticCard.Header>{this.state.name}</SemanticCard.Header>
           <SemanticCard.Meta>
-            created: {new Date(this.props.created).toDateString()}
-            <br />
-            last viewed: {new Date(this.state.lastViewed).toDateString()}
+            meta TODO
           </SemanticCard.Meta>
           <SemanticCard.Description>
             <Button

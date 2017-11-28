@@ -10,40 +10,23 @@ import {
   Label,
 } from 'semantic-ui-react';
 
-import CardHelpers from '../helpers/card';
-
 class Deck extends React.Component {
   static propTypes = {
     deck: PropTypes.object,
     onCardClick: PropTypes.func,
-  };
-
-  state = {
-    deck: this.props.deck,
+    onAddCardToDeck: PropTypes.func,
   };
 
   handleAddSubmit = card => {
-    this.addCard(card);
-  };
-
-  addCard = attrs => {
-    // TODO: this will need to be reworked for persistance
-    const card = CardHelpers.newCard(attrs);
-    const cards = this.state.deck.cards.concat(card);
-
-    this.setState({
-      deck: Object.assign({}, this.state.deck, {
-        cards: cards,
-      }),
-    });
+    this.props.onAddCardToDeck(card);
   };
 
   render() {
     return (
       <Container>
-        <Header as="h2">Deck {this.state.deck.name}</Header>
+        <Header as="h2">Deck {this.props.deck.name}</Header>
         <AppendableCardList
-          cards={this.state.deck.cards}
+          cards={this.props.deck.cards}
           onCardSelect={this.props.onCardClick}
           onAddSubmit={this.handleAddSubmit}
         />
@@ -78,7 +61,7 @@ const CardShort = props => {
   return (
     <SemanticCard onClick={this.onCardSelect}>
       <SemanticCard.Content>
-        <Label ribbon="right">{props.card.topics.join(' | ')}</Label>
+        <Label ribbon="right">props.card.topics.join(' | ')</Label>
         <SemanticCard.Header>{props.card.question}</SemanticCard.Header>
       </SemanticCard.Content>
     </SemanticCard>

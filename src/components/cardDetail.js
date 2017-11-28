@@ -14,32 +14,23 @@ class Card extends React.Component {
   static propTypes = {
     card: PropTypes.object,
     onDeckSelect: PropTypes.func,
-  };
-
-  state = {
-    card: this.props.card,
+    onQuestionEdit: PropTypes.func,
+    onAnswerEdit: PropTypes.func,
+    onCardEdit: PropTypes.func,
   };
 
   handleEditSubmit = card => {
-    this.updateCard(card);
-  };
-
-  updateCard = attrs => {
-    this.setState({
-      card: Object.assign({}, this.state.card, {
-        question: attrs.question,
-        answer: attrs.answer,
-      }),
-    });
+    this.props.onCardEdit(card);
   };
 
   render() {
     return (
       <EditableCard
-        question={this.state.card.question}
-        answer={this.state.card.answer}
-        topics={this.state.card.topics}
-        decks={this.state.card.decks}
+        id={this.props.card.id}
+        question={this.props.card.question}
+        answer={this.props.card.answer}
+        topics={this.props.card.topics}
+        decks={this.props.card.decks}
         onDeckSelect={this.props.onDeckSelect}
         onFormSubmit={this.handleEditSubmit}
       />
@@ -49,6 +40,7 @@ class Card extends React.Component {
 
 class EditableCard extends React.Component {
   static propTypes = {
+    id: PropTypes.string,
     question: PropTypes.string,
     answer: PropTypes.string,
     topics: PropTypes.array,
@@ -97,6 +89,7 @@ class EditableCard extends React.Component {
     } else {
       return (
         <EditCardForm
+          id={this.props.id}
           question={this.props.question}
           answer={this.props.answer}
           topics={this.props.topics}
@@ -139,6 +132,7 @@ CardComponent.propTypes = {
 
 class EditCardForm extends React.Component {
   static propTypes = {
+    id: PropTypes.string,
     question: PropTypes.string,
     answer: PropTypes.string,
     topics: PropTypes.array,
@@ -159,6 +153,7 @@ class EditCardForm extends React.Component {
 
   handleSubmit = () => {
     this.props.onFormSubmit({
+      id: this.props.id,
       question: this.state.question,
       answer: this.state.answer,
     });
