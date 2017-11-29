@@ -6,4 +6,4 @@ export default {
   cardDetailRoute,
   deckListRoute,
   deckDetailRoute,
-}
+};
