@@ -9,13 +9,16 @@
   },
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "jest/globals": true
   },
   "parser": "babel-eslint",
   "rules": {
     "comma-dangle": ["warn", "always-multiline"],
     "constructor-super": "error",
-    "indent": ["error", 2, {"SwitchCase": 1}],
+    "indent": ["error", 2, {
+      "SwitchCase": 1
+    }],
     "jsx-quotes": "warn",
     "linebreak-style": ["error", "unix"],
     "no-class-assign": "error",
@@ -23,7 +26,9 @@
     "no-console": "off",
     "no-dupe-class-members": "error",
     "no-this-before-super": "error",
-    "no-unused-vars": ["error", {"args": "none"}],
+    "no-unused-vars": ["error", {
+      "args": "none"
+    }],
     "no-var": "warn",
     "prefer-spread": "warn",
     "prefer-template": "warn",
@@ -36,7 +41,9 @@
     /*"babel/no-await-in-loop": "warn",*/
     "react/jsx-closing-bracket-location": "warn",
     "react/jsx-curly-spacing": "warn",
-    "react/jsx-max-props-per-line": ["warn", {"maximum": 3}],
+    "react/jsx-max-props-per-line": ["warn", {
+      "maximum": 3
+    }],
     "react/jsx-no-duplicate-props": "warn",
     "react/jsx-no-undef": "warn",
     "react/jsx-uses-react": "error",
@@ -46,10 +53,16 @@
     "react/prop-types": "warn",
     "react/react-in-jsx-scope": "error",
     "react/self-closing-comp": "warn",
-    "react/sort-comp": "warn"
+    "react/sort-comp": "warn",
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error"
   },
   "plugins": [
     "babel",
-    "react"
+    "react",
+    "jest"
   ]
 }
