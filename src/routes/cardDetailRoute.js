@@ -34,7 +34,7 @@ class CardDetailContainer extends React.Component {
   static propTypes = {
     history: PropTypes.object,
     match: PropTypes.object,
-    cards: PropTypes.object,
+    cards: PropTypes.array,
     dispatch: PropTypes.func,
   };
 

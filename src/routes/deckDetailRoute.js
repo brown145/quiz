@@ -34,7 +34,7 @@ class DeckDetailContainer extends React.Component {
   static propTypes = {
     history: PropTypes.object,
     match: PropTypes.object,
-    decks: PropTypes.object,
+    decks: PropTypes.array,
     dispatch: PropTypes.func,
   };
 
