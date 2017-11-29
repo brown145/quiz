@@ -1,9 +1,9 @@
 import {
-  ADD_DECK,
-  EDIT_DECK,
-  ADD_CARD,
-  EDIT_CARD,
-  ADD_CARD_TO_DECK,
+  CREATE_DECK,
+  UPDATE_DECK,
+  CREATE_CARD,
+  UPDATE_CARD,
+  CREATE_CARD_ADD_TO_DECK,
 } from '../actions/entityActions';
 
 export default function reducer (state={
@@ -12,13 +12,11 @@ export default function reducer (state={
   topics:{ byId: {}, allIds: [] },
   cardDecks:{ byId: {}, allIds: [] },
   cardTopics:{ byId: {}, allIds: [] },
-  // isLoaded:false,
-  // isPersisted:false, //TODO: use this!
 }, action) {
   const {type, payload} = action;
 
   switch (type) {
-    case EDIT_DECK:
+    case UPDATE_DECK:
       return {
         ...state,
         decks: {
@@ -26,7 +24,7 @@ export default function reducer (state={
           byId: {...state.decks.byId, [payload.deck.id]:payload.deck},
         },
       };
-    case ADD_DECK:
+    case CREATE_DECK:
       return {
         ...state,
         decks: {
@@ -35,7 +33,7 @@ export default function reducer (state={
           allIds: state.decks.allIds.concat(payload.deck.id),
         },
       };
-    case EDIT_CARD:
+    case UPDATE_CARD:
       return {
         ...state,
         cards: {
@@ -43,7 +41,7 @@ export default function reducer (state={
           byId: {...state.cards.byId, [payload.card.id]:payload.card},
         },
       };
-    case ADD_CARD:
+    case CREATE_CARD:
       return {
         ...state,
         cards: {
@@ -52,7 +50,7 @@ export default function reducer (state={
           allIds: state.cards.allIds.concat(payload.card.id),
         },
       };
-    case ADD_CARD_TO_DECK:
+    case CREATE_CARD_ADD_TO_DECK:
       return {
         ...state,
         cards: {

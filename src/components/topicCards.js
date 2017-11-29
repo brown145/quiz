@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-//TODO: accept multiple topics - https://stackoverflow.com/a/35976942
+//IDEA: accept multiple topics - https://stackoverflow.com/a/35976942
 class TopicCards extends React.Component {
   render() {
     const topics = this.props.match.params.topics;

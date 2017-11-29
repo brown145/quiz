@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { addDeck, editDeck } from '../actions/entityActions';
+import { createDeck, updateDeck } from '../actions/entityActions';
 
 import DeckList from '../components/deckList';
 
@@ -46,8 +46,8 @@ class DeckListContainer extends React.Component {
       <DeckList
         decks={this.props.decks}
         onDeckSelect={this.handler_deckClick}
-        onDeckEdit={(deck) => ( this.props.dispatch(editDeck(deck)) )}
-        onDeckAdd={(deck) => ( this.props.dispatch(addDeck(deck)) )}
+        onDeckEdit={(deck) => ( this.props.dispatch(updateDeck(deck)) )}
+        onDeckAdd={(deck) => ( this.props.dispatch(createDeck(deck)) )}
       />
     );
   }

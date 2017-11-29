@@ -73,8 +73,9 @@ class EditableDeck extends React.Component {
     editFormOpen: false,
   };
 
-  handleEditClick = () => {
+  handleEditClick = (e) => {
     this.openForm();
+    e.stopPropagation();
   };
 
   handleFormClose = () => {
@@ -137,10 +138,6 @@ class Deck extends React.Component {
 
   render() {
     this.onDeckSelect = e => {
-      if (e.target.classList.contains('button')) {
-        // TODO: mabye better way to check for button inside clickable element?
-        return;
-      }
       this.props.onDeckSelect(this.props.id);
       e.preventDefault();
     };
@@ -149,7 +146,7 @@ class Deck extends React.Component {
         <SemanticCard.Content>
           <SemanticCard.Header>{this.state.name}</SemanticCard.Header>
           <SemanticCard.Meta>
-            meta TODO
+            meta TBD
           </SemanticCard.Meta>
           <SemanticCard.Description>
             <Button

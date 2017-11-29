@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { addCardToDeck } from '../actions/entityActions';
+import { createCardForDeck } from '../actions/entityActions';
 
 import DeckDetail from '../components/deckDetail';
 import WarningUI from '../components/warningBlurb';
@@ -66,7 +66,7 @@ class DeckDetailContainer extends React.Component {
       <DeckDetail
         deck={deck}
         onCardClick={this.handler_cardClick}
-        onAddCardToDeck={(attrs) => ( this.props.dispatch(addCardToDeck(attrs, deck.id)) )}
+        onAddCardToDeck={(attrs) => ( this.props.dispatch(createCardForDeck(attrs, deck.id)) )}
       />
     );
   }

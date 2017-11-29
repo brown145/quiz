@@ -4,52 +4,52 @@ import {
   newCardDeckRelation,
 } from '../helpers/entityHelper';
 
-export const ADD_DECK = 'ADD_DECK';
-export const EDIT_DECK = 'EDIT_DECK';
-export const ADD_CARD = 'ADD_CARD';
-export const EDIT_CARD = 'EDIT_CARD';
-export const ADD_CARD_TO_DECK = 'ADD_CARD_TO_DECK'; //TODO: need to distinguish adding an existing and adding a new card to deck
+export const CREATE_DECK = 'CREATE_DECK';
+export const UPDATE_DECK = 'UPDATE_DECK';
+export const CREATE_CARD = 'CREATE_CARD';
+export const UPDATE_CARD = 'UPDATE_CARD';
+export const CREATE_CARD_ADD_TO_DECK = 'CREATE_CARD_ADD_TO_DECK';
 
-export function editDeck(deck){
+export function updateDeck(deck){
   return {
-    type: EDIT_DECK,
+    type: UPDATE_DECK,
     payload: {
       deck,
     },
   };
 }
 
-export function addDeck(deckAttrs){
+export function createDeck(deckAttrs){
   return {
-    type: ADD_DECK,
+    type: CREATE_DECK,
     payload: {
       deck: attributesToDeck(deckAttrs),
     },
   };
 }
 
-export function editCard(card){
+export function updateCard(card){
   return {
-    type: EDIT_CARD,
+    type: UPDATE_CARD,
     payload: {
       card,
     },
   };
 }
 
-export function addCard(cardAttrs){
+export function createCard(cardAttrs){
   return {
-    type: ADD_CARD,
+    type: CREATE_CARD,
     payload: {
       card: attributesToCard(cardAttrs),
     },
   };
 }
 
-export function addCardToDeck(cardAttrs, deckId){
+export function createCardForDeck(cardAttrs, deckId){
   const c = attributesToCard(cardAttrs);
   return {
-    type: ADD_CARD_TO_DECK,
+    type: CREATE_CARD_ADD_TO_DECK,
     payload: {
       card: c,
       relation: newCardDeckRelation(c.id, deckId),

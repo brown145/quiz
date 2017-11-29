@@ -141,7 +141,6 @@ class EditCardForm extends React.Component {
     onFormClose: PropTypes.func,
   };
 
-  // TODO: edit decks and topics
   state = {
     question: this.props.question || '',
     answer: this.props.answer || '',
