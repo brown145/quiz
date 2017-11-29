@@ -20,22 +20,22 @@
         "c1": {
           "id": "c1",
           "question": "what is blue?",
-          "answer": "the sky",
+          "answer": "the sky"
         },
         "c2": {
           "id": "c2",
           "question": "what is green?",
-          "answer": "grass",
+          "answer": "grass"
         },
         "c3": {
           "id": "c3",
           "question": "what is yellow?",
-          "answer": "the sun",
+          "answer": "the sun"
         },
         "c4": {
           "id": "c4",
           "question": "what is five?",
-          "answer": "fingers",
+          "answer": "fingers"
         }
       },
       "allIds": ["c1", "c2", "c3", "c4", "c5"]
@@ -45,7 +45,7 @@
         "colors": "colors",
         "things": "things",
         "topic3": "topic3",
-        "numbers": "numbers",
+        "numbers": "numbers"
       },
       "allIds": ["colors", "things", "topic3", "numbers"]
     },
@@ -54,28 +54,28 @@
         "cd1": {
           "id": "cd1",
           "deckId": "d1",
-          "cardId": "c1",
+          "cardId": "c1"
         },
         "cd2": {
           "id": "cd2",
           "deckId": "d1",
-          "cardId": "c2",
+          "cardId": "c2"
         },
         "cd3": {
           "id": "cd3",
           "deckId": "d1",
-          "cardId": "c3",
+          "cardId": "c3"
         },
         "cd4": {
           "id": "cd4",
           "deckId": "d2",
-          "cardId": "c2",
+          "cardId": "c2"
         },
         "cd5": {
           "id": "cd5",
           "deckId": "d2",
-          "cardId": "c3",
-        },
+          "cardId": "c3"
+        }
       },
       "allIds": ["cd1", "cd2", "cd3", "cd4", "cd5"]
     },
@@ -84,33 +84,33 @@
         "ct1": {
           "id": "ct1",
           "topicId": "colors",
-          "cardId": "c1",
+          "cardId": "c1"
         },
         "ct2": {
           "id": "ct2",
           "topicId": "things",
-          "cardId": "c1",
+          "cardId": "c1"
         },
         "ct3": {
           "id": "ct3",
           "topicId": "topic3",
-          "cardId": "c1",
+          "cardId": "c1"
         },
         "ct4": {
           "id": "ct4",
           "topicId": "colors",
-          "cardId": "c2",
+          "cardId": "c2"
         },
         "ct5": {
           "id": "ct5",
           "topicId": "colors",
-          "cardId": "c3",
+          "cardId": "c3"
         },
         "ct6": {
           "id": "ct6",
           "topicId": "numbers",
-          "cardId": "c4",
-        },
+          "cardId": "c4"
+        }
       },
       "allIds": ["ct1", "ct2", "ct3", "ct4", "ct5", "ct6"]
     }

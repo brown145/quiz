@@ -11,7 +11,6 @@ const mapStateToDeckProps = (store) => {
   //           it looks a bit messy, but just populating relations as nested objects
   //           redux likes data normalized but UI is easier with de-normalized
   //           this seems like an ok place to denormalize
-  
   let cardsByDeck = {};
   store.entities.decks.allIds.forEach(deckId => {
     const relations = Object.entries(store.entities.cardDecks.byId)

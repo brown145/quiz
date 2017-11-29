@@ -7,8 +7,11 @@ import {
 } from '../actions/entityActions';
 
 export default function reducer (state={
-  decks:[],
-  cards:[],
+  decks:{ byId: {}, allIds: [] },
+  cards:{ byId: {}, allIds: [] },
+  topics:{ byId: {}, allIds: [] },
+  cardDecks:{ byId: {}, allIds: [] },
+  cardTopics:{ byId: {}, allIds: [] },
   // isLoaded:false,
   // isPersisted:false, //TODO: use this!
 }, action) {
