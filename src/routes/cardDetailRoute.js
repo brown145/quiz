@@ -7,34 +7,36 @@ import { editCard } from '../actions/entityActions';
 import CardDetail from '../components/cardDetail';
 import WarningUI from '../components/warningBlurb';
 
-// TODO: it would be preferable to map to a single card
-//       however, this would require me to have the id of the card
-//       and at present that is only in the router state, it will
-//       be passed as prop later
-const mapStateToCardProps = (store) => {
-  let deckNamesByCard = {};
-  store.entities.cards.allIds.forEach(cardId => {
-    const relations = Object.entries(store.entities.cardDecks.byId)
-      .map((entry) => (entry[1]))
-      .filter(cd => cd.cardId === cardId)
-      .map(cd => (store.entities.decks.byId[cd.deckId]));
-    deckNamesByCard[cardId] = relations;
-  });
+const mapStateToCardProps = (store, ownProps) => {
+  // DEV NOTE: de-normalizing data here
+  //           it looks a bit messy, but just populating relations as nested objects
+  //           redux likes data normalized but UI is easier with de-normalized
+  //           this seems like an ok place to denormalize
 
-  // TODO: get topics for card
+  const cardId = ownProps.match.params.id;
+  const cardEntity = store.entities.cards.byId[cardId];
+  const cardDeckEntities = Object.entries(store.entities.cardDecks.byId)
+    .map(entry => (entry[1]))
+    .filter(cd => (cd.cardId === cardId))
+    .map(cd => (store.entities.decks.byId[cd.deckId]));
+  const cardTopicEntities = Object.entries(store.entities.cardTopics.byId)
+    .map(entry => (entry[1]))
+    .filter(ct => (ct.cardId === cardId))
+    .map(ct => (store.entities.topics.byId[ct.topicId]));
+
   return {
-    cards: store.entities.cards.allIds.map(cardId => ({
-      ...store.entities.cards.byId[cardId],
-      decks: deckNamesByCard[cardId],
-    })),
-  };
+    card: {
+      ...cardEntity,
+      decks: cardDeckEntities,
+      topics: cardTopicEntities,
+    }
+  }
 };
 
 class CardDetailContainer extends React.Component {
   static propTypes = {
     history: PropTypes.object,
-    match: PropTypes.object,
-    cards: PropTypes.array,
+    card: PropTypes.object,
     dispatch: PropTypes.func,
   };
 
@@ -46,16 +48,13 @@ class CardDetailContainer extends React.Component {
   };
 
   render() {
-    const cardId = this.props.match.params.id;
-    const card = this.props.cards.find(card => card.id === cardId);
-
-    if (!card) {
+    if (!this.props.card) {
       return <WarningUI messageText={'Could not load card!'} />;
     }
 
     return (
       <CardDetail
-        card={card}
+        card={this.props.card}
         onDeckSelect={this.handler_deckClick}
         onCardEdit={(card) => ( this.props.dispatch(editCard(card)) )}
       />

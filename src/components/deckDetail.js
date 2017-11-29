@@ -61,7 +61,7 @@ const CardShort = props => {
   return (
     <SemanticCard onClick={this.onCardSelect}>
       <SemanticCard.Content>
-        <Label ribbon="right">props.card.topics.join(' | ')</Label>
+        <Label ribbon="right">{props.card.topics.join(' | ')}</Label>
         <SemanticCard.Header>{props.card.question}</SemanticCard.Header>
       </SemanticCard.Content>
     </SemanticCard>
