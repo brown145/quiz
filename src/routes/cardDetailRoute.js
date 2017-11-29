@@ -29,8 +29,8 @@ const mapStateToCardProps = (store, ownProps) => {
       ...cardEntity,
       decks: cardDeckEntities,
       topics: cardTopicEntities,
-    }
-  }
+    },
+  };
 };
 
 class CardDetailContainer extends React.Component {

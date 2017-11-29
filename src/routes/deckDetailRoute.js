@@ -26,15 +26,15 @@ const mapStateToDeckProps = (store, ownProps) => {
       return {
         ...store.entities.cards.byId[cd.cardId],
         topics: cardTopicEntities,
-      }
+      };
     });
 
   return {
     deck: {
       ...deckEntity,
-      cards: cardDeckEntities
-    }
-  }
+      cards: cardDeckEntities,
+    },
+  };
 };
 
 class DeckDetailContainer extends React.Component {
