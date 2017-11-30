@@ -16,10 +16,24 @@ export function attributesToCard(cardAttrs) {
   };
 }
 
+export function attributesToTopic(topicAttrs) {
+  return {
+    [topicAttrs.name]: topicAttrs.name,
+  };
+}
+
 export function newCardDeckRelation(cardId, deckId) {
   return {
     id: uuidv4(),
     cardId,
     deckId,
+  };
+}
+
+export function newCardTopicRelation(cardId, topicId) {
+  return {
+    id: uuidv4(),
+    cardId,
+    topicId,
   };
 }

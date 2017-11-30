@@ -1,7 +1,6 @@
 import {
-  CREATE_CARD,
-  DELETE_CARD,
-  UPDATE_CARD,
+  CREATE_TOPIC,
+  DELETE_TOPIC,
 } from '../actions/entityActions';
 
 export default function reducer (state={
@@ -11,27 +10,22 @@ export default function reducer (state={
   const {type, payload} = action;
 
   switch (type) {
-    case CREATE_CARD:
+    case CREATE_TOPIC:
       return {
         ...state,
-        byId: {...state.byId, [payload.card.id]:payload.card},
-        allIds: state.allIds.concat(payload.card.id),
+        byId: {...state.byId, [payload.topic.id]:payload.topic},
+        allIds: state.allIds.concat(payload.topic.id),
       };
-    case DELETE_CARD:
+    case DELETE_TOPIC:
       return {
         ...state,
         byId: Object.keys(state.byId).reduce((result, key) => {
-          if (key !== payload.cardId) {
+          if (key !== payload.topicId) {
             result[key] = state.byId[key];
           }
           return result;
         }, {}),
-        allIds: state.allIds.filter(cardId => cardId !== payload.cardId),
-      };
-    case UPDATE_CARD:
-      return {
-        ...state,
-        byId: {...state.byId, [payload.card.id]:payload.card},
+        allIds: state.allIds.filter(topic => topic !== payload.topicId),
       };
     default:
       return state;
