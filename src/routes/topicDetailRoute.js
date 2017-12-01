@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { deleteTopic } from '../actions/entityActions';
-
 import TopicDetail from '../components/topicDetail';
 
 const mapStateToTopicProps = (store, ownProps) => {
@@ -33,10 +31,17 @@ class TopicDetailContainer extends React.Component {
     dispatch: PropTypes.func,
   };
 
+  handler_cardClick = cardId => {
+    if (cardId) {
+      this.props.history.push(`/cards/${cardId}`);
+    }
+  };
+
   render() {
     return (
       <TopicDetail
         topic={this.props.topic}
+        onCardSelect={this.handler_cardClick}
       />
     );
   }

@@ -35,9 +35,9 @@ class TopicListContainer extends React.Component {
     dispatch: PropTypes.func,
   };
 
-  handler_cardClick = cardId => {
-    if (cardId) {
-      this.props.history.push(`/cards/${cardId}`);
+  handler_topicClick = topicId => {
+    if (topicId) {
+      this.props.history.push(`/topics/${topicId}`);
     }
   };
 

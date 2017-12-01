@@ -40,7 +40,6 @@ class CardDetailContainer extends React.Component {
     dispatch: PropTypes.func,
   };
 
-
   handler_deckClick = deckId => {
     if (deckId) {
       this.props.history.push(`/decks/${deckId}`);

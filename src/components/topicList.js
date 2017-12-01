@@ -5,11 +5,17 @@ import { Card, Icon } from 'semantic-ui-react';
 class TopicList extends React.Component {
   static propTypes = {
     topics: PropTypes.array,
+    onTopicSelect: PropTypes.func,
+  };
+
+  onTopicSelect = (e, { value }) => {
+    this.props.onTopicSelect(value);
+    e.preventDefault();
   };
 
   render() {
     const topics = this.props.topics.map(topic => (
-      <Card key={topic.topic}>
+      <Card key={topic.topic} value={topic.topic} onClick={this.onTopicSelect}>
         <Card.Content>
           <Card.Header>{topic.topic}</Card.Header>
         </Card.Content>
