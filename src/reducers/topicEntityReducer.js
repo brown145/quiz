@@ -13,8 +13,8 @@ export default function reducer (state={
     case CREATE_TOPIC:
       return {
         ...state,
-        byId: {...state.byId, [payload.topic.id]:payload.topic},
-        allIds: state.allIds.concat(payload.topic.id),
+        byId: {...state.byId, ...payload.topic},
+        allIds: state.allIds.concat(Object.keys(payload.topic)[0]),
       };
     case DELETE_TOPIC:
       return {

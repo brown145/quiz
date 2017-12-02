@@ -21,8 +21,8 @@ describe('topicEntityReducer', () => {
         topic: testTopic,
       },
     });
-    expect(state.byId[testTopic.id]).toEqual(testTopic);
-    expect(state.allIds).toContain(testTopic.id);
+    expect(state.byId.topicName).toEqual('topicName');
+    expect(state.allIds).toContain('topicName');
   });
   it('DELETE_TOPIC', () => {
     const testTopicId = testData.entities.topics.allIds[0];

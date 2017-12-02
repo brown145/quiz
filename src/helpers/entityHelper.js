@@ -18,7 +18,7 @@ export function attributesToCard(cardAttrs) {
 
 export function attributesToTopic(topicAttrs) {
   return {
-    [topicAttrs.name]: topicAttrs.name,
+    [topicAttrs.id]: topicAttrs.text,
   };
 }
 

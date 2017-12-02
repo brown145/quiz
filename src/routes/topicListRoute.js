@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { createTopic, deleteTopic } from '../actions/entityActions';
 
-import TopicList from '../components/topicList';
+import TopicList from '../components/topicList/';
 
 const mapStateToTopicProps = (store) => {
   // DEV NOTE: de-normalizing data here

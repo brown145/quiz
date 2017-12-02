@@ -36,7 +36,8 @@ describe('entityActions', () => {
 
   it('createTopic', () => {
     const action = entityActions.createTopic({
-      name: 'topicName',
+      id: 'topicName',
+      text: 'topicName',
     });
     expect(action).toEqual({
       type: entityActions.CREATE_TOPIC,

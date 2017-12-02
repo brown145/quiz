@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, render } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import Component from './topicList';
 
@@ -23,27 +23,19 @@ const testTopics = [{
   }],
 }];
 
-describe('topicDetail', () => {
+describe('topicList', () => {
   it('shallow renders without crashing', () => {
     const shallowOutput = shallow(<Component topics={testTopics} />);
     expect(shallowOutput).toHaveLength(1);
   });
 
-  it('displays Cards for each topic', () => {
+  it('has an add coponent', () => {
     const shallowOutput = shallow(<Component topics={testTopics} />);
-    expect(shallowOutput.find('Card')).toHaveLength(2);
+    expect(shallowOutput.find('ToggleableAddForm')).toHaveLength(1);
   });
 
-  it('displays the related numper of cards for a topic', () => {
-    const staticOutput = render(<Component topics={testTopics} />);
-    expect(staticOutput.find('.card').last().find('.extra').text()).toBe('2 Cards');
-  });
-
-  it('cards have onClick event', () => {
+  it('has an item coponents', () => {
     const shallowOutput = shallow(<Component topics={testTopics} />);
-    expect(typeof shallowOutput.find('Card').first().prop('onClick')).toBe('function');
+    expect(shallowOutput.find('CardGroup').dive().find('Topic')).toHaveLength(2);
   });
-
-  // TODO: add
-  // TODO: remove
 });
