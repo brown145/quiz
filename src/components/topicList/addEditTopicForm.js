@@ -21,7 +21,7 @@ class AddEditTopicForm extends React.Component {
   handleSubmit = () => {
     this.props.onSubmit({
       id: this.props.id,
-      text: this.state.topic,
+      text: this.state.text,
     });
   };
 
