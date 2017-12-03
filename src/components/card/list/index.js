@@ -19,11 +19,7 @@ class CardList extends React.Component {
 
   onCardSelect = (e, { value }) => {
     this.props.onCardSelect(value);
-    e.preventDefault();
-  };
-
-  onCardDelete = cardId => {
-    this.props.onCardDelete(cardId);
+    e.stopPropagation();
   };
 
   onAddEditSubmit = card => {
@@ -39,9 +35,11 @@ class CardList extends React.Component {
       <CardCard
         key={card.id}
         card={card}
-        onSelect={this.onCardSelect}
-        onDelete={this.onCardDelete}
         onDeckSelect={this.props.onDeckSelect}
+        onDelete={this.props.onCardDelete}
+        onSelect={this.onCardSelect}
+        onSubmit={this.onAddEditSubmit}
+        onUpdate={this.props.onCardUpdate}
       />
     ));
     return (

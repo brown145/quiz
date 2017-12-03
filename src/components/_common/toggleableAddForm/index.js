@@ -14,8 +14,9 @@ class ToggleableAddForm extends React.Component {
     isOpen: false,
   };
 
-  handleFormOpen = () => {
+  handleFormOpen = (e) => {
     this.setState({ isOpen: true });
+    e.stopPropagation();
   };
 
   handleFormClose = () => {

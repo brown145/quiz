@@ -37,7 +37,7 @@ describe('cardList', () => {
       shallowOutput
         .find('CardGroup')
         .dive()
-        .find('Card')
+        .find('EditableCard')
     ).toHaveLength(2);
   });
 });

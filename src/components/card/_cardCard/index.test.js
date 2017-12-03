@@ -7,30 +7,57 @@ const testCard = {
   id: 'c1',
   question: 'test-question1',
   answer: 'test-answer1',
-  topic:[],
+  topic: [],
   decks: [],
 };
-const onSelect = () => {};
 const onDelete = () => {};
+const onDeckSelect = () => {};
+const onSelect = () => {};
+const onSubmit = () => {};
 
-describe('cardCard', () => {
+describe('editable cardCard', () => {
   it('shallow renders without crashing', () => {
-    const shallowOutput = shallow(<Component card={testCard} onSelect={onSelect} onDelete={onDelete} />);
+    const shallowOutput = shallow(
+      <Component
+        card={testCard}
+        onSelect={onSelect}
+        onDelete={onDelete}
+        onSubmit={onSubmit}
+        onDeckSelect={onDeckSelect}
+      />
+    );
     expect(shallowOutput).toHaveLength(1);
   });
 
-  it('has a delete button with event handler', () => {
-    const shallowOutput = shallow(<Component card={testCard} onSelect={onSelect} onDelete={onDelete} />);
-    const removeButton = shallowOutput.find('Button').last();
+  it('can be in edit mode', () => {
+    const shallowOutput = shallow(
+      <Component
+        card={testCard}
+        onSelect={onSelect}
+        onDelete={onDelete}
+        onSubmit={onSubmit}
+        onDeckSelect={onDeckSelect}
+      />
+    );
+    shallowOutput.setState({ editFormOpen: true });
 
-    expect(typeof removeButton.prop('onClick')).toBe('function');
+    expect(shallowOutput.find('Card')).toHaveLength(0);
+    expect(shallowOutput.find('AddEditCardForm')).toHaveLength(1);
   });
 
-  it('has an onClick event handler', () => {
-    const shallowOutput = shallow(<Component card={testCard} onSelect={onSelect} onDelete={onDelete} />);
+  it('can be in non-edit mode', () => {
+    const shallowOutput = shallow(
+      <Component
+        card={testCard}
+        onSelect={onSelect}
+        onDelete={onDelete}
+        onSubmit={onSubmit}
+        onDeckSelect={onDeckSelect}
+      />
+    );
+    shallowOutput.setState({ editFormOpen: false });
 
-    expect(typeof shallowOutput.prop('onClick')).toBe('function');
+    expect(shallowOutput.find('Card')).toHaveLength(1);
+    expect(shallowOutput.find('AddEditCardForm')).toHaveLength(0);
   });
-
-  // TODO: tests for cardRibon and deckListInline
 });

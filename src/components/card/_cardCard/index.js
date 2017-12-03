@@ -1,33 +1,72 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card as SemanticCard } from 'semantic-ui-react';
 
-import CardRibon from './cardRibon';
-import DeckListInline from './deckListInline';
+import Card from './card';
+import EditCardForm from '../addEditCardForm';
 
-const Card = props => (
-  <SemanticCard fluid value={props.card.id} onClick={props.onSelect}>
-    <SemanticCard.Content>
-      <CardRibon topics={props.card.topics} />
-      <SemanticCard.Header>{props.card.question}</SemanticCard.Header>
-      <Button onClick={e => {
-        props.onDelete(props.card.id);
-        e.stopPropagation();
-        e.preventDefault();
-      }}
-      >Remove</Button>
-    </SemanticCard.Content>
-    <SemanticCard.Content extra>
-      <span>included in: </span>
-      <DeckListInline decks={props.card.decks} onDeckSelect={props.onDeckSelect} />
-    </SemanticCard.Content>
-  </SemanticCard>
-);
-Card.propTypes = {
-  card: PropTypes.object,
-  onSelect: PropTypes.func,
-  onDelete: PropTypes.func,
-  onDeckSelect: PropTypes.func,
-};
+class EditableCard extends React.Component {
+  static propTypes = {
+    card: PropTypes.object,
+    onDelete: PropTypes.func,
+    onDeckSelect: PropTypes.func,
+    onSelect: PropTypes.func,
+    onSubmit: PropTypes.func,
+  };
 
-export default Card;
+  state = {
+    editFormOpen: false,
+  };
+
+  handleEditClick = (e) => {
+    this.openForm();
+    e.stopPropagation();
+  };
+
+  handleDeleteClick = (e) => {
+    this.props.onDelete(this.props.card.id);
+    e.stopPropagation();
+  };
+
+  handleFormClose = () => {
+    this.closeForm();
+  };
+
+  handleSubmit = card => {
+    this.props.onSubmit(card);
+    this.closeForm();
+  };
+
+  closeForm = () => {
+    this.setState({ editFormOpen: false });
+  };
+
+  openForm = () => {
+    this.setState({ editFormOpen: true });
+  };
+
+  render() {
+    if (!this.state.editFormOpen) {
+      return (
+        <Card
+          card={this.props.card}
+          onDeckSelect={this.props.onDeckSelect}
+          onDelete={this.handleDeleteClick}
+          onSelect={this.props.onSelect}
+          onEditClick={this.handleEditClick}
+        />
+      );
+    } else {
+      return (
+        <EditCardForm
+          id={this.props.card.id}
+          question={this.props.card.question}
+          answer={this.props.card.answer}
+          onClose={this.handleFormClose}
+          onSubmit={this.handleSubmit}
+        />
+      );
+    }
+  }
+}
+
+export default EditableCard;
