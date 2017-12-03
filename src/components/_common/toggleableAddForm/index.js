@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import AddEditTopicForm from './addEditTopicForm';
 import AddCard from './addCard';
 
 class ToggleableAddForm extends React.Component {
   static propTypes = {
+    isFluid: PropTypes.bool,
     onSubmit: PropTypes.func,
+    AddEditForm: PropTypes.func,
   };
 
   state = {
@@ -27,15 +28,16 @@ class ToggleableAddForm extends React.Component {
   };
 
   render() {
+    const AddEditForm = this.props.AddEditForm;
     if (this.state.isOpen) {
       return (
-        <AddEditTopicForm
+        <AddEditForm
           onClose={this.handleFormClose}
           onSubmit={this.handleFormSubmit}
         />
       );
     } else {
-      return <AddCard onAdd={this.handleFormOpen} />;
+      return <AddCard isFluid={this.props.isFluid} onAdd={this.handleFormOpen} />;
     }
   }
 }

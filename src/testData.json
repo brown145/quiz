@@ -9,8 +9,8 @@
         },
         "d2": {
           "id": "d2",
-          "name": "deck 1",
-          "description": "short description to go here."
+          "name": "deck 2",
+          "description": "shorter description to go here."
         }
       },
       "allIds": ["d1", "d2"]
@@ -38,7 +38,7 @@
           "answer": "fingers"
         }
       },
-      "allIds": ["c1", "c2", "c3", "c4", "c5"]
+      "allIds": ["c1", "c2", "c3", "c4"]
     },
     "topics": {
       "byId": {

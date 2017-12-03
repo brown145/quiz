@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card as SemanticCard } from 'semantic-ui-react';
 
-import TopicCard from './topic';
-import ToggleableAddForm from './toggleableAddForm';
+import TopicCard from '../_topicCard';
+import AddTopicForm from '../addEditTopicForm';
+import ToggleableAddForm from '../../_common/toggleableAddForm';
 
 class TopicList extends React.Component {
   static propTypes = {
@@ -18,13 +19,13 @@ class TopicList extends React.Component {
     e.preventDefault();
   };
 
-  onTopicDelete = (topicId) => {
+  onTopicDelete = topicId => {
     this.props.onTopicDelete(topicId);
   };
 
   onAddEditSubmit = topic => {
     this.props.onTopicCreate(topic);
-  }
+  };
 
   render() {
     const topics = this.props.topics.map(topic => (
@@ -35,10 +36,15 @@ class TopicList extends React.Component {
         onDelete={this.onTopicDelete}
       />
     ));
-    return (<SemanticCard.Group>
-      {topics}
-      <ToggleableAddForm onSubmit={this.onAddEditSubmit} />
-    </SemanticCard.Group>);
+    return (
+      <SemanticCard.Group>
+        {topics}
+        <ToggleableAddForm
+          onSubmit={this.onAddEditSubmit}
+          AddEditForm={AddTopicForm}
+        />
+      </SemanticCard.Group>
+    );
   }
 }
 

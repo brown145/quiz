@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Component from './topicList';
+import Component from './index';
 
 const testTopics = [{
   topic: 'test-topic1',
