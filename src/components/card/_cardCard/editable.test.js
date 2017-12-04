@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Component from './index';
+import Component from './editable';
 
 const testCard = {
   id: 'c1',

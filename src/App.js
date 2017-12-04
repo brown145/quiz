@@ -15,7 +15,7 @@ const App = () => (
       <Route path="/cards/" component={routes.cardListRoute} />
       <Route path="/topics/:id" component={routes.topicDetailRoute} />
       <Route path="/topics" component={routes.topicListRoute} />
-      <Route path="*" component={routes.deckListRoute} />
+      <Route path="/" component={routes.deckListRoute} />
     </Switch>
   </div>
 );

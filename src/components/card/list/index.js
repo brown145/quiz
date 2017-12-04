@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card as SemanticCard } from 'semantic-ui-react';
 
-import CardCard from '../_cardCard';
+import { EditableCard } from '../_cardCard';
 import AddCardForm from '../addEditCardForm';
 import ToggleableAddForm from '../../_common/toggleableAddForm';
-
 
 class CardList extends React.Component {
   static propTypes = {
@@ -15,7 +14,7 @@ class CardList extends React.Component {
     onCardUpdate: PropTypes.func,
     onCardSelect: PropTypes.func,
     onDeckSelect: PropTypes.func,
-  }
+  };
 
   onCardSelect = (e, { value }) => {
     this.props.onCardSelect(value);
@@ -23,16 +22,16 @@ class CardList extends React.Component {
   };
 
   onAddEditSubmit = card => {
-    if (card.id){
+    if (card.id) {
       this.props.onCardUpdate(card);
     } else {
       this.props.onCardCreate(card);
     }
   };
 
-  render(){
+  render() {
     const cards = this.props.cards.map(card => (
-      <CardCard
+      <EditableCard
         key={card.id}
         card={card}
         onDeckSelect={this.props.onDeckSelect}

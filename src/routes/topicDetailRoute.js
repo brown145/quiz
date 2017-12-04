@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import TopicDetail from '../components/topicDetail';
+import TopicDetail from '../components/topic/detail';
 
 const mapStateToTopicProps = (store, ownProps) => {
   // DEV NOTE: de-normalizing data here

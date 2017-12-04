@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { createDeck, updateDeck } from '../actions/entityActions';
+import { createDeck, deleteDeck, updateDeck } from '../actions/entityActions';
 
-import DeckList from '../components/deckList';
+import DeckList from '../components/deck/list';
 
-const mapStateToDeckProps = (store) => {
+const mapStateToDeckProps = store => {
   // DEV NOTE: de-normalizing data here
   //           it looks a bit messy, but just populating relations as nested objects
   //           redux likes data normalized but UI is easier with de-normalized
@@ -14,9 +14,9 @@ const mapStateToDeckProps = (store) => {
   let cardsByDeck = {};
   store.entities.decks.allIds.forEach(deckId => {
     const relations = Object.entries(store.entities.cardDecks.byId)
-      .map((entry) => (entry[1]))
+      .map(entry => entry[1])
       .filter(cd => cd.deckId === deckId)
-      .map(cd => (store.entities.cards.byId[cd.cardId]));
+      .map(cd => store.entities.cards.byId[cd.cardId]);
     cardsByDeck[deckId] = relations;
   });
 
@@ -45,14 +45,13 @@ class DeckListContainer extends React.Component {
     return (
       <DeckList
         decks={this.props.decks}
+        onDeckCreate={deck => this.props.dispatch(createDeck(deck))}
+        onDeckDelete={deck => this.props.dispatch(deleteDeck(deck))}
         onDeckSelect={this.handler_deckClick}
-        onDeckEdit={(deck) => ( this.props.dispatch(updateDeck(deck)) )}
-        onDeckAdd={(deck) => ( this.props.dispatch(createDeck(deck)) )}
+        onDeckUpdate={deck => this.props.dispatch(updateDeck(deck))}
       />
     );
   }
 }
 
-export default connect(
-  mapStateToDeckProps
-)(DeckListContainer);
+export default connect(mapStateToDeckProps)(DeckListContainer);

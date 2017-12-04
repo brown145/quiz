@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Container, Header } from 'semantic-ui-react';
 
-class TopicList extends React.Component {
+import { ShortCard } from '../../card/_cardCard/';
+
+class TopicDetail extends React.Component {
   static propTypes = {
     topic: PropTypes.object,
     onCardSelect: PropTypes.func,
@@ -15,12 +17,7 @@ class TopicList extends React.Component {
 
   render() {
     const cards = this.props.topic.cards.map(card => (
-      <Card
-        key={card.id}
-        header={card.question}
-        value={card.id}
-        onClick={this.onCardSelect}
-      />
+      <ShortCard key={card.id} card={card} onCardSelect={this.onCardSelect} />
     ));
     return (
       <Container>
@@ -31,4 +28,4 @@ class TopicList extends React.Component {
   }
 }
 
-export default TopicList;
+export default TopicDetail;
