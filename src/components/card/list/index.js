@@ -38,7 +38,6 @@ class CardList extends React.Component {
         onDelete={this.props.onCardDelete}
         onSelect={this.onCardSelect}
         onSubmit={this.onAddEditSubmit}
-        onUpdate={this.props.onCardUpdate}
       />
     ));
     return (

@@ -17,12 +17,12 @@ class TopicDetail extends React.Component {
 
   render() {
     const cards = this.props.topic.cards.map(card => (
-      <ShortCard key={card.id} card={card} onCardSelect={this.onCardSelect} />
+      <ShortCard key={card.id} card={card} onSelect={this.onCardSelect} />
     ));
     return (
       <Container>
         <Header as="h2">{this.props.topic.name}</Header>
-        <Card.Group>{cards}</Card.Group>
+        <Card.Group itemsPerRow={1}>{cards}</Card.Group>
       </Container>
     );
   }

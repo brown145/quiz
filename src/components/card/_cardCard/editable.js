@@ -45,12 +45,13 @@ class EditableCard extends React.Component {
   };
 
   render() {
+    const handleDeleteClick_if_canDelete = (this.props.onDelete) ? this.handleDeleteClick : undefined;
     if (!this.state.editFormOpen) {
       return (
         <Card
           card={this.props.card}
           onDeckSelect={this.props.onDeckSelect}
-          onDelete={this.handleDeleteClick}
+          onDelete={handleDeleteClick_if_canDelete}
           onSelect={this.props.onSelect}
           onEditClick={this.handleEditClick}
         />

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { updateCard } from '../actions/entityActions';
 
-import CardDetail from '../components/cardDetail';
+import CardDetail from '../components/card/detail';
 import WarningUI from '../components/warningBlurb';
 
 const mapStateToCardProps = (store, ownProps) => {
@@ -55,7 +55,7 @@ class CardDetailContainer extends React.Component {
       <CardDetail
         card={this.props.card}
         onDeckSelect={this.handler_deckClick}
-        onCardEdit={(card) => ( this.props.dispatch(updateCard(card)) )}
+        onUpdate={(card) => ( this.props.dispatch(updateCard(card)) )}
       />
     );
   }
