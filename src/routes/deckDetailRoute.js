@@ -2,9 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { createCardForDeck } from '../actions/entityActions';
+// TODO:
+// import { createCardForDeck } from '../actions/entityActions';
 
-import DeckDetail from '../components/deckDetail';
+import DeckDetail from '../components/deck/detail';
 import WarningUI from '../components/warningBlurb';
 
 const mapStateToDeckProps = (store, ownProps) => {
@@ -50,11 +51,6 @@ class DeckDetailContainer extends React.Component {
     }
   };
 
-  handler_addCard = (deck, cardAttrs) => {
-    // this is assuming a new card
-    this.props.dispatch(this);
-  }
-
   render() {
     const { deck } = this.props;
 
@@ -65,8 +61,7 @@ class DeckDetailContainer extends React.Component {
     return (
       <DeckDetail
         deck={deck}
-        onCardClick={this.handler_cardClick}
-        onAddCardToDeck={(attrs) => ( this.props.dispatch(createCardForDeck(attrs, deck.id)) )}
+        onCardSelect={this.handler_cardClick}
       />
     );
   }
