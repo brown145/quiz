@@ -7,23 +7,30 @@ import {
   Icon,
 } from 'semantic-ui-react';
 
-const Deck = props => (
-  <SemanticCard value={props.deck.id} onClick={props.onSelect}>
-    <SemanticCard.Content>
-      <SemanticCard.Header>{props.deck.name}</SemanticCard.Header>
-      <SemanticCard.Meta>meta TBD</SemanticCard.Meta>
-      <SemanticCard.Description>
-        <Button onClick={props.onEditClick}>Edit</Button>
-        <Button onClick={props.onDelete}>Remove</Button>
-        <Container>{props.deck.description}</Container>
-      </SemanticCard.Description>
-    </SemanticCard.Content>
-    <SemanticCard.Content extra>
-      <Icon name="cubes" />
-      {props.deck.cards.length} Cards
-    </SemanticCard.Content>
-  </SemanticCard>
-);
+const Deck = props => {
+  const onSelect = (e, { value }) => {
+    props.onSelect(value);
+    e.stopPropagation();
+  };
+
+  return (
+    <SemanticCard value={props.deck.id} onClick={onSelect}>
+      <SemanticCard.Content>
+        <SemanticCard.Header>{props.deck.name}</SemanticCard.Header>
+        <SemanticCard.Meta>meta TBD</SemanticCard.Meta>
+        <SemanticCard.Description>
+          <Button onClick={props.onEditClick}>Edit</Button>
+          <Button onClick={props.onDelete}>Remove</Button>
+          <Container>{props.deck.description}</Container>
+        </SemanticCard.Description>
+      </SemanticCard.Content>
+      <SemanticCard.Content extra>
+        <Icon name="cubes" />
+        {props.deck.cards.length} Cards
+      </SemanticCard.Content>
+    </SemanticCard>
+  );
+};
 Deck.propTypes = {
   deck: PropTypes.object,
   onDelete: PropTypes.func,

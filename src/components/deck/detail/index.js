@@ -10,14 +10,9 @@ class DeckDetail extends React.Component {
     onCardSelect: PropTypes.func,
   };
 
-  onCardSelect = (e, { value }) => {
-    this.props.onCardSelect(value);
-    e.preventDefault();
-  };
-
   render() {
     const cards = this.props.deck.cards.map(card => (
-      <ShortCard key={card.id} card={card} onSelect={this.onCardSelect} />
+      <ShortCard key={card.id} card={card} onSelect={this.props.onCardSelect} />
     ));
     return (
       <Container>

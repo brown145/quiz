@@ -15,11 +15,6 @@ class DeckList extends React.Component {
     onDeckUpdate: PropTypes.func,
   };
 
-  onDeckSelect = (e, { value }) => {
-    this.props.onDeckSelect(value);
-    e.stopPropagation();
-  };
-
   onAddEditSubmit = deck => {
     if (deck.id) {
       this.props.onDeckUpdate(deck);
@@ -34,7 +29,7 @@ class DeckList extends React.Component {
         key={deck.id}
         deck={deck}
         onDelete={this.props.onDeckDelete}
-        onSelect={this.onDeckSelect}
+        onSelect={this.props.onDeckSelect}
         onSubmit={this.onAddEditSubmit}
         onUpdate={this.props.onDeckUpdate}
       />

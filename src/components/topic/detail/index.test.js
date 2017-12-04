@@ -34,7 +34,7 @@ describe('topicDetail', () => {
   });
 
   it('cards pass onClick event', () => {
-    const shallowOutput = shallow(<Component topic={testTopic} />);
+    const shallowOutput = shallow(<Component topic={testTopic} onCardSelect={onSelect} />);
     expect(typeof shallowOutput.find('ShortCard').first().prop('onSelect')).toBe('function');
   });
 });

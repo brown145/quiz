@@ -14,33 +14,20 @@ class TopicList extends React.Component {
     onTopicSelect: PropTypes.func,
   };
 
-  onTopicSelect = (e, { value }) => {
-    this.props.onTopicSelect(value);
-    e.preventDefault();
-  };
-
-  onTopicDelete = topicId => {
-    this.props.onTopicDelete(topicId);
-  };
-
-  onAddEditSubmit = topic => {
-    this.props.onTopicCreate(topic);
-  };
-
   render() {
     const topics = this.props.topics.map(topic => (
       <TopicCard
         key={topic.topic}
         topic={topic}
-        onSelect={this.onTopicSelect}
-        onDelete={this.onTopicDelete}
+        onSelect={this.props.onTopicSelect}
+        onDelete={this.props.onTopicDelete}
       />
     ));
     return (
       <SemanticCard.Group>
         {topics}
         <ToggleableAddForm
-          onSubmit={this.onAddEditSubmit}
+          onSubmit={this.props.onTopicCreate}
           AddEditForm={AddTopicForm}
         />
       </SemanticCard.Group>

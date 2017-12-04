@@ -16,11 +16,6 @@ class CardList extends React.Component {
     onDeckSelect: PropTypes.func,
   };
 
-  onCardSelect = (e, { value }) => {
-    this.props.onCardSelect(value);
-    e.stopPropagation();
-  };
-
   onAddEditSubmit = card => {
     if (card.id) {
       this.props.onCardUpdate(card);
@@ -36,7 +31,7 @@ class CardList extends React.Component {
         card={card}
         onDeckSelect={this.props.onDeckSelect}
         onDelete={this.props.onCardDelete}
-        onSelect={this.onCardSelect}
+        onSelect={this.props.onCardSelect}
         onSubmit={this.onAddEditSubmit}
       />
     ));
