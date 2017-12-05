@@ -12,15 +12,29 @@ const testTopic = {
   }],
 };
 
+const nonOpFunc = (() => {});
+
 describe('addEditTopicForm', () => {
   it('shallow renders without crashing', () => {
-    const shallowOutput = shallow(<Component topic={testTopic} />);
+    const shallowOutput = shallow(
+      <Component
+        topic={testTopic}
+        onClose={nonOpFunc}
+        onSubmit={nonOpFunc}
+      />
+    );
     expect(shallowOutput).toHaveLength(1);
   });
 
   describe('update mode', () => {
     it('displays the topic text', () => {
-      const shallowOutput = shallow(<Component id={testTopic.topic} text={testTopic.topic} />);
+      const shallowOutput = shallow(
+        <Component
+          id={testTopic.topic}
+          text={testTopic.topic}
+          onClose={nonOpFunc}
+          onSubmit={nonOpFunc}
+        />);
       const input = shallowOutput.find('Form').findWhere(node => (
         node.prop('name') === 'text'
       ));
@@ -28,7 +42,13 @@ describe('addEditTopicForm', () => {
       expect(input.prop('value')).toBe(testTopic.topic);
     });
     it('displays an "Update" button', () => {
-      const shallowOutput = shallow(<Component id={testTopic.topic} text={testTopic.topic} />);
+      const shallowOutput = shallow(
+        <Component
+          id={testTopic.topic}
+          text={testTopic.topic}
+          onClose={nonOpFunc}
+          onSubmit={nonOpFunc}
+        />);
       const submitButton = shallowOutput.find('Button').last();
 
       expect(render(submitButton).text()).toBe('Update');
@@ -37,7 +57,12 @@ describe('addEditTopicForm', () => {
 
   describe('add mode', () => {
     it('displays blank topic text', () => {
-      const shallowOutput = shallow(<Component />);
+      const shallowOutput = shallow(
+        <Component
+          onClose={nonOpFunc}
+          onSubmit={nonOpFunc}
+        />
+      );
       const input = shallowOutput.find('Form').findWhere(node => (
         node.prop('name') === 'text'
       ));
@@ -45,7 +70,12 @@ describe('addEditTopicForm', () => {
       expect(input.prop('value')).toBe('');
     });
     it('displays an "Add" button', () => {
-      const shallowOutput = shallow(<Component />);
+      const shallowOutput = shallow(
+        <Component
+          onClose={nonOpFunc}
+          onSubmit={nonOpFunc}
+        />
+      );
       const submitButton = shallowOutput.find('Button').last();
 
       expect(render(submitButton).text()).toBe('Add');
@@ -53,14 +83,26 @@ describe('addEditTopicForm', () => {
   });
 
   it('can be submited', () => {
-    const shallowOutput = shallow(<Component />);
+    const shallowOutput = shallow(
+      <Component
+        topic={testTopic}
+        onClose={nonOpFunc}
+        onSubmit={nonOpFunc}
+      />
+    );
     const submitButton = shallowOutput.find('Button').last();
 
     expect(typeof submitButton.prop('onClick')).toBe('function');
   });
 
   it('can be closed', () => {
-    const shallowOutput = shallow(<Component onClose={() => {}} />);
+    const shallowOutput = shallow(
+      <Component
+        topic={testTopic}
+        onClose={nonOpFunc}
+        onSubmit={nonOpFunc}
+      />
+    );
     const submitButton = shallowOutput.find('Button').first();
 
     expect(typeof submitButton.prop('onClick')).toBe('function');

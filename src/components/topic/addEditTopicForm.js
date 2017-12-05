@@ -6,8 +6,8 @@ class AddEditTopicForm extends React.Component {
   static propTypes = {
     id: PropTypes.string,
     text: PropTypes.string,
-    onSubmit: PropTypes.func,
-    onClose: PropTypes.func,
+    onSubmit: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
   };
 
   state = {

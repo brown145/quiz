@@ -11,7 +11,7 @@ const AddCard = props => (
 );
 AddCard.propTypes = {
   isFluid: PropTypes.bool,
-  onAdd: PropTypes.func,
+  onAdd: PropTypes.func.isRequired,
 };
 
 export default AddCard;

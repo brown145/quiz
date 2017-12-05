@@ -9,20 +9,29 @@ const testDeck = {
   description: 'test-description1',
   cards: [],
 };
-const onSelect = () => {};
-const onDelete = () => {};
+const nonOpFunc = () => {};
 
 describe('deckCard', () => {
   it('shallow renders without crashing', () => {
     const shallowOutput = shallow(
-      <Component deck={testDeck} onSelect={onSelect} onDelete={onDelete} />
+      <Component
+        deck={testDeck}
+        onSelect={nonOpFunc}
+        onDelete={nonOpFunc}
+        onEditClick={nonOpFunc}
+      />
     );
     expect(shallowOutput).toHaveLength(1);
   });
 
   it('has a delete button with event handler', () => {
     const shallowOutput = shallow(
-      <Component deck={testDeck} onSelect={onSelect} onDelete={onDelete} />
+      <Component
+        deck={testDeck}
+        onSelect={nonOpFunc}
+        onDelete={nonOpFunc}
+        onEditClick={nonOpFunc}
+      />
     );
     const removeButton = shallowOutput.find('Button').last();
 
@@ -31,7 +40,12 @@ describe('deckCard', () => {
 
   it('has an onClick event handler', () => {
     const shallowOutput = shallow(
-      <Component deck={testDeck} onSelect={onSelect} onDelete={onDelete} />
+      <Component
+        deck={testDeck}
+        onSelect={nonOpFunc}
+        onDelete={nonOpFunc}
+        onEditClick={nonOpFunc}
+      />
     );
 
     expect(typeof shallowOutput.prop('onClick')).toBe('function');

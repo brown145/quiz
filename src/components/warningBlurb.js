@@ -15,7 +15,7 @@ const warningBlurb = props => {
   );
 };
 warningBlurb.propTypes = {
-  messageText: PropTypes.string,
+  messageText: PropTypes.string.isRequired,
   actionText: PropTypes.string,
 };
 

@@ -4,13 +4,15 @@ import PropTypes from 'prop-types';
 import Card from './card';
 import EditCardForm from '../addEditCardForm';
 
+import { cardShape } from '../../../helpers/entityShapes';
+
 class EditableCard extends React.Component {
   static propTypes = {
-    card: PropTypes.object,
+    card: PropTypes.shape(cardShape).isRequired,
     onDelete: PropTypes.func,
-    onDeckSelect: PropTypes.func,
+    onDeckSelect: PropTypes.func.isRequired,
     onSelect: PropTypes.func,
-    onSubmit: PropTypes.func,
+    onSubmit: PropTypes.func.isRequired,
   };
 
   state = {

@@ -22,7 +22,7 @@ const mapStateToTopicProps = (store) => {
 
   return {
     topics: store.entities.topics.allIds.map(topicId => ({
-      topic: topicId,
+      topic: {id: topicId},
       cards: cardsByTopic[topicId],
     })),
   };
@@ -30,9 +30,9 @@ const mapStateToTopicProps = (store) => {
 
 class TopicListContainer extends React.Component {
   static propTypes = {
-    history: PropTypes.object,
-    topics: PropTypes.array,
-    dispatch: PropTypes.func,
+    history: PropTypes.object.isRequired,
+    topics: PropTypes.array.isRequired,
+    dispatch: PropTypes.func.isRequired,
   };
 
   handler_topicClick = topicId => {

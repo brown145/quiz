@@ -11,10 +11,17 @@ const testCard = {
   decks: [],
 };
 
+const nonOpFunc = (() => {});
+
 describe('addEditCardForm', () => {
   it('shallow renders without crashing', () => {
     const shallowOutput = shallow(
-      <Component question={testCard.question} answer={testCard.answer} />
+      <Component
+        question={testCard.question}
+        answer={testCard.answer}
+        onClose={nonOpFunc}
+        onSubmit={nonOpFunc}
+      />
     );
     expect(shallowOutput).toHaveLength(1);
   });
@@ -26,6 +33,8 @@ describe('addEditCardForm', () => {
           id={testCard.id}
           question={testCard.question}
           answer={testCard.answer}
+          onClose={nonOpFunc}
+          onSubmit={nonOpFunc}
         />
       );
       const input = shallowOutput
@@ -40,6 +49,8 @@ describe('addEditCardForm', () => {
           id={testCard.id}
           question={testCard.question}
           answer={testCard.answer}
+          onClose={nonOpFunc}
+          onSubmit={nonOpFunc}
         />
       );
       const submitButton = shallowOutput.find('Button').last();
@@ -50,7 +61,12 @@ describe('addEditCardForm', () => {
 
   describe('add mode', () => {
     it('displays blank card question', () => {
-      const shallowOutput = shallow(<Component />);
+      const shallowOutput = shallow(
+        <Component
+          onClose={nonOpFunc}
+          onSubmit={nonOpFunc}
+        />
+      );
       const input = shallowOutput
         .find('Form')
         .findWhere(node => node.prop('name') === 'question');
@@ -58,7 +74,12 @@ describe('addEditCardForm', () => {
       expect(input.prop('value')).toBe('');
     });
     it('displays an "Add" button', () => {
-      const shallowOutput = shallow(<Component />);
+      const shallowOutput = shallow(
+        <Component
+          onClose={nonOpFunc}
+          onSubmit={nonOpFunc}
+        />
+      );
       const submitButton = shallowOutput.find('Button').last();
 
       expect(render(submitButton).text()).toBe('Add');
@@ -66,14 +87,28 @@ describe('addEditCardForm', () => {
   });
 
   it('can be submited', () => {
-    const shallowOutput = shallow(<Component />);
+    const shallowOutput = shallow(
+      <Component
+        question={testCard.question}
+        answer={testCard.answer}
+        onClose={nonOpFunc}
+        onSubmit={nonOpFunc}
+      />
+    );
     const submitButton = shallowOutput.find('Button').last();
 
     expect(typeof submitButton.prop('onClick')).toBe('function');
   });
 
   it('can be closed', () => {
-    const shallowOutput = shallow(<Component onClose={() => {}} />);
+    const shallowOutput = shallow(
+      <Component
+        question={testCard.question}
+        answer={testCard.answer}
+        onClose={nonOpFunc}
+        onSubmit={nonOpFunc}
+      />
+    );
     const submitButton = shallowOutput.find('Button').first();
 
     expect(typeof submitButton.prop('onClick')).toBe('function');

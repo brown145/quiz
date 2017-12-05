@@ -7,7 +7,7 @@ const testCard = {
   id: 'c1',
   question: 'test-question1',
   answer: 'test-answer1',
-  topic: [],
+  topics: [],
   decks: [],
 };
 const onDelete = () => {};

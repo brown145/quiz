@@ -6,6 +6,7 @@ import {
   Container,
   Icon,
 } from 'semantic-ui-react';
+import { deckShape } from '../../../helpers/entityShapes';
 
 const Deck = props => {
   const onSelect = (e, { value }) => {
@@ -32,10 +33,10 @@ const Deck = props => {
   );
 };
 Deck.propTypes = {
-  deck: PropTypes.object,
-  onDelete: PropTypes.func,
-  onSelect: PropTypes.func,
-  onEditClick: PropTypes.func,
+  deck: PropTypes.shape(deckShape).isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  onEditClick: PropTypes.func.isRequired,
 };
 
 export default Deck;

@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { Card, Container, Header } from 'semantic-ui-react';
 
 import { ShortCard } from '../../card/_cardCard/';
+import { deckShape } from '../../../helpers/entityShapes';
 
 class DeckDetail extends React.Component {
   static propTypes = {
-    deck: PropTypes.object,
-    onCardSelect: PropTypes.func,
+    deck: PropTypes.shape(deckShape).isRequired,
+    onCardSelect: PropTypes.func.isRequired,
   };
 
   render() {

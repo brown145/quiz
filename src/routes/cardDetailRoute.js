@@ -22,7 +22,7 @@ const mapStateToCardProps = (store, ownProps) => {
   const cardTopicEntities = Object.entries(store.entities.cardTopics.byId)
     .map(entry => (entry[1]))
     .filter(ct => (ct.cardId === cardId))
-    .map(ct => (store.entities.topics.byId[ct.topicId]));
+    .map(ct => ({id: ct.topicId}));
 
   return {
     card: {
@@ -35,9 +35,9 @@ const mapStateToCardProps = (store, ownProps) => {
 
 class CardDetailContainer extends React.Component {
   static propTypes = {
-    history: PropTypes.object,
-    card: PropTypes.object,
-    dispatch: PropTypes.func,
+    history: PropTypes.object.isRequired,
+    card: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
   };
 
   handler_deckClick = deckId => {
@@ -47,7 +47,8 @@ class CardDetailContainer extends React.Component {
   };
 
   render() {
-    if (!this.props.card) {
+    // TODO: this should be loading icon
+    if (!this.props.card || this.props.card.id === undefined) {
       return <WarningUI messageText={'Could not load card!'} />;
     }
 

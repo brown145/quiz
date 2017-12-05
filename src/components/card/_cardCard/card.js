@@ -4,6 +4,7 @@ import { Button, Card as SemanticCard } from 'semantic-ui-react';
 
 import CardRibon from './cardRibon';
 import DeckListInline from './deckListInline';
+import { cardShape } from '../../../helpers/entityShapes';
 
 const Card = props => {
   const onSelect = (e, { value }) => {
@@ -34,11 +35,11 @@ const Card = props => {
   );
 };
 Card.propTypes = {
-  card: PropTypes.object,
-  onDeckSelect: PropTypes.func,
+  card: PropTypes.shape(cardShape).isRequired,
+  onDeckSelect: PropTypes.func.isRequired,
   onDelete: PropTypes.func,
   onSelect: PropTypes.func,
-  onEditClick: PropTypes.func,
+  onEditClick: PropTypes.func.isRequired,
 };
 
 export default Card;

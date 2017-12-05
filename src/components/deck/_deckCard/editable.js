@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 
 import Deck from './deck';
 import EditDeckForm from '../addEditDeckForm';
+import { deckShape } from '../../../helpers/entityShapes';
 
 class EditableDeck extends React.Component {
   static propTypes = {
-    deck: PropTypes.object,
-    onDelete: PropTypes.func,
-    onSelect: PropTypes.func,
-    onSubmit: PropTypes.func,
+    deck: PropTypes.shape(deckShape).isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onSelect: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
   };
 
   state = {

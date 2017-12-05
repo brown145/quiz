@@ -7,8 +7,8 @@ class AddEditCardForm extends React.Component {
     id: PropTypes.string,
     question: PropTypes.string,
     answer: PropTypes.string,
-    onClose: PropTypes.func,
-    onSubmit: PropTypes.func,
+    onClose: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
   };
 
   state = {

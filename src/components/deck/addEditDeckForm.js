@@ -7,8 +7,8 @@ class AddEditDeckForm extends React.Component {
     id: PropTypes.string,
     name: PropTypes.string,
     description: PropTypes.string,
-    onClose: PropTypes.func,
-    onSubmit: PropTypes.func,
+    onClose: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
   };
 
   state = {

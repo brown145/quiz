@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { Card, Container, Header } from 'semantic-ui-react';
 
 import { ShortCard } from '../../card/_cardCard/';
+import { topicShape } from '../../../helpers/entityShapes';
 
 class TopicDetail extends React.Component {
   static propTypes = {
-    topic: PropTypes.object,
-    onCardSelect: PropTypes.func,
+    topic: PropTypes.shape(topicShape).isRequired,
+    onCardSelect: PropTypes.func.isRequired,
   };
 
   render() {
@@ -16,7 +17,7 @@ class TopicDetail extends React.Component {
     ));
     return (
       <Container>
-        <Header as="h2">{this.props.topic.name}</Header>
+        <Header as="h2">{this.props.topic.id}</Header>
         <Card.Group itemsPerRow={1}>{cards}</Card.Group>
       </Container>
     );

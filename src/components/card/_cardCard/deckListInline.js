@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { List } from 'semantic-ui-react';
 
+import { deckShape } from '../../../helpers/entityShapes';
+
 const DeckListInline = props => {
   this.onDeckSelect = (e, { value }) => {
     props.onDeckSelect(value);
@@ -23,8 +25,8 @@ const DeckListInline = props => {
   }
 };
 DeckListInline.propTypes = {
-  decks: PropTypes.array,
-  onDeckSelect: PropTypes.func,
+  decks: PropTypes.arrayOf(PropTypes.shape(deckShape)).isRequired,
+  onDeckSelect: PropTypes.func.isRequired,
 };
 
 export default DeckListInline;

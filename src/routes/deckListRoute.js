@@ -30,9 +30,9 @@ const mapStateToDeckProps = store => {
 
 class DeckListContainer extends React.Component {
   static propTypes = {
-    history: PropTypes.object,
-    decks: PropTypes.array,
-    dispatch: PropTypes.func,
+    history: PropTypes.object.isRequired,
+    decks: PropTypes.array.isRequired,
+    dispatch: PropTypes.func.isRequired,
   };
 
   handler_deckClick = deckId => {

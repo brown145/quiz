@@ -37,9 +37,9 @@ const mapStateToTopicProps = (store) => {
 
 class CardListContainer extends React.Component {
   static propTypes = {
-    history: PropTypes.object,
-    cards: PropTypes.array,
-    dispatch: PropTypes.func,
+    history: PropTypes.object.isRequired,
+    cards: PropTypes.array.isRequired,
+    dispatch: PropTypes.func.isRequired,
   };
 
   handler_cardClick = cardId => {

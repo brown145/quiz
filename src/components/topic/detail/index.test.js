@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Component from './index';
 
 const testTopic = {
-  name: 'test-topic1',
+  id: 'test-topic1',
   cards: [{
     id: 'c1',
     question: 'test-question1',

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card as SemanticCard, Icon } from 'semantic-ui-react';
+import { topicShape } from '../../../helpers/entityShapes';
 
 const Topic = props => {
   const onSelect = (e, { value }) => {
@@ -8,11 +9,11 @@ const Topic = props => {
     e.preventDefault();
   };
   return (
-    <SemanticCard value={props.topic.topic} onClick={onSelect}>
+    <SemanticCard value={props.topic.id} onClick={onSelect}>
       <SemanticCard.Content>
-        <SemanticCard.Header>{props.topic.topic}</SemanticCard.Header>
+        <SemanticCard.Header>{props.topic.id}</SemanticCard.Header>
         <Button onClick={e => {
-          props.onDelete(props.topic.topic);
+          props.onDelete(props.topic.id);
           e.stopPropagation();
           e.preventDefault();
         }}
@@ -26,9 +27,9 @@ const Topic = props => {
   );
 };
 Topic.propTypes = {
-  topic: PropTypes.object,
-  onSelect: PropTypes.func,
-  onDelete: PropTypes.func,
+  topic: PropTypes.shape(topicShape).isRequired,
+  onSelect: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default Topic;

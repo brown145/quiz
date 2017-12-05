@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { Container, Header } from 'semantic-ui-react';
 
 import { EditableCard } from '../../card/_cardCard/';
+import { cardShape } from '../../../helpers/entityShapes';
 
 class CardDetail extends React.Component {
   static propTypes = {
-    card: PropTypes.object,
-    onDeckSelect: PropTypes.func,
-    onUpdate: PropTypes.func,
+    card: PropTypes.shape(cardShape).isRequired,
+    onDeckSelect: PropTypes.func.isRequired,
+    onUpdate: PropTypes.func.isRequired,
   };
 
   onEditSubmit = card => {

@@ -40,9 +40,9 @@ const mapStateToDeckProps = (store, ownProps) => {
 
 class DeckDetailContainer extends React.Component {
   static propTypes = {
-    history: PropTypes.object,
-    deck: PropTypes.object,
-    dispatch: PropTypes.func,
+    history: PropTypes.object.isRequired,
+    deck: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
   };
 
   handler_cardClick = cardId => {

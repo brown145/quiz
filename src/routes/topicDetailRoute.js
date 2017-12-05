@@ -18,7 +18,7 @@ const mapStateToTopicProps = (store, ownProps) => {
 
   return {
     topic:{
-      name: topicEntity,
+      id: topicEntity,
       cards: topicCardEntites,
     },
   };
@@ -26,9 +26,9 @@ const mapStateToTopicProps = (store, ownProps) => {
 
 class TopicDetailContainer extends React.Component {
   static propTypes = {
-    history: PropTypes.object,
-    topic: PropTypes.object,
-    dispatch: PropTypes.func,
+    history: PropTypes.object.isRequired,
+    topic: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
   };
 
   handler_cardClick = cardId => {

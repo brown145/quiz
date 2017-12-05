@@ -20,19 +20,48 @@ const testCards = [
   },
 ];
 
+const nonOpFunc = () => {};
+
 describe('cardList', () => {
   it('shallow renders without crashing', () => {
-    const shallowOutput = shallow(<Component cards={testCards} />);
+    const shallowOutput = shallow(
+      <Component
+        cards={testCards}
+        onCardCreate={nonOpFunc}
+        onCardDelete={nonOpFunc}
+        onCardUpdate={nonOpFunc}
+        onCardSelect={nonOpFunc}
+        onDeckSelect={nonOpFunc}
+      />
+    );
     expect(shallowOutput).toHaveLength(1);
   });
 
   it('has an add coponent', () => {
-    const shallowOutput = shallow(<Component cards={testCards} />);
+    const shallowOutput = shallow(
+      <Component
+        cards={testCards}
+        onCardCreate={nonOpFunc}
+        onCardDelete={nonOpFunc}
+        onCardUpdate={nonOpFunc}
+        onCardSelect={nonOpFunc}
+        onDeckSelect={nonOpFunc}
+      />
+    );
     expect(shallowOutput.find('ToggleableAddForm')).toHaveLength(1);
   });
 
   it('has an item coponents', () => {
-    const shallowOutput = shallow(<Component cards={testCards} />);
+    const shallowOutput = shallow(
+      <Component
+        cards={testCards}
+        onCardCreate={nonOpFunc}
+        onCardDelete={nonOpFunc}
+        onCardUpdate={nonOpFunc}
+        onCardSelect={nonOpFunc}
+        onDeckSelect={nonOpFunc}
+      />
+    );
     expect(
       shallowOutput
         .find('CardGroup')

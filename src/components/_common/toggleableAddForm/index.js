@@ -6,8 +6,8 @@ import AddCard from './addCard';
 class ToggleableAddForm extends React.Component {
   static propTypes = {
     isFluid: PropTypes.bool,
-    onSubmit: PropTypes.func,
-    AddEditForm: PropTypes.func,
+    onSubmit: PropTypes.func.isRequired,
+    AddEditForm: PropTypes.func.isRequired,
   };
 
   state = {

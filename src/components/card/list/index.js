@@ -5,15 +5,16 @@ import { Card as SemanticCard } from 'semantic-ui-react';
 import { EditableCard } from '../_cardCard';
 import AddCardForm from '../addEditCardForm';
 import ToggleableAddForm from '../../_common/toggleableAddForm';
+import { cardShape } from '../../../helpers/entityShapes';
 
 class CardList extends React.Component {
   static propTypes = {
-    cards: PropTypes.array,
-    onCardCreate: PropTypes.func,
-    onCardDelete: PropTypes.func,
-    onCardUpdate: PropTypes.func,
-    onCardSelect: PropTypes.func,
-    onDeckSelect: PropTypes.func,
+    cards: PropTypes.arrayOf(PropTypes.shape(cardShape)).isRequired,
+    onCardCreate: PropTypes.func.isRequired,
+    onCardDelete: PropTypes.func.isRequired,
+    onCardUpdate: PropTypes.func.isRequired,
+    onCardSelect: PropTypes.func.isRequired,
+    onDeckSelect: PropTypes.func.isRequired,
   };
 
   onAddEditSubmit = card => {
