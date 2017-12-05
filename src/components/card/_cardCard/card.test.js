@@ -19,6 +19,7 @@ describe('cardCard', () => {
         card={testCard}
         onSelect={nonOpFunc}
         onDeckSelect={nonOpFunc}
+        onTopicSelect={nonOpFunc}
         onEditClick={nonOpFunc}
         onDelete={nonOpFunc}
       />
@@ -32,6 +33,7 @@ describe('cardCard', () => {
         card={testCard}
         onSelect={nonOpFunc}
         onDeckSelect={nonOpFunc}
+        onTopicSelect={nonOpFunc}
         onEditClick={nonOpFunc}
         onDelete={nonOpFunc}
       />
@@ -47,6 +49,7 @@ describe('cardCard', () => {
         card={testCard}
         onSelect={nonOpFunc}
         onDeckSelect={nonOpFunc}
+        onTopicSelect={nonOpFunc}
         onEditClick={nonOpFunc}
         onDelete={nonOpFunc}
       />

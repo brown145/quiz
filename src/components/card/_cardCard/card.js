@@ -23,7 +23,7 @@ const Card = props => {
   return (
     <SemanticCard fluid value={props.card.id} onClick={onSelect}>
       <SemanticCard.Content>
-        <CardRibon topics={props.card.topics} />
+        <CardRibon topics={props.card.topics} onSelect={props.onTopicSelect} />
         <SemanticCard.Header>{props.card.question}</SemanticCard.Header>
         {buttons}
       </SemanticCard.Content>
@@ -37,6 +37,7 @@ const Card = props => {
 Card.propTypes = {
   card: PropTypes.shape(cardShape).isRequired,
   onDeckSelect: PropTypes.func.isRequired,
+  onTopicSelect: PropTypes.func.isRequired,
   onDelete: PropTypes.func,
   onSelect: PropTypes.func,
   onEditClick: PropTypes.func.isRequired,

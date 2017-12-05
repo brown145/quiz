@@ -3,27 +3,16 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { createTopic, deleteTopic } from '../actions/entityActions';
+import { getCardsByTopic } from '../helpers/entityHelper';
 
 import TopicList from '../components/topic/list/';
 
 const mapStateToTopicProps = (store) => {
-  // DEV NOTE: de-normalizing data here
-  //           it looks a bit messy, but just populating relations as nested objects
-  //           redux likes data normalized but UI is easier with de-normalized
-  //           this seems like an ok place to denormalize
-  let cardsByTopic = {};
-  store.entities.topics.allIds.forEach(topicId => {
-    const relations = Object.entries(store.entities.cardTopics.byId)
-      .map((entry) => (entry[1]))
-      .filter(ct => ct.topicId === topicId)
-      .map(ct => (store.entities.cards.byId[ct.cardId]));
-    cardsByTopic[topicId] = relations;
-  });
-
+  const { cardTopics, cards, topics } = store.entities;
   return {
-    topics: store.entities.topics.allIds.map(topicId => ({
-      topic: {id: topicId},
-      cards: cardsByTopic[topicId],
+    topics: topics.allIds.map(topicId => ({
+      id: topicId,
+      cards: getCardsByTopic(cardTopics, cards, topicId),
     })),
   };
 };
@@ -42,6 +31,11 @@ class TopicListContainer extends React.Component {
   };
 
   render() {
+    if (!this.props.topics.length){
+      // TODO: handle error/loading onCardSelect
+      return <div>loading</div>;
+    }
+
     return (
       <TopicList
         topics={this.props.topics}

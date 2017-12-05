@@ -32,6 +32,7 @@ describe('cardList', () => {
         onCardUpdate={nonOpFunc}
         onCardSelect={nonOpFunc}
         onDeckSelect={nonOpFunc}
+        onTopicSelect={nonOpFunc}
       />
     );
     expect(shallowOutput).toHaveLength(1);
@@ -46,6 +47,7 @@ describe('cardList', () => {
         onCardUpdate={nonOpFunc}
         onCardSelect={nonOpFunc}
         onDeckSelect={nonOpFunc}
+        onTopicSelect={nonOpFunc}
       />
     );
     expect(shallowOutput.find('ToggleableAddForm')).toHaveLength(1);
@@ -60,6 +62,7 @@ describe('cardList', () => {
         onCardUpdate={nonOpFunc}
         onCardSelect={nonOpFunc}
         onDeckSelect={nonOpFunc}
+        onTopicSelect={nonOpFunc}
       />
     );
     expect(

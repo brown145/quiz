@@ -3,32 +3,20 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { updateCard } from '../actions/entityActions';
+import { getDecksByCard, getTopicsByCard } from '../helpers/entityHelper';
 
 import CardDetail from '../components/card/detail';
 import WarningUI from '../components/warningBlurb';
 
 const mapStateToCardProps = (store, ownProps) => {
-  // DEV NOTE: de-normalizing data here
-  //           it looks a bit messy, but just populating relations as nested objects
-  //           redux likes data normalized but UI is easier with de-normalized
-  //           this seems like an ok place to denormalize
-
   const cardId = ownProps.match.params.id;
-  const cardEntity = store.entities.cards.byId[cardId];
-  const cardDeckEntities = Object.entries(store.entities.cardDecks.byId)
-    .map(entry => (entry[1]))
-    .filter(cd => (cd.cardId === cardId))
-    .map(cd => (store.entities.decks.byId[cd.deckId]));
-  const cardTopicEntities = Object.entries(store.entities.cardTopics.byId)
-    .map(entry => (entry[1]))
-    .filter(ct => (ct.cardId === cardId))
-    .map(ct => ({id: ct.topicId}));
+  const { cardDecks, cardTopics, cards, decks, topics } = store.entities;
 
   return {
     card: {
-      ...cardEntity,
-      decks: cardDeckEntities,
-      topics: cardTopicEntities,
+      ...cards.byId[cardId],
+      decks: getDecksByCard(cardDecks, decks, cardId),
+      topics: getTopicsByCard(cardTopics, topics, cardId),
     },
   };
 };
@@ -46,6 +34,12 @@ class CardDetailContainer extends React.Component {
     }
   };
 
+  handler_topicClick = topicId => {
+    if (topicId) {
+      this.props.history.push(`/topics/${topicId}`);
+    }
+  };
+
   render() {
     // TODO: this should be loading icon
     if (!this.props.card || this.props.card.id === undefined) {
@@ -56,6 +50,7 @@ class CardDetailContainer extends React.Component {
       <CardDetail
         card={this.props.card}
         onDeckSelect={this.handler_deckClick}
+        onTopicSelect={this.handler_topicClick}
         onUpdate={(card) => ( this.props.dispatch(updateCard(card)) )}
       />
     );

@@ -18,7 +18,8 @@ describe('cardDetail', () => {
       <Component
         card={testCard}
         onUpdate={nonOpFunc}
-        onDeckSelect={nonOpFunc} 
+        onDeckSelect={nonOpFunc}
+        onTopicSelect={nonOpFunc} 
       />
     );
     expect(shallowOutput).toHaveLength(1);
@@ -29,7 +30,8 @@ describe('cardDetail', () => {
       <Component
         card={testCard}
         onUpdate={nonOpFunc}
-        onDeckSelect={nonOpFunc} 
+        onDeckSelect={nonOpFunc}
+        onTopicSelect={nonOpFunc} 
       />
     );
     expect(shallowOutput.find('Header').html()).toContain('test-question');
@@ -40,7 +42,8 @@ describe('cardDetail', () => {
       <Component
         card={testCard}
         onUpdate={nonOpFunc}
-        onDeckSelect={nonOpFunc} 
+        onDeckSelect={nonOpFunc}
+        onTopicSelect={nonOpFunc} 
       />
     );
     expect(shallowOutput.find('EditableCard')).toHaveLength(1);

@@ -11,6 +11,7 @@ class EditableCard extends React.Component {
     card: PropTypes.shape(cardShape).isRequired,
     onDelete: PropTypes.func,
     onDeckSelect: PropTypes.func.isRequired,
+    onTopicSelect: PropTypes.func.isRequired,
     onSelect: PropTypes.func,
     onSubmit: PropTypes.func.isRequired,
   };
@@ -53,6 +54,7 @@ class EditableCard extends React.Component {
         <Card
           card={this.props.card}
           onDeckSelect={this.props.onDeckSelect}
+          onTopicSelect={this.props.onTopicSelect}
           onDelete={handleDeleteClick_if_canDelete}
           onSelect={this.props.onSelect}
           onEditClick={this.handleEditClick}

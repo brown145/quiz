@@ -10,20 +10,18 @@ const testCard = {
   topics: [],
   decks: [],
 };
-const onDelete = () => {};
-const onDeckSelect = () => {};
-const onSelect = () => {};
-const onSubmit = () => {};
+const nonOpFunc = () => {};
 
 describe('editable cardCard', () => {
   it('shallow renders without crashing', () => {
     const shallowOutput = shallow(
       <Component
         card={testCard}
-        onSelect={onSelect}
-        onDelete={onDelete}
-        onSubmit={onSubmit}
-        onDeckSelect={onDeckSelect}
+        onSelect={nonOpFunc}
+        onDelete={nonOpFunc}
+        onSubmit={nonOpFunc}
+        onDeckSelect={nonOpFunc}
+        onTopicSelect={nonOpFunc}
       />
     );
     expect(shallowOutput).toHaveLength(1);
@@ -33,10 +31,11 @@ describe('editable cardCard', () => {
     const shallowOutput = shallow(
       <Component
         card={testCard}
-        onSelect={onSelect}
-        onDelete={onDelete}
-        onSubmit={onSubmit}
-        onDeckSelect={onDeckSelect}
+        onSelect={nonOpFunc}
+        onDelete={nonOpFunc}
+        onSubmit={nonOpFunc}
+        onDeckSelect={nonOpFunc}
+        onTopicSelect={nonOpFunc}
       />
     );
     shallowOutput.setState({ editFormOpen: true });
@@ -49,10 +48,11 @@ describe('editable cardCard', () => {
     const shallowOutput = shallow(
       <Component
         card={testCard}
-        onSelect={onSelect}
-        onDelete={onDelete}
-        onSubmit={onSubmit}
-        onDeckSelect={onDeckSelect}
+        onSelect={nonOpFunc}
+        onDelete={nonOpFunc}
+        onSubmit={nonOpFunc}
+        onDeckSelect={nonOpFunc}
+        onTopicSelect={nonOpFunc}
       />
     );
     shallowOutput.setState({ editFormOpen: false });

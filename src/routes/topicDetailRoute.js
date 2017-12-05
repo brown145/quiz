@@ -3,23 +3,19 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import TopicDetail from '../components/topic/detail';
+import { getCardsByTopic, getTopicsByCard } from '../helpers/entityHelper';
 
 const mapStateToTopicProps = (store, ownProps) => {
-  // DEV NOTE: de-normalizing data here
-  //           it looks a bit messy, but just populating relations as nested objects
-  //           redux likes data normalized but UI is easier with de-normalized
-  //           this seems like an ok place to denormalize
   const topicId = ownProps.match.params.id;
-  const topicEntity = store.entities.topics.byId[topicId];
-  const topicCardEntites = Object.entries(store.entities.cardTopics.byId)
-    .map(entry => entry[1])
-    .filter(ct => ct.topicId === topicId)
-    .map(ct => store.entities.cards.byId[ct.cardId]);
+  const { cardTopics, cards, topics } = store.entities;
 
   return {
-    topic:{
-      id: topicEntity,
-      cards: topicCardEntites,
+    topic: {
+      id: topics.byId[topicId],
+      cards: getCardsByTopic(cardTopics, cards, topicId).map(card => ({
+        ...card,
+        topics: getTopicsByCard(cardTopics, topics, card.id),
+      })),
     },
   };
 };
@@ -37,16 +33,26 @@ class TopicDetailContainer extends React.Component {
     }
   };
 
+  handler_topicClick = topicId => {
+    if (topicId) {
+      this.props.history.push(`/topics/${topicId}`);
+    }
+  };
+
   render() {
+    if (!this.props.topic.id){
+      // TODO: handle error/loading onCardSelect
+      return <div>loading</div>;
+    }
+
     return (
       <TopicDetail
         topic={this.props.topic}
         onCardSelect={this.handler_cardClick}
+        onTopicSelect={this.handler_topicClick}
       />
     );
   }
 }
 
-export default connect(
-  mapStateToTopicProps
-)(TopicDetailContainer);
+export default connect(mapStateToTopicProps)(TopicDetailContainer);

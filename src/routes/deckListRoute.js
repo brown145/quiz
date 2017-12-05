@@ -3,27 +3,17 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { createDeck, deleteDeck, updateDeck } from '../actions/entityActions';
+import { getCardsByDeck } from '../helpers/entityHelper';
 
 import DeckList from '../components/deck/list';
 
 const mapStateToDeckProps = store => {
-  // DEV NOTE: de-normalizing data here
-  //           it looks a bit messy, but just populating relations as nested objects
-  //           redux likes data normalized but UI is easier with de-normalized
-  //           this seems like an ok place to denormalize
-  let cardsByDeck = {};
-  store.entities.decks.allIds.forEach(deckId => {
-    const relations = Object.entries(store.entities.cardDecks.byId)
-      .map(entry => entry[1])
-      .filter(cd => cd.deckId === deckId)
-      .map(cd => store.entities.cards.byId[cd.cardId]);
-    cardsByDeck[deckId] = relations;
-  });
+  const { cardDecks, cards, decks } = store.entities;
 
   return {
-    decks: store.entities.decks.allIds.map(deckId => ({
-      ...store.entities.decks.byId[deckId],
-      cards: cardsByDeck[deckId],
+    decks: decks.allIds.map(deckId => ({
+      ...decks.byId[deckId],
+      cards: getCardsByDeck(cardDecks, cards, deckId),
     })),
   };
 };
@@ -42,6 +32,10 @@ class DeckListContainer extends React.Component {
   };
 
   render() {
+    if (!this.props.decks.length){
+      // TODO: handle error/loading onCardSelect
+      return <div>loading</div>;
+    }
     return (
       <DeckList
         decks={this.props.decks}

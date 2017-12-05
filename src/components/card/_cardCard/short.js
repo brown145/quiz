@@ -7,18 +7,14 @@ import { cardShape } from '../../../helpers/entityShapes';
 
 const ShortCard = props => {
   const onSelect = (e, { value }) => {
-    props.onSelect(value);
+    props.onCardSelect(value);
     e.stopPropagation();
   };
-
-  const temp = [{
-    id: 'todo',
-  }];
 
   return (
     <Card
       header={props.card.question}
-      description={<CardRibon topics={temp} />}
+      description={<CardRibon topics={props.card.topics} onSelect={props.onTopicSelect} />}
       value={props.card.id}
       onClick={onSelect}
     />
@@ -26,7 +22,8 @@ const ShortCard = props => {
 };
 ShortCard.propTypes = {
   card: PropTypes.shape(cardShape).isRequired,
-  onSelect: PropTypes.func.isRequired,
+  onCardSelect: PropTypes.func.isRequired,
+  onTopicSelect: PropTypes.func.isRequired,
 };
 
 export default ShortCard;

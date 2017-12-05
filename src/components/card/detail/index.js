@@ -9,6 +9,7 @@ class CardDetail extends React.Component {
   static propTypes = {
     card: PropTypes.shape(cardShape).isRequired,
     onDeckSelect: PropTypes.func.isRequired,
+    onTopicSelect: PropTypes.func.isRequired,
     onUpdate: PropTypes.func.isRequired,
   };
 
@@ -25,6 +26,7 @@ class CardDetail extends React.Component {
         <EditableCard
           card={this.props.card}
           onDeckSelect={this.props.onDeckSelect}
+          onTopicSelect={this.props.onTopicSelect}
           onSubmit={this.onEditSubmit}
         />
       </Container>

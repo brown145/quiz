@@ -9,11 +9,17 @@ class DeckDetail extends React.Component {
   static propTypes = {
     deck: PropTypes.shape(deckShape).isRequired,
     onCardSelect: PropTypes.func.isRequired,
+    onTopicSelect: PropTypes.func.isRequired,
   };
 
   render() {
     const cards = this.props.deck.cards.map(card => (
-      <ShortCard key={card.id} card={card} onSelect={this.props.onCardSelect} />
+      <ShortCard
+        key={card.id}
+        card={card}
+        onCardSelect={this.props.onCardSelect}
+        onTopicSelect={this.props.onTopicSelect}
+      />
     ));
     return (
       <Container>

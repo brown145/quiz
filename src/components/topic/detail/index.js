@@ -9,11 +9,17 @@ class TopicDetail extends React.Component {
   static propTypes = {
     topic: PropTypes.shape(topicShape).isRequired,
     onCardSelect: PropTypes.func.isRequired,
+    onTopicSelect: PropTypes.func.isRequired,
   };
 
   render() {
     const cards = this.props.topic.cards.map(card => (
-      <ShortCard key={card.id} card={card} onSelect={this.props.onCardSelect} />
+      <ShortCard
+        key={card.id}
+        card={card}
+        onCardSelect={this.props.onCardSelect}
+        onTopicSelect={this.props.onTopicSelect}
+      />
     ));
     return (
       <Container>

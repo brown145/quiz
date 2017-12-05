@@ -10,14 +10,15 @@ const testCard = {
   topics: [],
   decks: [],
 };
-const onSelect = () => {};
+const nonOpFunc = () => {};
 
 describe('shortCard', () => {
   it('shallow renders without crashing', () => {
     const shallowOutput = shallow(
       <Component
         card={testCard}
-        onSelect={onSelect}
+        onCardSelect={nonOpFunc}
+        onTopicSelect={nonOpFunc}
       />
     );
     expect(shallowOutput).toHaveLength(1);
