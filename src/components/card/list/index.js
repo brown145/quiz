@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card as SemanticCard } from 'semantic-ui-react';
 
+import { cardShape } from '../../../helpers/entityShapes';
 import { EditableCard } from '../_cardCard';
 import AddCardForm from '../addEditCardForm';
+import SortFilterList from '../../_common/list/sortFilterList';
 import ToggleableAddForm from '../../_common/toggleableAddForm';
-import { cardShape } from '../../../helpers/entityShapes';
 
 class CardList extends React.Component {
   static propTypes = {
@@ -26,27 +26,35 @@ class CardList extends React.Component {
     }
   };
 
+  cardItemMapper = card => (
+    <EditableCard
+      key={card.id}
+      card={card}
+      onDeckSelect={this.props.onDeckSelect}
+      onTopicSelect={this.props.onTopicSelect}
+      onDelete={this.props.onCardDelete}
+      onSelect={this.props.onCardSelect}
+      onSubmit={this.onAddEditSubmit}
+    />
+  );
+
+  addElement = (
+    <ToggleableAddForm
+      isFluid={true}
+      onSubmit={this.onAddEditSubmit}
+      AddEditForm={AddCardForm}
+    />
+  );
+
   render() {
-    const cards = this.props.cards.map(card => (
-      <EditableCard
-        key={card.id}
-        card={card}
-        onDeckSelect={this.props.onDeckSelect}
-        onTopicSelect={this.props.onTopicSelect}
-        onDelete={this.props.onCardDelete}
-        onSelect={this.props.onCardSelect}
-        onSubmit={this.onAddEditSubmit}
-      />
-    ));
     return (
-      <SemanticCard.Group>
-        {cards}
-        <ToggleableAddForm
-          isFluid={true}
-          onSubmit={this.onAddEditSubmit}
-          AddEditForm={AddCardForm}
-        />
-      </SemanticCard.Group>
+      <SortFilterList
+        listItemMapper={this.cardItemMapper}
+        sortedBy={'question'}
+        filteredBy={'question'}
+        items={this.props.cards}
+        extra={this.addElement}
+      />
     );
   }
 }

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card as SemanticCard } from 'semantic-ui-react';
 
+import { deckShape } from '../../../helpers/entityShapes';
 import { EditableDeck } from '../_deckCard';
 import AddForm from '../addEditDeckForm';
+import SortFilterList from '../../_common/list/sortFilterList';
 import ToggleableAddForm from '../../_common/toggleableAddForm';
-import { deckShape } from '../../../helpers/entityShapes';
 
 class DeckList extends React.Component {
   static propTypes = {
@@ -24,25 +24,34 @@ class DeckList extends React.Component {
     }
   };
 
+  deckItemMapper = deck => (
+    <EditableDeck
+      key={deck.id}
+      deck={deck}
+      onDelete={this.props.onDeckDelete}
+      onSelect={this.props.onDeckSelect}
+      onSubmit={this.onAddEditSubmit}
+      onUpdate={this.props.onDeckUpdate}
+    />
+  );
+
+  addElement = (
+    <ToggleableAddForm
+      onSubmit={this.onAddEditSubmit}
+      AddEditForm={AddForm}
+    />
+  );
+
   render() {
-    const decks = this.props.decks.map(deck => (
-      <EditableDeck
-        key={deck.id}
-        deck={deck}
-        onDelete={this.props.onDeckDelete}
-        onSelect={this.props.onDeckSelect}
-        onSubmit={this.onAddEditSubmit}
-        onUpdate={this.props.onDeckUpdate}
-      />
-    ));
     return (
-      <SemanticCard.Group itemsPerRow="2">
-        {decks}
-        <ToggleableAddForm
-          onSubmit={this.onAddEditSubmit}
-          AddEditForm={AddForm}
-        />
-      </SemanticCard.Group>
+      <SortFilterList
+        listItemMapper={this.deckItemMapper}
+        listProps={{ itemsPerRow:'2' }}
+        sortedBy={'name'}
+        filteredBy={'name'}
+        items={this.props.decks}
+        extra={this.addElement}
+      />
     );
   }
 }

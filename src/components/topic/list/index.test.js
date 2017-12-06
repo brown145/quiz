@@ -38,7 +38,7 @@ describe('topicList', () => {
     expect(shallowOutput).toHaveLength(1);
   });
 
-  it('has an add coponent', () => {
+  it('has an sortFilterList coponent', () => {
     const shallowOutput = shallow(
       <Component
         topics={testTopics}
@@ -47,7 +47,7 @@ describe('topicList', () => {
         onTopicSelect={nonOpFunc}
       />
     );
-    expect(shallowOutput.find('ToggleableAddForm')).toHaveLength(1);
+    expect(shallowOutput.find('SortFilterList')).toHaveLength(1);
   });
 
   it('has an item coponents', () => {
@@ -59,6 +59,6 @@ describe('topicList', () => {
         onTopicSelect={nonOpFunc}
       />
     );
-    expect(shallowOutput.find('CardGroup').dive().find('Topic')).toHaveLength(2);
+    expect(shallowOutput.find('SortFilterList').dive().find('Topic')).toHaveLength(2);
   });
 });
