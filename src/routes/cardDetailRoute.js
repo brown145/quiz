@@ -3,7 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { updateCard } from '../actions/entityActions';
-import { getDecksByCard, getTopicsByCard } from '../helpers/entityHelper';
+import {
+  getDecksByCard,
+  getTopicsByCard,
+  getRelateableTopicsByCard,
+} from '../helpers/entityHelper';
+import { relateTopicToCard } from '../actions/entityActions';
 
 import CardDetail from '../components/card/detail';
 import WarningUI from '../components/warningBlurb';
@@ -17,6 +22,7 @@ const mapStateToCardProps = (store, ownProps) => {
       ...cards.byId[cardId],
       decks: getDecksByCard(cardDecks, decks, cardId),
       topics: getTopicsByCard(cardTopics, topics, cardId),
+      relatableTopics: getRelateableTopicsByCard(cardTopics, topics, cardId),
     },
   };
 };
@@ -51,12 +57,13 @@ class CardDetailContainer extends React.Component {
         card={this.props.card}
         onDeckSelect={this.handler_deckClick}
         onTopicSelect={this.handler_topicClick}
-        onUpdate={(card) => ( this.props.dispatch(updateCard(card)) )}
+        onUpdate={card => this.props.dispatch(updateCard(card))}
+        onRelateTopicToCard={(topicId, cardId) =>
+          this.props.dispatch(relateTopicToCard(topicId, cardId))
+        }
       />
     );
   }
 }
 
-export default connect(
-  mapStateToCardProps
-)(CardDetailContainer);
+export default connect(mapStateToCardProps)(CardDetailContainer);

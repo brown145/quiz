@@ -86,7 +86,7 @@ export function relateCardToDeck(cardId, deckId){
     },
   };
 }
-export function relateTopicToCard(cardId, topicId){
+export function relateTopicToCard(topicId, cardId){
   return {
     type: RELATE_CARD_TO_TOPIC,
     payload: {

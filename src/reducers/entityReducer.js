@@ -33,6 +33,24 @@ export default function reducer (state={
         ...state,
         topics: topicsReducer(state.topics, action),
       };
+    case entityActions.RELATE_CARD_TO_DECK:
+      return {
+        ...state,
+        cardDecks:{
+          ...state.cardDecks,
+          byId: {...state.cardDecks.byId, [payload.relation.id]:payload.relation},
+          allIds: state.cardDecks.allIds.concat(payload.relation.id),
+        },
+      };
+    case entityActions.RELATE_CARD_TO_TOPIC:
+      return {
+        ...state,
+        cardTopics:{
+          ...state.cardTopics,
+          byId: {...state.cardTopics.byId, [payload.relation.id]:payload.relation},
+          allIds: state.cardTopics.allIds.concat(payload.relation.id),
+        },
+      };
     case entityActions.CREATE_CARD_RELATE_TO_DECK:
       return {
         ...state,

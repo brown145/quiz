@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Header } from 'semantic-ui-react';
 
-import { EditableCard } from '../../card/_cardCard/';
+import { EditableCard } from '../_cardCard/';
 import { cardShape } from '../../../helpers/entityShapes';
+import RelationSelector from '../../_common/relator/select';
 
 class CardDetail extends React.Component {
   static propTypes = {
@@ -11,6 +12,7 @@ class CardDetail extends React.Component {
     onDeckSelect: PropTypes.func.isRequired,
     onTopicSelect: PropTypes.func.isRequired,
     onUpdate: PropTypes.func.isRequired,
+    onRelateTopicToCard: PropTypes.func.isRequired,
   };
 
   onEditSubmit = card => {
@@ -19,7 +21,15 @@ class CardDetail extends React.Component {
     }
   };
 
+  onRelateTopic = topicId => {
+    this.props.onRelateTopicToCard(topicId, this.props.card.id);
+  };
+
   render() {
+    const {relatableTopics} = this.props.card;
+    const optionItems = relatableTopics
+      ? relatableTopics.map(topic => ({ id: topic, text: topic }))
+      : [];
     return (
       <Container>
         <Header as="h2">{this.props.card.question}</Header>
@@ -28,6 +38,11 @@ class CardDetail extends React.Component {
           onDeckSelect={this.props.onDeckSelect}
           onTopicSelect={this.props.onTopicSelect}
           onSubmit={this.onEditSubmit}
+        />
+        <RelationSelector
+          text="Select a topic to relate"
+          optionItems={optionItems}
+          onSelect={this.onRelateTopic}
         />
       </Container>
     );

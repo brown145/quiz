@@ -19,7 +19,8 @@ describe('cardDetail', () => {
         card={testCard}
         onUpdate={nonOpFunc}
         onDeckSelect={nonOpFunc}
-        onTopicSelect={nonOpFunc} 
+        onTopicSelect={nonOpFunc}
+        onRelateTopicToCard={nonOpFunc} 
       />
     );
     expect(shallowOutput).toHaveLength(1);
@@ -31,7 +32,8 @@ describe('cardDetail', () => {
         card={testCard}
         onUpdate={nonOpFunc}
         onDeckSelect={nonOpFunc}
-        onTopicSelect={nonOpFunc} 
+        onTopicSelect={nonOpFunc}
+        onRelateTopicToCard={nonOpFunc} 
       />
     );
     expect(shallowOutput.find('Header').html()).toContain('test-question');
@@ -43,7 +45,8 @@ describe('cardDetail', () => {
         card={testCard}
         onUpdate={nonOpFunc}
         onDeckSelect={nonOpFunc}
-        onTopicSelect={nonOpFunc} 
+        onTopicSelect={nonOpFunc}
+        onRelateTopicToCard={nonOpFunc} 
       />
     );
     expect(shallowOutput.find('EditableCard')).toHaveLength(1);

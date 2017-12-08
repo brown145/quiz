@@ -29,6 +29,7 @@ describe('deckDetail', () => {
         deck={testDeck}
         onCardSelect={nonOpFunc}
         onTopicSelect={nonOpFunc}
+        onRelateCardToDeck={nonOpFunc}
       />
     );
     expect(shallowOutput).toHaveLength(1);
@@ -40,6 +41,7 @@ describe('deckDetail', () => {
         deck={testDeck}
         onCardSelect={nonOpFunc}
         onTopicSelect={nonOpFunc}
+        onRelateCardToDeck={nonOpFunc}
       />
     );
     expect(shallowOutput.find('Header').html()).toContain('test-name1');
@@ -51,6 +53,7 @@ describe('deckDetail', () => {
         deck={testDeck}
         onCardSelect={nonOpFunc}
         onTopicSelect={nonOpFunc}
+        onRelateCardToDeck={nonOpFunc}
       />
     );
     expect(
@@ -67,6 +70,7 @@ describe('deckDetail', () => {
         deck={testDeck}
         onCardSelect={nonOpFunc}
         onTopicSelect={nonOpFunc}
+        onRelateCardToDeck={nonOpFunc}
       />
     );
     expect(
@@ -83,6 +87,7 @@ describe('deckDetail', () => {
         deck={testDeck}
         onCardSelect={nonOpFunc}
         onTopicSelect={nonOpFunc}
+        onRelateCardToDeck={nonOpFunc}
       />
     );
     expect(

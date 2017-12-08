@@ -53,6 +53,15 @@ export function getCardsByDeck(cardDecks, cards, deckId) {
     .map(cd => cards.byId[cd.cardId]);
 }
 
+export function getRelateableCardsByDeck(cardDecks, cards, deckId) {
+  const cardsInDeck = getCardsByDeck(cardDecks, cards, deckId);
+  const cardIdsInDeck = cardsInDeck.map(card => card.id);
+
+  return Object.entries(cards.byId)
+    .filter(entry => (!cardIdsInDeck.includes(entry[0])))
+    .map(entry => entry[1]);
+}
+
 export function getDecksByCard(cardDecks, decks, cardId) {
   return Object.entries(cardDecks.byId)
     .map(entry => entry[1])
@@ -65,4 +74,13 @@ export function getTopicsByCard(cardTopics, topics, cardId) {
     .map(entry => entry[1])
     .filter(ct => ct.cardId === cardId)
     .map(ct => ({id: ct.topicId}));
+}
+
+export function getRelateableTopicsByCard(cardTopics, topics, cardId) {
+  const topicsOnCard = getTopicsByCard(cardTopics, topics, cardId);
+  const topicIdsOnCard = topicsOnCard.map(topic => topic.id);
+
+  return Object.entries(topics.byId)
+    .filter(entry => (!topicIdsOnCard.includes(entry[0])))
+    .map(entry => entry[1]);
 }

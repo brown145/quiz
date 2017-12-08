@@ -2,9 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-// TODO:
-// import { createCardForDeck } from '../actions/entityActions';
-import { getCardsByDeck, getTopicsByCard } from '../helpers/entityHelper';
+import {
+  getCardsByDeck,
+  getRelateableCardsByDeck,
+  getTopicsByCard,
+} from '../helpers/entityHelper';
+import { relateCardToDeck } from '../actions/entityActions';
 
 import DeckDetail from '../components/deck/detail';
 import WarningUI from '../components/warningBlurb';
@@ -19,6 +22,7 @@ const mapStateToDeckProps = (store, ownProps) => {
         ...card,
         topics: getTopicsByCard(cardTopics, topics, card.id),
       })),
+      relatableCards: getRelateableCardsByDeck(cardDecks, cards, deckId),
     },
   };
 };
@@ -54,6 +58,9 @@ class DeckDetailContainer extends React.Component {
         deck={deck}
         onCardSelect={this.handler_cardClick}
         onTopicSelect={this.handler_topicClick}
+        onRelateCardToDeck={(cardId, deckId) =>
+          this.props.dispatch(relateCardToDeck(cardId, deckId))
+        }
       />
     );
   }
