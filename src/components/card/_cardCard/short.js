@@ -1,28 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card } from 'semantic-ui-react';
+import { Card, Icon } from 'semantic-ui-react';
 
 import CardRibon from './cardRibon';
 import { cardShape } from '../../../helpers/entityShapes';
 
 const ShortCard = props => {
-  const onSelect = (e, { value }) => {
-    props.onCardSelect(value);
+  const onSelect = (e) => {
+    props.onSelect(props.card.id);
+    e.stopPropagation();
+  };
+
+  const onRemove = (e) => {
+    props.onRemove(props.card.id);
     e.stopPropagation();
   };
 
   return (
-    <Card
-      header={props.card.question}
-      description={<CardRibon topics={props.card.topics} onSelect={props.onTopicSelect} />}
-      value={props.card.id}
-      onClick={onSelect}
-    />
+    <Card onClick={onSelect}>
+      <Card.Content>
+        <CardRibon topics={props.card.topics} onSelect={props.onTopicSelect} />
+        <Card.Header>{props.card.question}</Card.Header>
+        <Icon link name="x" onClick={onRemove} />
+      </Card.Content>
+    </Card>
   );
 };
 ShortCard.propTypes = {
   card: PropTypes.shape(cardShape).isRequired,
-  onCardSelect: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
   onTopicSelect: PropTypes.func.isRequired,
 };
 

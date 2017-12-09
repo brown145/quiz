@@ -3,13 +3,15 @@ import * as entityActions from '../actions/entityActions';
 import cardsReducer from './cardEntityReducer';
 import decksReducer from './deckEntityReducer';
 import topicsReducer from './topicEntityReducer';
+import cardDeckReducer from './cardDeckEntityReducer';
+import cardTopicReducer from './cardTopicEntityReducer';
 
 export default function reducer (state={
   decks: decksReducer(undefined, {}),
   cards: cardsReducer(undefined, {}),
   topics: topicsReducer(undefined, {}),
-  cardDecks:{ byId: {}, allIds: [] },
-  cardTopics:{ byId: {}, allIds: [] },
+  cardDecks: cardDeckReducer(undefined, {}),
+  cardTopics:cardTopicReducer(undefined, {}),
 }, action) {
   const {type, payload} = action;
   switch (type) {
@@ -34,22 +36,16 @@ export default function reducer (state={
         topics: topicsReducer(state.topics, action),
       };
     case entityActions.RELATE_CARD_TO_DECK:
+    case entityActions.DELETE_CARD_TO_DECK_RELATION:
       return {
         ...state,
-        cardDecks:{
-          ...state.cardDecks,
-          byId: {...state.cardDecks.byId, [payload.relation.id]:payload.relation},
-          allIds: state.cardDecks.allIds.concat(payload.relation.id),
-        },
+        cardDecks: cardDeckReducer(state.cardDecks, action),
       };
     case entityActions.RELATE_CARD_TO_TOPIC:
+    case entityActions.DELETE_CARD_TO_TOPIC_RELATION:
       return {
         ...state,
-        cardTopics:{
-          ...state.cardTopics,
-          byId: {...state.cardTopics.byId, [payload.relation.id]:payload.relation},
-          allIds: state.cardTopics.allIds.concat(payload.relation.id),
-        },
+        cardTopics: cardTopicReducer(state.cardTopics, action),
       };
     case entityActions.CREATE_CARD_RELATE_TO_DECK:
       return {

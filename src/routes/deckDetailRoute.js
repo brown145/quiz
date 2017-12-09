@@ -7,7 +7,7 @@ import {
   getRelateableCardsByDeck,
   getTopicsByCard,
 } from '../helpers/entityHelper';
-import { relateCardToDeck } from '../actions/entityActions';
+import { relateCardToDeck, unRelateCardToDeck } from '../actions/entityActions';
 
 import DeckDetail from '../components/deck/detail';
 import WarningUI from '../components/warningBlurb';
@@ -60,6 +60,9 @@ class DeckDetailContainer extends React.Component {
         onTopicSelect={this.handler_topicClick}
         onRelateCardToDeck={(cardId, deckId) =>
           this.props.dispatch(relateCardToDeck(cardId, deckId))
+        }
+        onUnRelateCardToDeck={(cardId, deckId) =>
+          this.props.dispatch(unRelateCardToDeck(cardId, deckId))
         }
       />
     );

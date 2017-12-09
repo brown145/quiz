@@ -12,10 +12,15 @@ class DeckDetail extends React.Component {
     onCardSelect: PropTypes.func.isRequired,
     onTopicSelect: PropTypes.func.isRequired,
     onRelateCardToDeck: PropTypes.func.isRequired,
+    onUnRelateCardToDeck: PropTypes.func.isRequired,
   };
 
   onRelateTopic = cardId => {
     this.props.onRelateCardToDeck(cardId, this.props.deck.id);
+  };
+
+  onUnRelateTopic = cardId => {
+    this.props.onUnRelateCardToDeck(cardId, this.props.deck.id);
   };
 
   render() {
@@ -24,7 +29,8 @@ class DeckDetail extends React.Component {
       <ShortCard
         key={card.id}
         card={card}
-        onCardSelect={this.props.onCardSelect}
+        onSelect={this.props.onCardSelect}
+        onRemove={this.onUnRelateTopic}
         onTopicSelect={this.props.onTopicSelect}
       />
     ));

@@ -12,6 +12,8 @@ export const CREATE_DECK = 'CREATE_DECK';
 export const CREATE_TOPIC = 'CREATE_TOPIC';
 export const CREATE_TOPIC_RELATE_TO_CARD = 'CREATE_TOPIC_RELATE_TO_CARD';
 export const DELETE_CARD = 'DELETE_CARD';
+export const DELETE_CARD_TO_DECK_RELATION = 'DELETE_CARD_TO_DECK_RELATION';
+export const DELETE_CARD_TO_TOPIC_RELATION = 'DELETE_CARD_TO_TOPIC_RELATION';
 export const DELETE_DECK = 'DELETE_DECK';
 export const DELETE_TOPIC = 'DELETE__TOPIC';
 export const RELATE_CARD_TO_DECK = 'RELATE_CARD_TO_DECK';
@@ -91,6 +93,24 @@ export function relateTopicToCard(topicId, cardId){
     type: RELATE_CARD_TO_TOPIC,
     payload: {
       relation: newCardTopicRelation(cardId, topicId),
+    },
+  };
+}
+export function unRelateCardToDeck(cardId, deckId){
+  return {
+    type: DELETE_CARD_TO_DECK_RELATION,
+    payload: {
+      cardId,
+      deckId,
+    },
+  };
+}
+export function unRelateTopicToCard(topicId, cardId){
+  return {
+    type: DELETE_CARD_TO_TOPIC_RELATION,
+    payload: {
+      cardId,
+      topicId,
     },
   };
 }

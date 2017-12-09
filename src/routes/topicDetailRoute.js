@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import TopicDetail from '../components/topic/detail';
 import { getCardsByTopic, getTopicsByCard } from '../helpers/entityHelper';
+import { unRelateTopicToCard } from '../actions/entityActions';
 
 const mapStateToTopicProps = (store, ownProps) => {
   const topicId = ownProps.match.params.id;
@@ -50,6 +51,9 @@ class TopicDetailContainer extends React.Component {
         topic={this.props.topic}
         onCardSelect={this.handler_cardClick}
         onTopicSelect={this.handler_topicClick}
+        onUnRelateCardToTopic={(cardId, topicId) =>
+          this.props.dispatch(unRelateTopicToCard(topicId, cardId))
+        }
       />
     );
   }

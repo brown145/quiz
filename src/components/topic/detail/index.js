@@ -10,6 +10,11 @@ class TopicDetail extends React.Component {
     topic: PropTypes.shape(topicShape).isRequired,
     onCardSelect: PropTypes.func.isRequired,
     onTopicSelect: PropTypes.func.isRequired,
+    onUnRelateCardToTopic: PropTypes.func.isRequired,
+  };
+
+  onUnRelateTopic = cardId => {
+    this.props.onUnRelateCardToTopic(cardId, this.props.topic.id);
   };
 
   render() {
@@ -17,7 +22,8 @@ class TopicDetail extends React.Component {
       <ShortCard
         key={card.id}
         card={card}
-        onCardSelect={this.props.onCardSelect}
+        onSelect={this.props.onCardSelect}
+        onRemove={this.onUnRelateTopic}
         onTopicSelect={this.props.onTopicSelect}
       />
     ));

@@ -27,6 +27,7 @@ describe('topicDetail', () => {
         topic={testTopic}
         onCardSelect={nonOpFunc}
         onTopicSelect={nonOpFunc}
+        onUnRelateCardToTopic={nonOpFunc}
       />
     );
     expect(shallowOutput).toHaveLength(1);
@@ -38,6 +39,7 @@ describe('topicDetail', () => {
         topic={testTopic}
         onCardSelect={nonOpFunc}
         onTopicSelect={nonOpFunc}
+        onUnRelateCardToTopic={nonOpFunc}
       />
     );
     expect(shallowOutput.find('Header').html()).toContain('test-topic1');
@@ -49,6 +51,7 @@ describe('topicDetail', () => {
         topic={testTopic}
         onCardSelect={nonOpFunc}
         onTopicSelect={nonOpFunc}
+        onUnRelateCardToTopic={nonOpFunc}
       />
     );
     expect(
@@ -65,13 +68,14 @@ describe('topicDetail', () => {
         topic={testTopic}
         onCardSelect={nonOpFunc}
         onTopicSelect={nonOpFunc}
+        onUnRelateCardToTopic={nonOpFunc}
       />
     );
     expect(
       typeof shallowOutput
         .find('ShortCard')
         .first()
-        .prop('onCardSelect')
+        .prop('onSelect')
     ).toBe('function');
   });
 
@@ -81,6 +85,7 @@ describe('topicDetail', () => {
         topic={testTopic}
         onCardSelect={nonOpFunc}
         onTopicSelect={nonOpFunc}
+        onUnRelateCardToTopic={nonOpFunc}
       />
     );
     expect(

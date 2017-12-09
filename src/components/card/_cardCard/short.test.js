@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import Component from './short';
 
@@ -17,10 +17,28 @@ describe('shortCard', () => {
     const shallowOutput = shallow(
       <Component
         card={testCard}
-        onCardSelect={nonOpFunc}
+        onSelect={nonOpFunc}
+        onRemove={nonOpFunc}
         onTopicSelect={nonOpFunc}
       />
     );
     expect(shallowOutput).toHaveLength(1);
+  });
+
+
+  it('remove event fires', () => {
+    const spy = jest.fn();
+    const wrapper = mount(
+      <Component
+        card={testCard}
+        onSelect={nonOpFunc}
+        onRemove={spy}
+        onTopicSelect={nonOpFunc}
+      />
+    );
+    wrapper.find('Icon').simulate('click');
+
+    expect(spy).toHaveBeenCalled();
+    expect(spy.mock.calls[0][0]).toBe('c1');
   });
 });
