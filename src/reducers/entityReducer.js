@@ -1,4 +1,4 @@
-import * as entityActions from '../actions/entityActions';
+import * as entityActions from 'actions/entityActions';
 
 import cardsReducer from './cardEntityReducer';
 import decksReducer from './deckEntityReducer';

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import AddCard from './addCard';
+import AddCard from 'components/_common/toggleableAddForm/addCard';
 
 class ToggleableAddForm extends React.Component {
   static propTypes = {

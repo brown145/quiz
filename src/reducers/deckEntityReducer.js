@@ -2,7 +2,7 @@ import {
   CREATE_DECK,
   DELETE_DECK,
   UPDATE_DECK,
-} from '../actions/entityActions';
+} from 'actions/entityActions';
 
 export default function reducer(
   state = {

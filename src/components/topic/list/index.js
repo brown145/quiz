@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { topicShape } from '../../../helpers/entityShapes';
-import AddForm from '../addEditTopicForm';
-import SortFilterList from '../../_common/list/sortFilterList';
-import ToggleableAddForm from '../../_common/toggleableAddForm';
-import TopicCard from '../_topicCard';
+import { topicShape } from 'helpers/entityShapes';
+import AddForm from 'components/topic/addEditTopicForm';
+import SortFilterList from 'components/_common/list/sortFilterList';
+import ToggleableAddForm from 'components/_common/toggleableAddForm';
+import TopicCard from 'components/topic/_topicCard';
 
 class TopicList extends React.Component {
   static propTypes = {

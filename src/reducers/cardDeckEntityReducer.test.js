@@ -1,7 +1,7 @@
 import {
   RELATE_CARD_TO_DECK,
   DELETE_CARD_TO_DECK_RELATION,
-} from '../actions/entityActions';
+} from 'actions/entityActions';
 import cardDeckEntityReducer from './cardDeckEntityReducer';
 import testData from '../testData.json';
 

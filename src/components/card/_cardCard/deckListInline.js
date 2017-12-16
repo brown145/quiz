@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { List } from 'semantic-ui-react';
 
-import { deckShape } from '../../../helpers/entityShapes';
+import { deckShape } from 'helpers/entityShapes';
 
 const DeckListInline = props => {
   this.onDeckSelect = (e, { value }) => {

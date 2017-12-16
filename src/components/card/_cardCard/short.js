@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Card, Icon } from 'semantic-ui-react';
 
 import CardRibon from './cardRibon';
-import { cardShape } from '../../../helpers/entityShapes';
+import { cardShape } from 'helpers/entityShapes';
 
 const ShortCard = props => {
   const onSelect = (e) => {

@@ -6,7 +6,7 @@ import {
   Container,
   Icon,
 } from 'semantic-ui-react';
-import { deckShape } from '../../../helpers/entityShapes';
+import { deckShape } from 'helpers/entityShapes';
 
 const Deck = props => {
   const onSelect = (e, { value }) => {

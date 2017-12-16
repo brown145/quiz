@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Deck from './deck';
-import EditDeckForm from '../addEditDeckForm';
-import { deckShape } from '../../../helpers/entityShapes';
+import EditDeckForm from 'components/deck/addEditDeckForm';
+import { deckShape } from 'helpers/entityShapes';
 
 class EditableDeck extends React.Component {
   static propTypes = {

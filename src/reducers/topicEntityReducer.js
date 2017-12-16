@@ -1,7 +1,7 @@
 import {
   CREATE_TOPIC,
   DELETE_TOPIC,
-} from '../actions/entityActions';
+} from 'actions/entityActions';
 
 export default function reducer (state={
   byId: {},

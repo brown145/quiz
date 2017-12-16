@@ -4,7 +4,7 @@ import {
   attributesToTopic,
   newCardDeckRelation,
   newCardTopicRelation,
-} from '../helpers/entityHelper';
+} from 'helpers/entityHelper';
 
 export const CREATE_CARD = 'CREATE_CARD';
 export const CREATE_CARD_RELATE_TO_DECK = 'CREATE_CARD_RELATE_TO_DECK';

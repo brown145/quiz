@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Container, Header } from 'semantic-ui-react';
 
 import { EditableCard } from '../_cardCard/';
-import { cardShape } from '../../../helpers/entityShapes';
-import RelationSelector from '../../_common/relator/select';
+import { cardShape } from 'helpers/entityShapes';
+import RelationSelector from 'components/_common/relator/select';
 
 class CardDetail extends React.Component {
   static propTypes = {

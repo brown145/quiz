@@ -2,7 +2,7 @@ import {
   CREATE_DECK,
   DELETE_DECK,
   UPDATE_DECK,
-} from '../actions/entityActions';
+} from 'actions/entityActions';
 import deckEntityReducer from './deckEntityReducer';
 import testData from '../testData.json';
 

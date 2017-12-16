@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { createTopic, deleteTopic } from '../actions/entityActions';
-import { getCardsByTopic } from '../helpers/entityHelper';
+import { createTopic, deleteTopic } from 'actions/entityActions';
+import { getCardsByTopic } from 'helpers/entityHelper';
 
-import TopicList from '../components/topic/list/';
+import TopicList from 'components/topic/list/';
 
 const mapStateToTopicProps = (store) => {
   const { cardTopics, cards, topics } = store.entities;
