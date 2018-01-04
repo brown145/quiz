@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 import {
   getCardsByDeck,
   getTopicsByCard,
+  attributesToDeckQuiz,
 } from 'helpers/entityHelper';
+import { createDeckQuiz, updateDeckQuizComplete } from 'actions/entityActions';
 
 import QuizQuestions from 'components/quiz/questions';
 import WarningUI from 'components/warningBlurb';
@@ -31,7 +33,24 @@ class QuizDeckContainer extends React.Component {
     dispatch: PropTypes.func.isRequired,
   };
 
+  state = {
+    quizResultsId: null,
+  }
+
+  handler_startQuiz = () => {
+    const quiz = attributesToDeckQuiz({
+      deckId: this.props.deck.id,
+    });
+    this.setState({
+      quizResultsId: quiz.id,
+    });
+    this.props.dispatch(createDeckQuiz({
+      ...quiz,
+    }));
+  };
+
   handler_endQuiz = () => {
+    this.props.dispatch(updateDeckQuizComplete(this.state.quizResultsId, true));
     this.props.history.push(`/decks/${this.props.deck.id}`);
   };
 
@@ -45,6 +64,7 @@ class QuizDeckContainer extends React.Component {
     return (
       <QuizQuestions
         cards={deck.cards}
+        onStartQuiz={this.handler_startQuiz}
         onEndQuiz={this.handler_endQuiz}
       />
     );

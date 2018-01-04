@@ -20,6 +20,9 @@ export const RELATE_CARD_TO_DECK = 'RELATE_CARD_TO_DECK';
 export const RELATE_CARD_TO_TOPIC = 'RELATE_CARD_TO_TOPIC';
 export const UPDATE_CARD = 'UPDATE_CARD';
 export const UPDATE_DECK = 'UPDATE_DECK';
+export const QUIZ_CREATE = 'QUIZ_CREATE';
+export const QUIZ_UPDATE_QUESTION = 'QUIZ_UPDATE_QUESTION';
+export const QUIZ_UPDATE_COMPLETE = 'QUIZ_UPDATE_COMPLETE';
 
 export function createCard(cardAttrs){
   return {
@@ -127,6 +130,33 @@ export function updateDeck(deck){
     type: UPDATE_DECK,
     payload: {
       deck,
+    },
+  };
+}
+export function createDeckQuiz(quiz){
+  return {
+    type: QUIZ_CREATE,
+    payload: {
+      quiz,
+    },
+  };
+}
+export function updateDeckQuizQuestion(quizId, cardId, isCorrect){
+  return {
+    type: QUIZ_UPDATE_QUESTION,
+    payload: {
+      quizId,
+      cardId,
+      isCorrect,
+    },
+  };
+}
+export function updateDeckQuizComplete(quizId, isComplete){
+  return {
+    type: QUIZ_UPDATE_COMPLETE,
+    payload: {
+      quizId,
+      isComplete,
     },
   };
 }

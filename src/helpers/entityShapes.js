@@ -22,8 +22,17 @@ const topicShape = {
   cards: PropTypes.array,
 };
 
+const quizSummaryShape = {
+  id: PropTypes.string.isRequired,
+  counts: PropTypes.shape({
+    correctNumber: PropTypes.number.isRequired,
+    incorrectNumber: PropTypes.number.isRequired,
+  }).isRequired,
+};
+
 export {
   cardShape,
   deckShape,
   topicShape,
+  quizSummaryShape,
 };

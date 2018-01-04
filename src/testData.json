@@ -113,6 +113,20 @@
         }
       },
       "allIds": ["ct1", "ct2", "ct3", "ct4", "ct5", "ct6"]
+    },
+    "quizResults": {
+      "byId": {
+        "qr1": {
+          "id": "qr1",
+          "deckId": "d1",
+          "isComplete": true,
+          "results": {
+            "correctCardIds": ["c1"],
+            "incorrectCardIds": ["c2"]
+          }
+        }
+      },
+      "allIds": ["qr1"]
     }
   }
 }

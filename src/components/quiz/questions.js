@@ -9,6 +9,7 @@ class QuizQuestions extends React.Component {
   static propTypes = {
     cards: PropTypes.arrayOf(PropTypes.shape(cardShape)).isRequired,
     onEndQuiz: PropTypes.func.isRequired,
+    onStartQuiz: PropTypes.func.isRequired,
   };
 
   state = {
@@ -21,6 +22,10 @@ class QuizQuestions extends React.Component {
 
   onNext = () => {
     const nextCard = this.getNextCard(this.state.currentCard);
+
+    if (!this.state.currentCard){
+      this.props.onStartQuiz();
+    }
 
     if (!nextCard){
       this.props.onEndQuiz();

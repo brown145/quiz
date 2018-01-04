@@ -23,6 +23,19 @@ export function attributesToTopic(topicAttrs) {
   };
 }
 
+export function attributesToDeckQuiz(deckQuizAttrs) {
+  const { deckId } = deckQuizAttrs;
+  return {
+    id: uuidv4(),
+    deckId,
+    isComplete: false,
+    results: {
+      correctCardIds: [],
+      incorrectCardIds: [],
+    },
+  };
+}
+
 export function newCardDeckRelation(cardId, deckId) {
   return {
     id: uuidv4(),
