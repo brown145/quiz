@@ -35,10 +35,21 @@ const quizSummaryShape = {
   }).isRequired,
 };
 
+const quizResultShape = {
+  id: PropTypes.string.isRequired,
+  deckId: PropTypes.string,
+  isComplete: PropTypes.bool.isRequired,
+  results: PropTypes.shape({
+    correctCardIds: PropTypes.array.isRequired,
+    incorrectCardIds: PropTypes.array.isRequired,
+  }).isRequired,
+};
+
 export {
   cardShape,
   deckShape,
   topicShape,
   linkShape,
   quizSummaryShape,
+  quizResultShape,
 };
