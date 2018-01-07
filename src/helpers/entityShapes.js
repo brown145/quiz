@@ -22,8 +22,14 @@ const topicShape = {
   cards: PropTypes.array,
 };
 
+const linkShape = {
+  text: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
+};
+
 export {
   cardShape,
   deckShape,
   topicShape,
+  linkShape,
 };

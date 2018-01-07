@@ -5,9 +5,26 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import store from './store';
 import routes from './routes';
 
+import MainNav from './components/nav/main';
+
 const App = () => (
   <div className="ui container">
     <h1 className="ui header no-anchor">Trivia Demo Project</h1>
+    <MainNav
+      links={[{
+        text: 'decks',
+        to: '/decks/',
+      },
+      {
+        text: 'cards',
+        to: '/cards/',
+      },
+      {
+        text: 'topics',
+        to: '/topics/',
+      },
+      ]}
+    />
     <Switch>
       <Route path="/decks/:id" component={routes.deckDetailRoute} />
       <Route path="/decks" component={routes.deckListRoute} />
