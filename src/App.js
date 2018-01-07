@@ -23,6 +23,10 @@ const App = () => (
         text: 'topics',
         to: '/topics/',
       },
+      {
+        text: 'quizes',
+        to: '/quizes/',
+      },
       ]}
     />
     <Switch>
@@ -33,6 +37,7 @@ const App = () => (
       <Route path="/cards/" component={routes.cardListRoute} />
       <Route path="/topics/:id" component={routes.topicDetailRoute} />
       <Route path="/topics" component={routes.topicListRoute} />
+      <Route path="/quizes" component={routes.quizListRoute} />
       <Route path="/" component={routes.deckListRoute} />
     </Switch>
   </div>
