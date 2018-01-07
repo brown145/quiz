@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import TopicDetail from '../components/topic/detail';
-import { getCardsByTopic, getTopicsByCard } from '../helpers/entityHelper';
-import { unRelateTopicToCard } from '../actions/entityActions';
+import TopicDetail from 'components/topic/detail';
+import { getCardsByTopic, getTopicsByCard } from 'helpers/entityHelper';
+import { unRelateTopicToCard } from 'actions/entityActions';
 
 const mapStateToTopicProps = (store, ownProps) => {
   const topicId = ownProps.match.params.id;

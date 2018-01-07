@@ -2,7 +2,7 @@ import {
   CREATE_CARD,
   DELETE_CARD,
   UPDATE_CARD,
-} from '../actions/entityActions';
+} from 'actions/entityActions';
 
 export default function reducer (state={
   byId: {},

@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { createDeck, deleteDeck, updateDeck } from '../actions/entityActions';
-import { getCardsByDeck } from '../helpers/entityHelper';
+import { createDeck, deleteDeck, updateDeck } from 'actions/entityActions';
+import { getCardsByDeck } from 'helpers/entityHelper';
 
-import DeckList from '../components/deck/list';
+import DeckList from 'components/deck/list';
 
 const mapStateToDeckProps = store => {
   const { cardDecks, cards, decks } = store.entities;

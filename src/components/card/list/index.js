@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { cardShape } from '../../../helpers/entityShapes';
-import { EditableCard } from '../_cardCard';
-import AddCardForm from '../addEditCardForm';
-import SortFilterList from '../../_common/list/sortFilterList';
-import ToggleableAddForm from '../../_common/toggleableAddForm';
+import { cardShape } from 'helpers/entityShapes';
+import { EditableCard } from 'components/card/_cardCard';
+import AddCardForm from 'components/card/addEditCardForm';
+import SortFilterList from 'components/_common/list/sortFilterList';
+import ToggleableAddForm from 'components/_common/toggleableAddForm';
 
 class CardList extends React.Component {
   static propTypes = {

@@ -1,7 +1,7 @@
 import {
   RELATE_CARD_TO_TOPIC,
   DELETE_CARD_TO_TOPIC_RELATION,
-} from '../actions/entityActions';
+} from 'actions/entityActions';
 import cardTopicEntityReducer from './cardTopicEntityReducer';
 import testData from '../testData.json';
 

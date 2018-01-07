@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Label } from 'semantic-ui-react';
 
-import { topicShape } from '../../../helpers/entityShapes';
+import { topicShape } from 'helpers/entityShapes';
 
 const CardRibon = props => {
   const onTopicClick = function(e) {

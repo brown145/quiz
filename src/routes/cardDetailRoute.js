@@ -2,16 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { updateCard } from '../actions/entityActions';
+import { updateCard } from 'actions/entityActions';
 import {
   getDecksByCard,
   getTopicsByCard,
   getRelateableTopicsByCard,
-} from '../helpers/entityHelper';
-import { relateTopicToCard } from '../actions/entityActions';
+} from 'helpers/entityHelper';
+import { relateTopicToCard } from 'actions/entityActions';
 
-import CardDetail from '../components/card/detail';
-import WarningUI from '../components/warningBlurb';
+import CardDetail from 'components/card/detail';
+import WarningUI from 'components/warningBlurb';
 
 const mapStateToCardProps = (store, ownProps) => {
   const cardId = ownProps.match.params.id;

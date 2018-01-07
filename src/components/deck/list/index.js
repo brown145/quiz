@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { deckShape } from '../../../helpers/entityShapes';
-import { EditableDeck } from '../_deckCard';
-import AddForm from '../addEditDeckForm';
-import SortFilterList from '../../_common/list/sortFilterList';
-import ToggleableAddForm from '../../_common/toggleableAddForm';
+import { deckShape } from 'helpers/entityShapes';
+import { EditableDeck } from 'components/deck/_deckCard';
+import AddForm from 'components/deck/addEditDeckForm';
+import SortFilterList from 'components/_common/list/sortFilterList';
+import ToggleableAddForm from 'components/_common/toggleableAddForm';
 
 class DeckList extends React.Component {
   static propTypes = {

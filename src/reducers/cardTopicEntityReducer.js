@@ -1,7 +1,7 @@
 import {
   RELATE_CARD_TO_TOPIC,
   DELETE_CARD_TO_TOPIC_RELATION,
-} from '../actions/entityActions';
+} from 'actions/entityActions';
 
 // TODO: unit tests
 export default function reducer (state={

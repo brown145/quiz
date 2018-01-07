@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card as SemanticCard } from 'semantic-ui-react';
 
-import CardRibon from './cardRibon';
-import DeckListInline from './deckListInline';
-import { cardShape } from '../../../helpers/entityShapes';
+import CardRibon from 'components/card/_cardCard/cardRibon';
+import DeckListInline from 'components/card/_cardCard/deckListInline';
+import { cardShape } from 'helpers/entityShapes';
 
 const Card = props => {
   const onSelect = (e, { value }) => {

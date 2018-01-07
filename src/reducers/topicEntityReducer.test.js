@@ -1,7 +1,7 @@
 import {
   CREATE_TOPIC,
   DELETE_TOPIC,
-} from '../actions/entityActions';
+} from 'actions/entityActions';
 import topicEntityReducer from './topicEntityReducer';
 import testData from '../testData.json';
 

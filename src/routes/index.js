@@ -4,6 +4,7 @@ import deckDetailRoute from './deckDetailRoute';
 import deckListRoute from './deckListRoute';
 import topicListRoute from './topicListRoute';
 import topicDetailRoute from './topicDetailRoute';
+import quizDeckRoute from './quizDeckRoute';
 
 export default {
   cardDetailRoute,
@@ -12,4 +13,5 @@ export default {
   deckListRoute,
   topicListRoute,
   topicDetailRoute,
+  quizDeckRoute,
 };

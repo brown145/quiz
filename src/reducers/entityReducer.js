@@ -1,10 +1,11 @@
-import * as entityActions from '../actions/entityActions';
+import * as entityActions from 'actions/entityActions';
 
 import cardsReducer from './cardEntityReducer';
 import decksReducer from './deckEntityReducer';
 import topicsReducer from './topicEntityReducer';
 import cardDeckReducer from './cardDeckEntityReducer';
 import cardTopicReducer from './cardTopicEntityReducer';
+import quizResultsReducer from './quizResultsEntityReducer';
 
 export default function reducer (state={
   decks: decksReducer(undefined, {}),
@@ -12,6 +13,7 @@ export default function reducer (state={
   topics: topicsReducer(undefined, {}),
   cardDecks: cardDeckReducer(undefined, {}),
   cardTopics:cardTopicReducer(undefined, {}),
+  quizResults: quizResultsReducer(undefined, {}),
 }, action) {
   const {type, payload} = action;
   switch (type) {
@@ -60,6 +62,13 @@ export default function reducer (state={
           byId: {...state.cardDecks.byId, [payload.relation.id]:payload.relation},
           allIds: state.cardDecks.allIds.concat(payload.relation.id),
         },
+      };
+    case entityActions.QUIZ_CREATE:
+    case entityActions.QUIZ_UPDATE_QUESTION:
+    case entityActions.QUIZ_UPDATE_COMPLETE:
+      return {
+        ...state,
+        quizResults: quizResultsReducer(state.quizResults, action),
       };
     default:
       return state;

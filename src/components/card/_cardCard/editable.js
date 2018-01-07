@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from './card';
-import EditCardForm from '../addEditCardForm';
+import EditCardForm from 'components/card/addEditCardForm';
 
-import { cardShape } from '../../../helpers/entityShapes';
+import { cardShape } from 'helpers/entityShapes';
 
 class EditableCard extends React.Component {
   static propTypes = {

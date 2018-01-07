@@ -27,9 +27,18 @@ const linkShape = {
   to: PropTypes.string.isRequired,
 };
 
+const quizSummaryShape = {
+  id: PropTypes.string.isRequired,
+  counts: PropTypes.shape({
+    correctNumber: PropTypes.number.isRequired,
+    incorrectNumber: PropTypes.number.isRequired,
+  }).isRequired,
+};
+
 export {
   cardShape,
   deckShape,
   topicShape,
   linkShape,
+  quizSummaryShape,
 };

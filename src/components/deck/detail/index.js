@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Container, Header } from 'semantic-ui-react';
 
-import { ShortCard } from '../../card/_cardCard/';
-import { deckShape } from '../../../helpers/entityShapes';
-import RelationSelector from '../../_common/relator/select';
+import { ShortCard } from 'components/card/_cardCard/';
+import { deckShape } from 'helpers/entityShapes';
+import RelationSelector from 'components/_common/relator/select';
 
 class DeckDetail extends React.Component {
   static propTypes = {

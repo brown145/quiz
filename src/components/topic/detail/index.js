@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Container, Header } from 'semantic-ui-react';
 
-import { ShortCard } from '../../card/_cardCard/';
-import { topicShape } from '../../../helpers/entityShapes';
+import { ShortCard } from 'components/card/_cardCard/';
+import { topicShape } from 'helpers/entityShapes';
 
 class TopicDetail extends React.Component {
   static propTypes = {

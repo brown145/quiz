@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card as SemanticCard, Icon } from 'semantic-ui-react';
-import { topicShape } from '../../../helpers/entityShapes';
+import { topicShape } from 'helpers/entityShapes';
 
 const Topic = props => {
   const onSelect = (e, { value }) => {

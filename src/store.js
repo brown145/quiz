@@ -3,7 +3,7 @@ import * as storage from 'redux-storage';
 import createEngine from 'redux-storage-engine-localstorage';
 import { createLogger } from 'redux-logger';
 
-import reducer from './reducers/';
+import reducer from 'reducers/';
 
 // setup for localstorage middleware
 const storageReducer = storage.reducer(reducer);

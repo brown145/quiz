@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 
 import {
   getCardsByDeck,
-  getRelateableCardsByDeck,
   getTopicsByCard,
+  attributesToDeckQuiz,
 } from 'helpers/entityHelper';
-import { relateCardToDeck, unRelateCardToDeck } from 'actions/entityActions';
+import { createDeckQuiz, updateDeckQuizComplete } from 'actions/entityActions';
 
-import DeckDetail from 'components/deck/detail';
+import QuizQuestions from 'components/quiz/questions';
 import WarningUI from 'components/warningBlurb';
 
 const mapStateToDeckProps = (store, ownProps) => {
@@ -22,28 +22,36 @@ const mapStateToDeckProps = (store, ownProps) => {
         ...card,
         topics: getTopicsByCard(cardTopics, topics, card.id),
       })),
-      relatableCards: getRelateableCardsByDeck(cardDecks, cards, deckId),
     },
   };
 };
 
-class DeckDetailContainer extends React.Component {
+class QuizDeckContainer extends React.Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
     deck: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
   };
 
-  handler_cardClick = cardId => {
-    if (cardId) {
-      this.props.history.push(`/cards/${cardId}`);
-    }
+  state = {
+    quizResultsId: null,
+  }
+
+  handler_startQuiz = () => {
+    const quiz = attributesToDeckQuiz({
+      deckId: this.props.deck.id,
+    });
+    this.setState({
+      quizResultsId: quiz.id,
+    });
+    this.props.dispatch(createDeckQuiz({
+      ...quiz,
+    }));
   };
 
-  handler_topicClick = topicId => {
-    if (topicId) {
-      this.props.history.push(`/topics/${topicId}`);
-    }
+  handler_endQuiz = () => {
+    this.props.dispatch(updateDeckQuizComplete(this.state.quizResultsId, true));
+    this.props.history.push(`/decks/${this.props.deck.id}`);
   };
 
   render() {
@@ -54,19 +62,13 @@ class DeckDetailContainer extends React.Component {
     }
 
     return (
-      <DeckDetail
-        deck={deck}
-        onCardSelect={this.handler_cardClick}
-        onTopicSelect={this.handler_topicClick}
-        onRelateCardToDeck={(cardId, deckId) =>
-          this.props.dispatch(relateCardToDeck(cardId, deckId))
-        }
-        onUnRelateCardToDeck={(cardId, deckId) =>
-          this.props.dispatch(unRelateCardToDeck(cardId, deckId))
-        }
+      <QuizQuestions
+        cards={deck.cards}
+        onStartQuiz={this.handler_startQuiz}
+        onEndQuiz={this.handler_endQuiz}
       />
     );
   }
 }
 
-export default connect(mapStateToDeckProps)(DeckDetailContainer);
+export default connect(mapStateToDeckProps)(QuizDeckContainer);
