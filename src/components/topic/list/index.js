@@ -35,6 +35,7 @@ class TopicList extends React.Component {
     return (
       <SortFilterList
         listItemMapper={this.topicItemMapper}
+        listProps={{ itemsPerRow:'3' }}
         sortedBy={'id'}
         filteredBy={'id'}
         items={this.props.topics}

@@ -3,3 +3,21 @@
   justify-content: center;
   align-items: center;
 }
+
+.cardHeight {
+  min-height: 100px;
+}
+
+.ui.grid>.row.searchFilterRow {
+  padding-top: 10px;
+  padding-bottom: 0px;
+}
+
+.ui.cards>.card>.extra.link:hover {
+  background-color: #f9f9f9;
+  font-style: italic;
+}
+
+.ribbon.label>span +span:before {
+  content: " | ";
+}

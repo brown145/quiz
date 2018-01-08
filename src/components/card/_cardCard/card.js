@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card as SemanticCard } from 'semantic-ui-react';
+import { Button, Card as SemanticCard, Grid, Header } from 'semantic-ui-react';
 
 import CardRibon from 'components/card/_cardCard/cardRibon';
 import DeckListInline from 'components/card/_cardCard/deckListInline';
@@ -14,18 +14,50 @@ const Card = props => {
 
   let buttons = [];
   if (props.onDelete) {
-    buttons.push(<Button key="removeButton" onClick={props.onDelete}>Remove</Button>);
+    buttons.push(
+      <Button
+        basic compact
+        floated="right"
+        size="tiny"
+        key="removeButton"
+        onClick={props.onDelete}
+      >
+        Remove
+      </Button>
+    );
   }
   if (props.onEditClick) {
-    buttons.push(<Button key="editButton" onClick={props.onEditClick}>Edit</Button>);
+    buttons.push(
+      <Button
+        basic compact
+        floated="right"
+        size="tiny"
+        key="editButton"
+        onClick={props.onEditClick}
+      >
+        Edit
+      </Button>
+    );
   }
 
   return (
     <SemanticCard fluid value={props.card.id} onClick={onSelect}>
       <SemanticCard.Content>
-        <CardRibon topics={props.card.topics} onSelect={props.onTopicSelect} />
-        <SemanticCard.Header>{props.card.question}</SemanticCard.Header>
-        {buttons}
+        <Grid>
+          <Grid.Row>
+            <Grid.Column floated="left" width={6}>
+              <Header>{props.card.question}</Header>
+            </Grid.Column>
+            <Grid.Column width={4}>
+              <CardRibon topics={props.card.topics} onSelect={props.onTopicSelect} />
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column floated="right" width={6}>
+              {buttons}
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </SemanticCard.Content>
       <SemanticCard.Content extra>
         <span>included in: </span>

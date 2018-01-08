@@ -18,14 +18,24 @@ const Deck = props => {
     <SemanticCard value={props.deck.id} onClick={onSelect}>
       <SemanticCard.Content>
         <SemanticCard.Header>{props.deck.name}</SemanticCard.Header>
-        <SemanticCard.Meta>meta TBD</SemanticCard.Meta>
+        <SemanticCard.Meta>[Last Quiz Date] TBD</SemanticCard.Meta>
         <SemanticCard.Description>
-          <Button onClick={props.onEditClick}>Edit</Button>
-          <Button onClick={props.onDelete}>Remove</Button>
           <Container>{props.deck.description}</Container>
+          <Button className="link" basic floated="right"
+            size="tiny" compact onClick={props.onDelete}
+          >
+            <Icon name="remove" />
+            Remove
+          </Button>
+          <Button className="link" basic floated="right"
+            size="tiny" compact onClick={props.onEditClick}
+          >
+            <Icon name="pencil" />
+            Edit
+          </Button>
         </SemanticCard.Description>
       </SemanticCard.Content>
-      <SemanticCard.Content extra>
+      <SemanticCard.Content extra className="link">
         <Icon name="cubes" />
         {props.deck.cards.length} Cards
       </SemanticCard.Content>

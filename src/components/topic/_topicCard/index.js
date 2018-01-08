@@ -12,14 +12,15 @@ const Topic = props => {
     <SemanticCard value={props.topic.id} onClick={onSelect}>
       <SemanticCard.Content>
         <SemanticCard.Header>{props.topic.id}</SemanticCard.Header>
-        <Button onClick={e => {
-          props.onDelete(props.topic.id);
-          e.stopPropagation();
-          e.preventDefault();
-        }}
+        <Button basic floated="right" size="tiny"
+          compact onClick={e => {
+            props.onDelete(props.topic.id);
+            e.stopPropagation();
+            e.preventDefault();
+          }}
         >Remove</Button>
       </SemanticCard.Content>
-      <SemanticCard.Content extra>
+      <SemanticCard.Content extra className="link">
         <Icon name="cubes" />
         {props.topic.cards.length} Cards
       </SemanticCard.Content>

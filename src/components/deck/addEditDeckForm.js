@@ -33,7 +33,7 @@ class AddEditDeckForm extends React.Component {
     return (
       <SemanticCard color="green">
         <SemanticCard.Content>
-          <Form>
+          <Form size="small">
             <Form.Input
               type="text"
               name="name"
@@ -52,10 +52,14 @@ class AddEditDeckForm extends React.Component {
         </SemanticCard.Content>
         <SemanticCard.Content extra>
           <div className="ui two buttons">
-            <Button basic color="orange" onClick={this.props.onClose}>
+            <Button basic compact size="small"
+              color="orange" onClick={this.props.onClose}
+            >
               Cancel
             </Button>
-            <Button basic color="green" onClick={this.handleSubmit}>
+            <Button basic compact size="small"
+              color="green" onClick={this.handleSubmit}
+            >
               {submitText}
             </Button>
           </div>

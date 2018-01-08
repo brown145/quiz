@@ -4,8 +4,8 @@ import { Card as SemanticCard, Icon } from 'semantic-ui-react';
 
 const AddCard = props => (
   <SemanticCard fluid={props.isFluid} color="green" onClick={props.onAdd}>
-    <SemanticCard.Content className="centerContent">
-      <Icon name="add" size="big" />
+    <SemanticCard.Content className="centerContent cardHeight">
+      <Icon name="add" color="green" size="big" />
     </SemanticCard.Content>
   </SemanticCard>
 );

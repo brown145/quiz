@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card, Container, Input } from 'semantic-ui-react';
+import { Button, Card, Grid, Input, Transition } from 'semantic-ui-react';
 
 const SORTED_ORDER = {
   DEFAULT: 'Default',
@@ -27,24 +27,30 @@ class SortFilterList extends React.Component {
     switch (this.state.sort) {
       case SORTED_ORDER.DEFAULT:
         this.setState({
-          sortedBy: SORTED_ORDER.ASC,
+          sort: SORTED_ORDER.ASC,
         });
         break;
       case SORTED_ORDER.ASC:
         this.setState({
-          sortedBy: SORTED_ORDER.DEC,
+          sort: SORTED_ORDER.DEC,
         });
         break;
       default:
         this.setState({
-          sortedBy: SORTED_ORDER.DEFAULT,
+          sort: SORTED_ORDER.DEFAULT,
         });
     }
   }
 
   onFilterChange = (e, {value}) => {
     this.setState({
-      filteredBy: value,
+      filter: value,
+    });
+  }
+
+  clearFilter = (e) => {
+    this.setState({
+      filter: '',
     });
   }
 
@@ -75,22 +81,32 @@ class SortFilterList extends React.Component {
   render() {
     const items = this.getListItems();
     return (
-      <Container>
-        <Container>
-          <Button onClick={this.onSortClick}>Sort</Button>
-          <Input
-            icon={{ name: 'x', circular: false, link: true }}
-            placeholder="Filter..."
-            onChange={this.onFilterChange}
-          />
-        </Container>
-        <Card.Group
-          {...this.props.listProps}
-        >
-          {items}
-          {this.props.extra}
-        </Card.Group>
-      </Container>
+      <Grid>
+        <Grid.Row className="searchFilterRow">
+          <Grid.Column textAlign="right">
+            <Button size="mini" onClick={this.onSortClick}>Sort</Button>
+            <Input
+              size="mini"
+              icon={{ name: 'x', circular: false, link: true, onClick: this.clearFilter }}
+              placeholder="Filter..."
+              value={this.state.filter}
+              onChange={this.onFilterChange}
+            />
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column>
+            <Transition.Group
+              as={Card.Group}
+              duration={700}
+              {...this.props.listProps}
+            >
+              {items}
+              {this.props.extra}
+            </Transition.Group>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
 }
