@@ -40,6 +40,7 @@ class QuizDeckContainer extends React.Component {
   handler_startQuiz = () => {
     const quiz = attributesToDeckQuiz({
       deckId: this.props.deck.id,
+      started: Date.now(),
     });
     this.setState({
       quizResultsId: quiz.id,
@@ -50,7 +51,7 @@ class QuizDeckContainer extends React.Component {
   };
 
   handler_endQuiz = () => {
-    this.props.dispatch(updateDeckQuizComplete(this.state.quizResultsId, true));
+    this.props.dispatch(updateDeckQuizComplete(this.state.quizResultsId, true, Date.now()));
     this.props.history.push(`/decks/${this.props.deck.id}`);
   };
 

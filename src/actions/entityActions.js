@@ -151,12 +151,13 @@ export function updateDeckQuizQuestion(quizId, cardId, isCorrect){
     },
   };
 }
-export function updateDeckQuizComplete(quizId, isComplete){
+export function updateDeckQuizComplete(quizId, isComplete, ended){
   return {
     type: QUIZ_UPDATE_COMPLETE,
     payload: {
       quizId,
       isComplete,
+      ended,
     },
   };
 }

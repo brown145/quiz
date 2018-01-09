@@ -24,11 +24,13 @@ export function attributesToTopic(topicAttrs) {
 }
 
 export function attributesToDeckQuiz(deckQuizAttrs) {
-  const { deckId } = deckQuizAttrs;
+  const { deckId, started } = deckQuizAttrs;
   return {
     id: uuidv4(),
     deckId,
     isComplete: false,
+    started,
+    ended: null,
     results: {
       correctCardIds: [],
       incorrectCardIds: [],

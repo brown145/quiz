@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Table} from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
+import moment from 'moment';
 
-// TODO:
 import { quizResultShape } from 'helpers/entityShapes';
 
 class CardList extends React.Component {
@@ -47,6 +47,7 @@ class CardList extends React.Component {
 
   render() {
     const { column, data, direction } = this.state;
+    const dateFormat = 'YYYY-MM-DD kk:mm:ss';
 
     return (
       <Table sortable celled fixed>
@@ -54,6 +55,12 @@ class CardList extends React.Component {
           <Table.Row>
             <Table.HeaderCell sorted={column === 'id' ? direction : null} onClick={this.handleSort('id')}>
               Id
+            </Table.HeaderCell>
+            <Table.HeaderCell sorted={column === 'started' ? direction : null} onClick={this.handleSort('started')}>
+              Started
+            </Table.HeaderCell>
+            <Table.HeaderCell sorted={column === 'ended' ? direction : null} onClick={this.handleSort('ended')}>
+              Ended
             </Table.HeaderCell>
             <Table.HeaderCell sorted={column === 'deckId' ? direction : null} onClick={this.handleSort('deckId')}>
               DeckId
@@ -70,9 +77,13 @@ class CardList extends React.Component {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {data.map(({id, deckId, isComplete, results}) => {
+          {data.map(({id, started, ended, deckId, isComplete, results}) => {
+            const formatedStarted = (started) ? moment(started).format(dateFormat) : '-';
+            const formatedEnded = (ended) ? moment(ended).format(dateFormat) : '-';
             return (<Table.Row key={id}>
               <Table.Cell>{id}</Table.Cell>
+              <Table.Cell>{formatedStarted}</Table.Cell>
+              <Table.Cell>{formatedEnded}</Table.Cell>
               <Table.Cell>{deckId}</Table.Cell>
               <Table.Cell>{(isComplete) ? 'complete' : 'incomplete'}</Table.Cell>
               <Table.Cell>{results.correctCardIds.length}</Table.Cell>

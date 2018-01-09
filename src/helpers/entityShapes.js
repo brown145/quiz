@@ -39,6 +39,8 @@ const quizResultShape = {
   id: PropTypes.string.isRequired,
   deckId: PropTypes.string,
   isComplete: PropTypes.bool.isRequired,
+  started: PropTypes.number.isRequired,
+  ended: PropTypes.number,
   results: PropTypes.shape({
     correctCardIds: PropTypes.array.isRequired,
     incorrectCardIds: PropTypes.array.isRequired,

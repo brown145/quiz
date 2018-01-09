@@ -47,6 +47,7 @@ export default function reducer (state={
             result[key] = {
               ...state.byId[key],
               isComplete: payload.isComplete,
+              ended: payload.ended,
             };
           }
           return result;

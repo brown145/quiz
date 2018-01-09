@@ -2,9 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-// import { createCard, deleteCard, updateCard } from 'actions/entityActions';
-// import { getDecksByCard, getTopicsByCard } from 'helpers/entityHelper';
-
 import QuizList from 'components/quiz/list/';
 
 const mapStateToTopicProps = (store) => {

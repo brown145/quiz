@@ -24,8 +24,8 @@ const App = () => (
         to: '/topics/',
       },
       {
-        text: 'quizes',
-        to: '/quizes/',
+        text: 'quizzes',
+        to: '/quizzes/',
       },
       ]}
     />
@@ -37,7 +37,8 @@ const App = () => (
       <Route path="/cards/" component={routes.cardListRoute} />
       <Route path="/topics/:id" component={routes.topicDetailRoute} />
       <Route path="/topics" component={routes.topicListRoute} />
-      <Route path="/quizes" component={routes.quizListRoute} />
+      <Route path="/quizzes/:id" component={routes.quizSummaryRoute} />
+      <Route path="/quizzes" component={routes.quizListRoute} />
       <Route path="/" component={routes.deckListRoute} />
     </Switch>
   </div>
