@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Icon } from 'semantic-ui-react';
+import { Button, Card, Grid, Header } from 'semantic-ui-react';
 
 import CardRibon from './cardRibon';
 import { cardShape } from 'helpers/entityShapes';
@@ -19,9 +19,28 @@ const ShortCard = props => {
   return (
     <Card onClick={onSelect}>
       <Card.Content>
-        <CardRibon topics={props.card.topics} onSelect={props.onTopicSelect} />
-        <Card.Header>{props.card.question}</Card.Header>
-        <Icon link name="x" onClick={onRemove} />
+        <Grid>
+          <Grid.Row>
+            <Grid.Column floated="left" width={6}>
+              <Header>{props.card.question}</Header>
+            </Grid.Column>
+            <Grid.Column width={4}>
+              <CardRibon topics={props.card.topics} onSelect={props.onTopicSelect} />
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column floated="right" width={6}>
+              <Button
+                basic compact
+                floated="right"
+                size="tiny"
+                onClick={onRemove}
+              >
+                Remove
+              </Button>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </Card.Content>
     </Card>
   );

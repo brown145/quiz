@@ -1,22 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Container, Dropdown } from 'semantic-ui-react';
 
 const RelationSelector = props => {
-  const handler_optionChange = (e) => {
-    const select = e.target;
-    if (select.value){
-      props.onSelect(select.value);
+  const handler_optionChange = (e, {value}) => {
+    if (value){
+      props.onSelect(value);
     }
   };
 
-  const options = props.optionItems.map(option => (
-    <option key={option.id} value={option.id}>{option.text}</option>
-  ));
   return (
-    <select onChange={handler_optionChange}>
-      <option>{props.text}</option>
-      {options}
-    </select>
+    <Container>
+      <Dropdown
+        placeholder={props.text}
+        fluid
+        search
+        selection
+        onChange={handler_optionChange}
+        options={props.optionItems.map( option => ({
+          key: option.id,
+          value: option.id,
+          text: option.text,
+        }))}
+      />
+    </Container>
   );
 };
 RelationSelector.propTypes = {

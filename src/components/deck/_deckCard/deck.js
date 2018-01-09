@@ -21,14 +21,14 @@ const Deck = props => {
         <SemanticCard.Meta>[Last Quiz Date] TBD</SemanticCard.Meta>
         <SemanticCard.Description>
           <Container>{props.deck.description}</Container>
-          <Button className="link" basic floated="right"
-            size="tiny" compact onClick={props.onDelete}
+          <Button basic floated="right" size="tiny"
+            compact onClick={props.onDelete}
           >
             <Icon name="remove" />
             Remove
           </Button>
-          <Button className="link" basic floated="right"
-            size="tiny" compact onClick={props.onEditClick}
+          <Button basic floated="right" size="tiny"
+            compact onClick={props.onEditClick}
           >
             <Icon name="pencil" />
             Edit
