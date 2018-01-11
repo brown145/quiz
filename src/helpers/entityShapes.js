@@ -38,6 +38,8 @@ const quizSummaryShape = {
 const quizResultShape = {
   id: PropTypes.string.isRequired,
   deckId: PropTypes.string,
+  // TODO: allow a topic id or a deckId; one or the other, not both; not none
+  // topicId: PropTypes.string,
   isComplete: PropTypes.bool.isRequired,
   started: PropTypes.number.isRequired,
   ended: PropTypes.number,

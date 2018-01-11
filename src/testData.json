@@ -119,6 +119,8 @@
         "qr1": {
           "id": "qr1",
           "deckId": "d1",
+          "started": 1515569517850,
+          "ended": 1515569517850,
           "isComplete": true,
           "results": {
             "correctCardIds": ["c1"],

@@ -2,6 +2,7 @@ import {
   attributesToDeck,
   attributesToCard,
   attributesToTopic,
+  attributesToQuiz,
   newCardDeckRelation,
   newCardTopicRelation,
 } from 'helpers/entityHelper';
@@ -133,15 +134,15 @@ export function updateDeck(deck){
     },
   };
 }
-export function createDeckQuiz(quiz){
+export function createQuiz(quizAttrs){
   return {
     type: QUIZ_CREATE,
     payload: {
-      quiz,
+      quiz: attributesToQuiz(quizAttrs),
     },
   };
 }
-export function updateDeckQuizQuestion(quizId, cardId, isCorrect){
+export function updateQuizQuestion(quizId, cardId, isCorrect){
   return {
     type: QUIZ_UPDATE_QUESTION,
     payload: {
@@ -151,7 +152,7 @@ export function updateDeckQuizQuestion(quizId, cardId, isCorrect){
     },
   };
 }
-export function updateDeckQuizComplete(quizId, isComplete, ended){
+export function updateQuizComplete(quizId, isComplete, ended){
   return {
     type: QUIZ_UPDATE_COMPLETE,
     payload: {

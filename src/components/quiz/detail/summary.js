@@ -14,13 +14,13 @@ class QuizSummary extends React.Component {
     const { deckId, ended, results } = this.props.quizResult;
     const correct = results.correctCardIds.length;
     const total = results.correctCardIds.length + results.incorrectCardIds.length;
-    const score = (total) ? correct / total : 0;
+    const score = (total) ? Math.floor((correct / total) * 100) : 0;
 
     return (
       <Container>
         <Header>
           Quiz Results for {deckId}
-          <Header.Subheader> Completed {moment(ended).format('MMMM Do YYYY kk:mm:ss')}</Header.Subheader>
+          <Header.Subheader> Completed {moment(ended).format('MMMM Do, YYYY kk:mm:ss')}</Header.Subheader>
         </Header>
         <Grid>
           <Grid.Row>

@@ -1,5 +1,9 @@
 const uuidv4 = require('uuid/v4');
 
+export function getUniqueId(){
+  return uuidv4();
+}
+
 export function attributesToDeck(deckAttrs) {
   return {
     id: uuidv4(),
@@ -23,11 +27,12 @@ export function attributesToTopic(topicAttrs) {
   };
 }
 
-export function attributesToDeckQuiz(deckQuizAttrs) {
-  const { deckId, started } = deckQuizAttrs;
+export function attributesToQuiz(deckQuizAttrs) {
+  const { id, deckId, topicId, started } = deckQuizAttrs;
   return {
-    id: uuidv4(),
+    id: id || uuidv4(),
     deckId,
+    topicId,
     isComplete: false,
     started,
     ended: null,

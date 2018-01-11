@@ -24,8 +24,13 @@ export default function reducer (state={
           if (key !== payload.quizId) {
             result[key] = state.byId[key];
           } else {
-            const correctCardIds = state.byId[key].results.correctCardIds.filter(id => id !== payload.cardId);
-            const incorrectCardIds = state.byId[key].results.incorrectCardIds.filter(id => id !== payload.cardId);
+            let correctCardIds = state.byId[key].results.correctCardIds.filter(id => id !== payload.cardId);
+            let incorrectCardIds = state.byId[key].results.incorrectCardIds.filter(id => id !== payload.cardId);
+            if (payload.isCorrect) {
+              correctCardIds.push(payload.cardId);
+            } else {
+              incorrectCardIds.push(payload.cardId);
+            }
             result[key] = {
               ...state.byId[key],
               results: {

@@ -30,13 +30,14 @@ const App = () => (
       ]}
     />
     <Switch>
-      <Route path="/decks/:id/quiz" component={routes.quizDeckRoute} />
+      <Route path="/decks/:id/quiz" component={routes.quizDeckRoute} /> {/* kill this route */}
       <Route path="/decks/:id" component={routes.deckDetailRoute} />
       <Route path="/decks" component={routes.deckListRoute} />
       <Route path="/cards/:id" component={routes.cardDetailRoute} />
       <Route path="/cards/" component={routes.cardListRoute} />
       <Route path="/topics/:id" component={routes.topicDetailRoute} />
       <Route path="/topics" component={routes.topicListRoute} />
+      <Route path="/quiz/start/" component={routes.quizStartRoute} />
       <Route path="/quizzes/:id" component={routes.quizSummaryRoute} />
       <Route path="/quizzes" component={routes.quizListRoute} />
       <Route path="/" component={routes.deckListRoute} />
